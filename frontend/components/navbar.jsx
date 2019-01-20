@@ -10,18 +10,33 @@ class NavBar extends React.Component {
 
   render() {
     const buttons = this.props.currentUser ? (
-      <>
-        <button onClick={this.props.logOut}>Log Out</button>
-      </>
+      <ul className="nav-buttons">
+        <li className="nav-user">
+          <Link to={`users/${this.props.currentUser.id}`}>{this.props.currentUser.username}</Link>
+        </li>
+        <li className="log-out">
+          <button onClick={this.props.logOut}>Log Out</button>
+        </li>
+      </ul>
     ) : (
-      <>
-        <Link to="/signup">Sign Up</Link>
-        <Link to="/login">Log In</Link>
-      </>
+      <div className="logged-out-buttons">
+        <Link className="nav-button login" to="/login">Sign In</Link>
+        <Link className="nav-button signup" to="/signup">Create account</Link>
+      </div>
     );
     
     return (
-    <>{buttons}</>
+    <>
+      <nav className='nav-row'> 
+        <Link className='logo' to=''>
+          <div className="notefloat"> 
+            <i className="fab fa-soundcloud"></i>
+            <h3>NoteFloat</h3>
+          </div>
+        </Link>
+        {buttons}
+      </nav>
+    </>
     );
   }
 }

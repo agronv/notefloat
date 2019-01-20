@@ -1,0 +1,90 @@
+header {
+  background-color: #333333;
+  height: 45px;
+}
+
+.logo {
+  background-color: #F65502; 
+  height: 100%;
+  cursor: pointer;
+  width: 200px;
+}
+
+.notefloat {
+  color: white;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.notefloat i {
+  font-size: 32px;
+  margin-right: 10px;
+  margin-left: 22px;
+}
+
+.nav-row {
+  width: 66%;
+  height: 100%;
+  color: rgb(204,204,204);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.nav-buttons li {
+  width: 104px;
+  height: 45px;
+  box-sizing: border-box;
+  border-right: 1px solid black;
+  text-align: center;
+  cursor: pointer;
+}
+
+.nav-buttons li:hover, .nav-buttons li:active {
+  color: rgb(238, 238, 238)
+}
+
+.nav-buttons li:first-child {
+  border-left: 1px solid black;
+}
+
+.nav-buttons li a, .nav-buttons li button {
+  display: block;
+  padding: 13px 0 13px 0;
+  margin: 0 auto;
+}
+
+.logged-out-buttons {
+  width: 220px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 14px;
+  color: rgb(238, 238, 238);
+}
+
+.signup {
+  background-color: #F65502;
+  padding: 5px 8px;
+  border-radius: 5px;
+}
+
+.login {
+  border: 1px solid #aaa;
+  padding: 5px 8px;
+  border-radius: 5px;
+}
+
+.login:hover {
+  border: 1px solid rgb(238, 238, 238);
+}
+

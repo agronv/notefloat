@@ -1,0 +1,56 @@
+.soundcloud-big {
+  font-size: 120px;
+  color: #F65502;
+}
+
+.log-in-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 400px;
+  height: 470px;
+  padding: 25px;
+  background-color: white;
+  z-index: 11;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -220px;
+}
+
+.log-in-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.log-in-form input, .log-in-button {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 7px;
+  height: 38px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.log-in-button {
+  background-color: #F65502; 
+  text-align: center;
+  color: white;
+}
+
+.log-in-form input {
+  border: 1px solid #ccc;
+}
+
+.form-screen {
+  position: fixed;
+  background-color: rgba(242,242,242,.9);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
