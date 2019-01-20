@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { logOut } from "../actions/session_actions";
+import { logOut, logIn } from "../actions/session_actions";
 import { Link } from "react-router-dom";
 
 class NavBar extends React.Component {
@@ -22,6 +22,7 @@ class NavBar extends React.Component {
       <div className="logged-out-buttons">
         <Link className="nav-button login" to="/login">Sign In</Link>
         <Link className="nav-button signup" to="/signup">Create account</Link>
+        <button className="nav-button signup" onClick={this.props.demologin}>demo</button>
       </div>
     );
     
@@ -49,7 +50,8 @@ const msp = (state) => {
 
 const mdp = dispatch => {
   return {
-    logOut: () => dispatch(logOut())
+    logOut: () => dispatch(logOut()),
+    demologin: () => dispatch(logIn({username: 'demo', password: 'demo'})),
   };
 };
 
