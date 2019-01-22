@@ -42,7 +42,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'annotate'
   gem 'binding_of_caller'
-  gem 'better_errrors'
+  gem 'better_errors'
   gem 'pry-rails'
 end
 
