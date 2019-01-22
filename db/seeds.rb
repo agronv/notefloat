@@ -8,11 +8,17 @@
 
 
 User.destroy_all
+Track.destroy_all
 
-User.create({username: 'not_agron', password: 'appacademy'})
-User.create({username: 'not_harry', password: 'appacadasdfemy'})
-User.create({username: 'not_harrison', password: 'appacasdfasdfademy'})
-User.create({username: 'david_ro', password: 'appacademasfdy'})
-User.create({username: 'username1', password: 'appacad234emy'})
-User.create({username: 'asdf', password: 'asdf'})
-User.create({username: 'demo', password: 'demo'})
+u1 = User.create({username: 'not_agron', password: 'appacademy'})
+u2 = User.create({username: 'not_harry', password: 'appacadasdfemy'})
+u3 = User.create({username: 'not_harrison', password: 'appacasdfasdfademy'})
+u4 = User.create({username: 'david_ro', password: 'appacademasfdy'})
+u5 = User.create({username: 'username1', password: 'appacad234emy'})
+u6 = User.create({username: 'asdf', password: 'asdf'})
+u7 = User.create({username: 'demo', password: 'demo'})
+
+t1 = Track.create({title: "kingfisher", user_id: u1.id})
+# t2 = Track.create({title: "faDFSSADADF", user_id: u2.id})
+# t3 = Track.create({title: "kingfASDFSisher", user_id: u3.id})
+# t4 = Track.create({title: "iSDFsdf", user_id: u4.id})

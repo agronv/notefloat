@@ -19,6 +19,8 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 4, allow_nil: true}
   after_initialize :ensure_session
   attr_reader :password
+
+  has_many :tracks
   
   def ensure_session 
     self.session_token ||= SecureRandom.urlsafe_base64

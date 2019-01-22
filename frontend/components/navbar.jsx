@@ -29,7 +29,7 @@ class NavBar extends React.Component {
     return (
     <>
       <nav className='nav-row'> 
-        <Link className='logo' to=''>
+        <Link className='logo' to='/tracks'>
           <div className="notefloat"> 
             <i className="fab fa-soundcloud"></i>
             <h3>NoteFloat</h3>

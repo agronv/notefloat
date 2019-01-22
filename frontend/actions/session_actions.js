@@ -4,7 +4,7 @@ export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_ERRORS";
 export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
-export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 
 export const receiveCurrentUser = user => {
   return {
@@ -33,12 +33,12 @@ export const logoutCurrentUser = () => {
   };
 };
 
-export const receiveErrors = errors => {
+export const receiveSessionErrors = errors => {
   return { type: RECEIVE_SESSION_ERRORS, errors };
 };
 
-export const clearErrors = () => {
-  return { type: CLEAR_ERRORS };
+export const clearSessionErrors = () => {
+  return { type: CLEAR_SESSION_ERRORS };
 };
 
 export const logIn = user => {
@@ -47,7 +47,7 @@ export const logIn = user => {
       user => {
         return dispatch(receiveCurrentUser(user));
       },
-      errors => dispatch(receiveErrors(errors.responseJSON))
+      errors => dispatch(receiveSessionErrors(errors.responseJSON))
     );
   };
 };
@@ -58,7 +58,7 @@ export const logOut = () => {
       response => {
         return dispatch(logoutCurrentUser());
       },
-      errors => dispatch(receiveErrors(errors.responseJSON))
+      errors => dispatch(receiveSessionErrors(errors.responseJSON))
     );
   };
 };
@@ -69,7 +69,7 @@ export const signUp = user => {
       user => {
         return dispatch(receiveCurrentUser(user));
       },
-      errors => dispatch(receiveErrors(errors.responseJSON))
+      errors => dispatch(receiveSessionErrors(errors.responseJSON))
     );
   };
 };
@@ -80,7 +80,7 @@ export const fetchUser = id => {
       user => {
         return dispatch(receiveUser(user));
       },
-      errors => dispatch(receiveErrors(errors.responseJSON))
+      errors => dispatch(receiveSessionErrors(errors.responseJSON))
     );
   };
 };
@@ -91,7 +91,7 @@ export const fetchAllUsers = () => {
       users => {
         return dispatch(receiveAllUsers(users));
       },
-      errors => dispatch(receiveErrors(errors.responseJSON))
+      errors => dispatch(receiveSessionErrors(errors.responseJSON))
     );
   };
 };

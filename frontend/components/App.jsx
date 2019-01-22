@@ -4,6 +4,8 @@ import NavBar from "./navbar";
 import { Route, Switch } from "react-router-dom";
 import SignUpFormContainer from "./session_form/signup_form_container";
 import LogInFormContainer from "./session_form/login_form_container";
+import TrackIndex from "./tracks/track_index";
+import TrackShow from "./tracks/track_show";
 import { AuthRoute } from '../utils/route_util';
 import Splash from './splash/splash';
 import PlayBar from './playbar/PlayBar';
@@ -16,6 +18,8 @@ const App = () => (
       <Switch>
         <AuthRoute exact path="/signup" component={SignUpFormContainer} />
         <AuthRoute exact path="/login" component={LogInFormContainer} />
+        <Route exact path="/tracks" component={TrackIndex} />
+        <Route path="/tracks/trackId" component={TrackShow} />
       </Switch>
       {/* <Route exact path="/" component={Splash}/> */}
     <footer>
