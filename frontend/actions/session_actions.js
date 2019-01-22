@@ -4,6 +4,7 @@ export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_ERRORS";
 export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const receiveCurrentUser = user => {
   return {
@@ -34,6 +35,10 @@ export const logoutCurrentUser = () => {
 
 export const receiveErrors = errors => {
   return { type: RECEIVE_SESSION_ERRORS, errors };
+};
+
+export const clearErrors = () => {
+  return { type: CLEAR_ERRORS };
 };
 
 export const logIn = user => {

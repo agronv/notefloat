@@ -2,7 +2,7 @@ import {
   RECEIVE_USER,
   RECEIVE_ALL_USERS,
   RECEIVE_CURRENT_USER,
-} from "../actions/session_actions";
+} from "../../actions/session_actions";
 import { merge } from "lodash";
 
 export default (state = {}, action) => {

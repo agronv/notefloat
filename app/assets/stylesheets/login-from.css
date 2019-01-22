@@ -54,3 +54,13 @@
   right: 0;
   z-index: 10;
 }
+
+.session-errors {
+  color: #F65502;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.session-error-active {
+  border: 1px solid #F65502 !important;
+}
