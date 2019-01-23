@@ -48,5 +48,5 @@ body {
 }
 
 p {
-  display: inline;
+  display: inline-block;
 }

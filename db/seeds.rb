@@ -18,7 +18,6 @@ u5 = User.create({username: 'username1', password: 'appacad234emy'})
 u6 = User.create({username: 'asdf', password: 'asdf'})
 u7 = User.create({username: 'demo', password: 'demo'})
 
-t1 = Track.create({title: "kingfisher", user_id: u1.id})
 # t2 = Track.create({title: "faDFSSADADF", user_id: u2.id})
 # t3 = Track.create({title: "kingfASDFSisher", user_id: u3.id})
 # t4 = Track.create({title: "iSDFsdf", user_id: u4.id})

@@ -13,7 +13,7 @@ class TrackIndexItem extends React.Component {
         <Link to={`/tracks/${this.props.track.id}`}>
           <img src={this.props.track.photoUrl} alt=""/>
         </Link>
-          <i className="fas fa-play-circle"></i>
+          <i className="fas fa-play-circle track-icon"></i>
         </div>
         <Link to={`/tracks/${this.props.track.id}`}>
           <p>{this.props.track.title}</p>
