@@ -6,10 +6,18 @@ import { Link } from 'react-router-dom';
 class TrackShow extends React.Component {
   constructor(props) {
     super(props);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchTrack(this.props.match.params.trackId);
+  }
+
+  handleChange(e) {
+    e.preventDefault();
+    let audio = document.getElementById('audio');
+    if (audio.paused) audio.play();
+    else audio.pause();
   }
 
   render() {
@@ -21,8 +29,8 @@ class TrackShow extends React.Component {
     return (
       <div>
         <img src={track.photoUrl} alt=""/>
-        <p>{track.title}</p> 
-        <audio src={track.mp3} type="audio/mp3"/>
+        <p onClick={this.handleChange}>{track.title}</p> 
+        <audio src={track.mp3} id="audio" type="audio/mp3"/>
         <Link to={editLink} >Edit</Link> 
       </div>
     );
