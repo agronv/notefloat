@@ -38,6 +38,11 @@ h2 {
   font-size: 50px;
 }
 
+h1 {
+  font-size: 50px;
+  text-align: center;
+}
+
 body {
   background-color: #F2F2F2; 
 }
