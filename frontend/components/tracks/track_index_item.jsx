@@ -8,12 +8,16 @@ class TrackIndexItem extends React.Component {
 
   render() {
     return (
-      <li>
+      <li className="track-info">
+        <div className='image-div'>
         <Link to={`/tracks/${this.props.track.id}`}>
           <img src={this.props.track.photoUrl} alt=""/>
+        </Link>
+          <i className="fas fa-play-circle"></i>
+        </div>
+        <Link to={`/tracks/${this.props.track.id}`}>
           <p>{this.props.track.title}</p>
         </Link>
-        <h1>hey</h1>
       </li>
     )
   }

@@ -18,9 +18,12 @@ class TrackIndex extends React.Component {
       return < TrackIndexItem track={track} key={track.id} />
     });
     return (
-      <ul>
-        {tracks}
-      </ul>
+      <section className="tracks-section">
+        <h1>All Songs</h1>
+        <ul className="album-covers">
+          {tracks}
+        </ul>
+      </section>
     )
   }
 }

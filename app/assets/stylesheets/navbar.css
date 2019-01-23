@@ -1,22 +1,23 @@
 header {
   background-color: #333333;
   height: 45px;
+  padding-bottom: 10px;
 }
 
-.logo {
-  background-color: #F65502; 
-  height: 100%;
-  cursor: pointer;
-  width: 200px;
+.navbar-index {
+  display: flex;
 }
 
 .notefloat {
   color: white;
-  height: 100%;
+  height: 45px;
   display: flex;
   align-items: center;
   text-align: center;
   margin: 0 auto;
+  cursor: pointer;
+  width: 200px;
+  background-color: #F65502; 
 }
 
 .notefloat i {
@@ -40,7 +41,7 @@ header {
   align-items: center;
 }
 
-.nav-buttons li {
+.nav-buttons li, .tracks-button {
   width: 104px;
   height: 45px;
   box-sizing: border-box;
@@ -57,7 +58,7 @@ header {
   border-left: 1px solid black;
 }
 
-.nav-buttons li a, .nav-buttons li button {
+.nav-buttons li a, .nav-buttons li button, .tracks-button {
   display: block;
   padding: 13px 0 13px 0;
   margin: 0 auto;

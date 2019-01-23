@@ -25,7 +25,7 @@ img {
   height: auto;
 }
 
-button, input[type="submit"] {
+button, input[type="submit"], i {
   cursor: pointer;
   background-color: inherit;
 }
@@ -36,4 +36,12 @@ h3 {
 
 h2 {
   font-size: 50px;
+}
+
+body {
+  background-color: #F2F2F2; 
+}
+
+p {
+  display: inline;
 }
