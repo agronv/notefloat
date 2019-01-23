@@ -2,7 +2,9 @@ export const createTrack = (track) => {
   return $.ajax({
     method: "POST",
     url: "/api/tracks/",
-    data: { track }
+    data: track,
+    content_type: false,
+    processData: false,
   });
 };
 
@@ -10,7 +12,9 @@ export const updateTrack = (track) => {
   return $.ajax({
     method: "PATCH",
     url: `/api/tracks/${track.id}`,
-    data: { track }
+    data: track,
+    content_type: false,
+    processData: false,
   });
 };
 
@@ -32,6 +36,5 @@ export const destroyTrack = (id) => {
   return $.ajax({
     method: "DELETE",
     url: `/api/tracks/${id}`,
-    data: { track }
   });
 };
