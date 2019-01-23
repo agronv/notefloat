@@ -51,7 +51,6 @@ class TrackForm extends React.Component {
         <input type="file" onChange={this.handleFile("mp3")} id="track" />
       </label> 
     ) 
-    console.log(this.state)
     return (
     <section className="track-form-section">
       <form className='track-form' onSubmit={this.handleSubmit}>
