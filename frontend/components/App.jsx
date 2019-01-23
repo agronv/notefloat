@@ -1,5 +1,6 @@
 
 import React from "react";
+import Modal from "./modal/modal";
 import NavBar from "./navbar";
 import { Route, Switch } from "react-router-dom";
 import SignUpFormContainer from "./session_form/signup_form_container";
