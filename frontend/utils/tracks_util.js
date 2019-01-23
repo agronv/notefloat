@@ -3,7 +3,7 @@ export const createTrack = (track) => {
     method: "POST",
     url: "/api/tracks/",
     data: track,
-    content_type: false,
+    contentType: false,
     processData: false,
   });
 };
@@ -13,7 +13,7 @@ export const updateTrack = (track) => {
     method: "PATCH",
     url: `/api/tracks/${track.id}`,
     data: track,
-    content_type: false,
+    contentType: false,
     processData: false,
   });
 };

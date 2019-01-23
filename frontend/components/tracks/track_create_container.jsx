@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 const msp = (state) => {
   return {
-    track: {title: "", photoUrl: null, fileUrl: null},
+    track: {title: "", photoUrl: null, mp3: null, photo: null},
     formType: "create",
   };
 };

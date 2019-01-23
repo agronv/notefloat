@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { logOut, logIn } from "../actions/session_actions";
 import { Link } from "react-router-dom";
+import { openModal } from "../actions/modal_actions";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class NavBar extends React.Component {
     const buttons = this.props.currentUser ? (
       <ul className="nav-buttons">
         <li>
-          <Link to="/track/new">Upload</Link>
+          <Link to="/tracks/new">Upload</Link>
         </li>
         <li className="nav-user">
           <Link to={`users/${this.props.currentUser.id}`}>{this.props.currentUser.username}</Link>
@@ -23,8 +24,8 @@ class NavBar extends React.Component {
       </ul>
     ) : (
       <div className="logged-out-buttons">
-        <Link className="nav-button login" to="/login">Sign In</Link>
-        <Link className="nav-button signup" to="/signup">Create account</Link>
+        <button className="nav-button login" onClick={() => this.props.openModal('login')}>Sign In</button>
+        <button className="nav-button signup" onClick={() => this.props.openModal('signup')}>Create account</button>
         <button className="nav-button signup" onClick={this.props.demologin}>demo</button>
       </div>
     );
@@ -54,6 +55,7 @@ const msp = (state) => {
 const mdp = dispatch => {
   return {
     logOut: () => dispatch(logOut()),
+    openModal: (modal) => dispatch(openModal(modal)),
     demologin: () => dispatch(logIn({username: 'demo', password: 'demo'})),
   };
 };

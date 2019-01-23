@@ -4,9 +4,9 @@ class TrackForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.track;
-    this.state.photo = null;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFile = this.handleFile.bind(this);
+    this.updateTitle = this.updateTitle.bind(this);
   }
 
   updateTitle(e) {
@@ -16,12 +16,12 @@ class TrackForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();  
-    formData.append('post[title]', this.state.title);
+    formData.append('track[title]', this.state.title);
     if (this.state.photoUrl){
-      formData.append('post[photo]', this.state.photoUrl);
+      formData.append('track[photo]', this.state.photoUrl);
     }
-    if (this.state.fileUrl){
-      formData.append('post[mp3_file]', this.state.fileUrl);
+    if (this.state.mp3){
+      formData.append('track[mp3_file]', this.state.mp3);
     }
     this.props.action(formData);
   }
@@ -48,13 +48,13 @@ class TrackForm extends React.Component {
     const track = this.props.formType === "edit" ? null : (
       <label htmlFor="track">
         <p>Track</p>
-        <input type="file" onChange={this.handleFile("fileUrl")} id="track" />
+        <input type="file" onChange={this.handleFile("mp3")} id="track" />
       </label> 
     ) 
     console.log(this.state)
     return (
     <section className="track-form-section">
-      <form className='track-form'>
+      <form className='track-form' onSubmit={this.handleSubmit}>
         <label htmlFor="title"> 
           <p>Title</p>
           <input type="text" onChange={this.updateTitle} id="title" value={this.state.title}/>

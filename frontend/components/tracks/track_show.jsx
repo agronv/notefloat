@@ -16,11 +16,14 @@ class TrackShow extends React.Component {
     if (!this.props.track) {
       return null;
     }
+    const { track } = this.props;
+    const editLink = `/tracks/edit/${track.id}`;
     return (
       <div>
-        <img src={this.props.track.photoUrl} alt=""/>
-        <p>{this.props.track.title}</p>
-        <Link to={`/track/edit/${this.props.track.id}`}>Edit</Link> 
+        <img src={track.photoUrl} alt=""/>
+        <p>{track.title}</p> 
+        <audio src={track.mp3} type="audio/mp3"/>
+        <Link to={editLink} >Edit</Link> 
       </div>
     );
   }

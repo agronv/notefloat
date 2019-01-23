@@ -12,6 +12,8 @@ class TrackEdit extends React.Component {
 
   render() {
     const { action, formType, track } = this.props;
+    if (!track) return null;
+    
     return (
       <TrackForm
         action={action}
@@ -22,8 +24,10 @@ class TrackEdit extends React.Component {
 }
 
 const msp = (state, ownprops) => {
+  let track =  state.entities.tracks[ownprops.match.params.trackId];
+  if (track) track.photo = null;
   return {
-    track: state.entities.tracks[ownprops.match.params.trackId],
+    track,
     formType: "edit",
   };
 };
