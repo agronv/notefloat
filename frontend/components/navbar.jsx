@@ -11,6 +11,9 @@ class NavBar extends React.Component {
   render() {
     const buttons = this.props.currentUser ? (
       <ul className="nav-buttons">
+        <li>
+          <Link to="/track/new">Upload</Link>
+        </li>
         <li className="nav-user">
           <Link to={`users/${this.props.currentUser.id}`}>{this.props.currentUser.username}</Link>
         </li>

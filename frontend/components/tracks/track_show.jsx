@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchTrack } from '../../actions/track_actions';
+import { Link } from 'react-router-dom';
 
 class TrackShow extends React.Component {
   constructor(props) {
@@ -12,10 +13,14 @@ class TrackShow extends React.Component {
   }
 
   render() {
+    if (!this.props.track) {
+      return null;
+    }
     return (
       <div>
         <img src={this.props.track.photoUrl} alt=""/>
         <p>{this.props.track.title}</p>
+        <Link to={`/track/edit/${this.props.track.id}`}>Edit</Link> 
       </div>
     );
   }

@@ -13,6 +13,7 @@ class TrackIndexItem extends React.Component {
           <img src={this.props.track.photoUrl} alt=""/>
           <p>{this.props.track.title}</p>
         </Link>
+        <h1>hey</h1>
       </li>
     )
   }

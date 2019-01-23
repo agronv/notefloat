@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchTrack, updateTrack } from '../../actions/track_actions';
-import TrakForm from './track_form';
+import TrackForm from './track_form';
 
 
 class TrackEdit extends React.Component {
@@ -13,7 +13,7 @@ class TrackEdit extends React.Component {
   render() {
     const { action, formType, track } = this.props;
     return (
-      <TrakForm
+      <TrackForm
         action={action}
         formType={formType}
         track={track} />
@@ -23,7 +23,7 @@ class TrackEdit extends React.Component {
 
 const msp = (state, ownprops) => {
   return {
-    tracks: state.entities.tracks[ownprops.match.params.trackId],
+    track: state.entities.tracks[ownprops.match.params.trackId],
     formType: "edit",
   };
 };
