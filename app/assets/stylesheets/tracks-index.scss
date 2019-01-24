@@ -25,7 +25,7 @@
   position: relative;
 }
 
-.fa-play-circle {
+.track-icon {
   color: #F65502;
   position: absolute;
   top: 55px;
@@ -36,11 +36,11 @@
   visibility: hidden;
 }
 
-.image-div:hover .fa-play-circle{
+.image-div:hover .track-icon{
   visibility: visible;
 }
 
-.fa-play-circle:hover {
+.track-icon:hover {
   color: #FC3200;
 }
 

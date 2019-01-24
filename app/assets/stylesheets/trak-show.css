@@ -1,0 +1,52 @@
+.track-show {
+  width: 1240px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+#album-cover {
+  width: 340px;
+  height: 340px;
+}
+
+.track-section {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #555; 
+}
+
+.big-icon {
+  color: #F65502;
+  font-size: 70px;
+  margin-right: 10px;
+}
+
+.big-icon:hover {
+  color: #FC3200;
+}
+
+.song-info {
+  overflow: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.text-info p {
+  background-color: #272728;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.title-info {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.text-info {
+  display: flex;
+  flex-direction: column;
+}

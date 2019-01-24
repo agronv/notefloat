@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class TrackForm extends React.Component {
   constructor(props) {
@@ -20,10 +21,17 @@ class TrackForm extends React.Component {
     if (this.state.photoUrl){
       formData.append('track[photo]', this.state.photoUrl);
     }
-    if (this.state.mp3){
-      formData.append('track[mp3_file]', this.state.mp3);
+    if (this.props.formType) {
+      const that = this;
+      this.props.action(this.state.id, formData).then((result) => {
+        that.props.history.push(`/tracks/${result.track.id}`);
+      }); 
     }
-    this.props.action(formData);
+    else {
+      this.props.action(formData).then((result) => {
+        this.props.history.push(`/tracks/${result.track.id}`);
+      });
+    }
   }
 
   handleFile(feild) {
@@ -45,30 +53,51 @@ class TrackForm extends React.Component {
   } 
 
   render() {
-    const track = this.props.formType === "edit" ? null : (
+    const mp3 = this.props.formType === "edit" ? null : (
       <label htmlFor="track">
-        <p>Track</p>
-        <input type="file" onChange={this.handleFile("mp3")} id="track" />
+        <p className="track-input">choose file to upload*</p>
+        <input type="file" onChange={this.handleFile("mp3")} id="track" accept="audio/mp3"/>
       </label> 
     ) 
+
+    const submit = this.state.title.length > 0 && this.state.mp3 ? (
+      <button className="track-submit">{this.props.formType}</button>
+    ) : ( <p className="track-form-protected">{this.props.formType}</p>)
+
+    let previewPhoto;
+    if (this.state.photo) {
+      previewPhoto = <img className="image-preview"src={this.state.photo}></img>
+    }
+    else if (this.state.photoUrl) {
+      previewPhoto = <img className="image-preview"src={this.state.photoUrl}></img>
+    }
+    else {
+      previewPhoto = <img className="image-preview" src={window.defaultTrackPhoto}></img>
+    }
+
     return (
     <section className="track-form-section">
+      <h2>{this.props.formType}</h2>
       <form className='track-form' onSubmit={this.handleSubmit}>
-        <label htmlFor="title"> 
-          <p>Title</p>
-          <input type="text" onChange={this.updateTitle} id="title" value={this.state.title}/>
-        </label> 
-        <label htmlFor="photo">
-          <p>Photo</p>
-          <input type="file" onChange={this.handleFile("photoUrl")} id="photo" />
-        </label> 
-      
-        {track}
-        <button>{this.props.formType}</button>
+        <div className="photo-form">
+          {previewPhoto}
+          <label htmlFor="photo">
+              <p className="photo-input"><i className="fas fa-camera"></i>Artwork (optional)</p>
+            <input type="file" onChange={this.handleFile("photoUrl")} id="photo" accept="image/*"/>
+          </label> 
+        </div>
+        <div className="right-side-form">
+          <label htmlFor="title"> 
+            <p>Title*</p>
+            <input type="text" className="title-input" onChange={this.updateTitle} id="title" value={this.state.title}/>
+          </label> 
+          {mp3}
+          {submit}
+        </div>
       </form>
     </section>
     )
   }
 }
 
-export default TrackForm;
+export default withRouter(TrackForm);

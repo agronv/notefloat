@@ -6,11 +6,11 @@ export const RECEIVE_TRACK_ERRORS = "RECEIVE_TRACK_ERRORS";
 export const CLEAR_TRACK_ERRORS = "CLEAR_TRACK_ERRORS";
 
 
-
-export const receiveTrack = track => {
+export const receiveTrack = ({track, user}) => {
   return {
     type: RECEIVE_TRACK,
-    track
+    track,
+    user,
   };
 };
 
@@ -65,9 +65,9 @@ export const createTrack = (track) => {
   };
 };
 
-export const updateTrack = (track) => {
+export const updateTrack = (id, track) => {
   return dispatch => {
-    return TrackAPI.updateTrack(track).then(
+    return TrackAPI.updateTrack(id, track).then(
       track => {
         return dispatch(receiveTrack(track));
       },

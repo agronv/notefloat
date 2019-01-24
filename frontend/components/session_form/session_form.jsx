@@ -7,17 +7,12 @@ class SessionForm extends React.Component {
     this.state = { username: "", password: "", };
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.goBack = this.goBack.bind(this);
   }
 
   update(inputfield) {
     return (e) => {
       this.setState({ [inputfield]: e.target.value });
     };
-  }
-
-  goBack() {
-    this.props.history.push("/");
   }
 
   componentWillUnmount() {

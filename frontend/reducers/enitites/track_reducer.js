@@ -10,7 +10,6 @@ export default (state = {}, action) => {
   let newState = merge({}, state);
   
   switch (action.type) {
-
     case RECEIVE_TRACK:
       newState[action.track.id] = action.track;
       return newState;
@@ -23,6 +22,6 @@ export default (state = {}, action) => {
       return action.tracks;
 
     default:
-      return newState;
+      return state;
   }
 };
