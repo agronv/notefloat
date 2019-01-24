@@ -23,7 +23,16 @@ class TrackForm extends React.Component {
     if (this.state.mp3){
       formData.append('track[mp3_file]', this.state.mp3);
     }
-    this.props.action(formData);
+    if (this.state.id) {
+      this.props.action(this.state.id, formData).then((result) => {
+        this.props.history.push(`/tracks/${result.track.id}`);
+      });
+    }
+    else {
+      this.props.action(formData).then((result) => {
+        this.props.history.push(`/tracks/${result.track.id}`);
+      });
+    }
   }
 
   componentDidMount() {
@@ -58,7 +67,6 @@ class TrackForm extends React.Component {
       </label> 
     ) 
 
-
     const submit = this.state.title.length > 0 && this.state.mp3 ? (
       <button className="track-submit">{this.props.formType}</button>
     ) : ( <p className="track-form-protected">{this.props.formType}</p>)
@@ -70,6 +78,7 @@ class TrackForm extends React.Component {
     else if (this.state.photoUrl) {
       previewPhoto = <img className="image-preview"src={this.state.photoUrl}></img>
     }
+
     return (
     <section className="track-form-section">
       <h2>{this.props.formType}</h2>

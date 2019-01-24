@@ -13,8 +13,14 @@ class Api::TracksController < ApplicationController
 
   def update 
     @track = Track.find_by(id: params[:id])
-    if @track && @track.user = current_user && @track.update(track_params) 
-      render :show 
+    if @track && @track.user_id = current_user.id
+      @track.title = track_params[:title]
+      @track.photo = track_params[:photo]
+      if @track.save
+        render :show 
+      else
+        render json: ["invalid credentials"], status: 422
+      end
     else
       render json: ["invalid credentials"], status: 422
     end
@@ -36,8 +42,9 @@ class Api::TracksController < ApplicationController
 
   def destroy 
     track = Track.find_by(id: params[:id])
-    if track.user == current_user
+    if track.user_id == current_user.id
       user_id = track.user_id
+      track.destroy
       render json: ["#{user_id}"]
     else
       render json: ['What do you think your doing'], status: 404
@@ -46,6 +53,10 @@ class Api::TracksController < ApplicationController
 
   def track_params 
     params.require(:track).permit(:title, :photo, :mp3_file)
+  end
+
+  def update_params
+    params.require(:track).premit(:title, :photo)
   end
   
 end

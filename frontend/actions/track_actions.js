@@ -65,9 +65,9 @@ export const createTrack = (track) => {
   };
 };
 
-export const updateTrack = (track) => {
+export const updateTrack = (id, track) => {
   return dispatch => {
-    return TrackAPI.updateTrack(track).then(
+    return TrackAPI.updateTrack(id, track).then(
       track => {
         return dispatch(receiveTrack(track));
       },

@@ -7,7 +7,7 @@ import CreateFormContainer from "./tracks/track_create_container";
 import EditFormContainer from "./tracks/track_edit_container";
 import TrackIndex from "./tracks/track_index";
 import TrackShow from "./tracks/track_show";
-import { AuthRoute } from '../utils/route_util';
+import { ProtectedRoute } from '../utils/route_util';
 
 const App = () => (
   <>
@@ -17,7 +17,7 @@ const App = () => (
     </header>
       <Switch>
         <Route exact path="/tracks/edit/:trackId" component={EditFormContainer} />
-        <Route exact path="/tracks/new" component={CreateFormContainer} />
+        <ProtectedRoute exact path="/tracks/new" component={CreateFormContainer} />
         <Route path="/tracks/:trackId" component={TrackShow} />
         <Route exact path="/tracks" component={TrackIndex} />
       </Switch>

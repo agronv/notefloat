@@ -34,7 +34,7 @@ const msp = (state, ownprops) => {
 
 const mdp = (dispatch) => {
   return {
-    action: (track) => dispatch(updateTrack(track)),
+    action: (id, track) => dispatch(updateTrack(id, track)),
     fetchTrack: (id) => dispatch(fetchTrack(id)),
   };
 };

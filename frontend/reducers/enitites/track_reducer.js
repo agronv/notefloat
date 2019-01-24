@@ -22,6 +22,6 @@ export default (state = {}, action) => {
       return action.tracks;
 
     default:
-      return newState;
+      return state;
   }
 };
