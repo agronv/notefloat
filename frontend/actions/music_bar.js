@@ -22,7 +22,6 @@ export const pauseTrack = () => {
   };
 };
 
-
 export const fetchPlayingTrack = (id) => {
   return (dispatch) => {
     return TrackAPI.fetchTrack(id).then((track) => {
