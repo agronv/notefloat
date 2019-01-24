@@ -26,6 +26,12 @@ class TrackForm extends React.Component {
     this.props.action(formData);
   }
 
+  componentDidMount() {
+    if (!this.props.track.photoUrl) {
+      this.setState({photoUrl: window.defaultTrackPhoto});
+    }
+  }
+
   handleFile(feild) {
     return (e) => {
       const file = e.target.files[0];
@@ -45,27 +51,38 @@ class TrackForm extends React.Component {
   } 
 
   render() {
-    const track = this.props.formType === "edit" ? null : (
+    const mp3 = this.props.formType === "edit" ? null : (
       <label htmlFor="track">
         <p>Track</p>
-        <input type="file" onChange={this.handleFile("mp3")} id="track" />
+        <input type="file" className="track-input" onChange={this.handleFile("mp3")} id="track" accept="audio/mp3"/>
       </label> 
     ) 
-    console.log(this.state)
+
+    let previewPhoto;
+    if (this.state.photo) {
+      previewPhoto = <img className="image-preview"src={this.state.photo}></img>
+    }
+    else if (this.state.photoUrl) {
+      previewPhoto = <img className="image-preview"src={this.state.photoUrl}></img>
+    }
     return (
     <section className="track-form-section">
+      <h2>{this.props.formType}</h2>
       <form className='track-form' onSubmit={this.handleSubmit}>
-        <label htmlFor="title"> 
-          <p>Title</p>
-          <input type="text" onChange={this.updateTitle} id="title" value={this.state.title}/>
-        </label> 
-        <label htmlFor="photo">
-          <p>Photo</p>
-          <input type="file" onChange={this.handleFile("photoUrl")} id="photo" />
-        </label> 
-      
-        {track}
-        <button>{this.props.formType}</button>
+        <div className="photo-form">
+          {previewPhoto}
+          <label htmlFor="photo">
+            <input type="file" onChange={this.handleFile("photoUrl")} id="photo" accept="image/*"/>
+          </label> 
+        </div>
+        <div className="right-side-form">
+          <label htmlFor="title"> 
+            <p>Title</p>
+            <input type="text" className="title-input" onChange={this.updateTitle} id="title" value={this.state.title}/>
+          </label> 
+          {mp3}
+          <button className="track-submit">{this.props.formType}</button>
+        </div>
       </form>
     </section>
     )
