@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchTrack, destroyTrack } from '../../actions/track_actions';
+import { receivePlayingTrack, toggleTrack } from '../../actions/current_track_actions';
 import { fetchUser } from '../../actions/session_actions';
 import { Link } from 'react-router-dom';
 
@@ -8,8 +9,8 @@ class TrackShow extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.state = { playing: false};
     this.destroyTrack = this.destroyTrack.bind(this);
+    this.playing = this.playing.bind(this);
   }
 
   componentDidMount() {
@@ -24,15 +25,23 @@ class TrackShow extends React.Component {
 
   handleChange(e) {
     e.preventDefault();
-    let audio = document.getElementById('audio');
-    if (audio.paused) {
-      audio.play();
-      this.setState({ playing: true});
+    let {currentTrack, track} = this.props;
+    if (!currentTrack || track.id !== currentTrack.id) {
+      this.props.receivePlayingTrack(track);
     }
     else {
-      audio.pause();
-      this.setState({ playing: false });
+      this.props.toggleTrack();
     }
+  }
+
+  playing() {
+    const { currentTrack, track } = this.props;
+    if (currentTrack) {
+      if (currentTrack.id === track.id && currentTrack.isPlaying) {
+        return true;
+      } 
+    }
+    return false;
   }
 
   render() {
@@ -41,10 +50,13 @@ class TrackShow extends React.Component {
     }
     const { track, artist, currentUser } = this.props;
 
-    const icon = this.state.playing ? <i className="fas fa-pause-circle big-icon" onClick={this.handleChange} /> : 
+
+    const icon = this.playing() ? <i className="fas fa-pause-circle big-icon" onClick={this.handleChange} /> : 
       <i className="fas fa-play-circle big-icon" onClick={this.handleChange} />;
+
     const edit = currentUser && currentUser.id === artist.id ? (
       <Link to={`/tracks/edit/${track.id}`} >Edit</Link> ) : null;
+      
     const destroy = currentUser && currentUser.id === artist.id ? (
     <button onClick={this.destroyTrack}>Delete</button>) : null;
 
@@ -65,7 +77,6 @@ class TrackShow extends React.Component {
       </section>
         {edit}
         {destroy}
-        <audio src={track.mp3} id="audio" type="audio/mp3"/>
       </div>
     );
   }
@@ -79,6 +90,7 @@ const msp = (state, ownProps) => {
     track,
     artist,
     currentUser: state.entities.users[state.session.id],
+    currentTrack: state.ui.currentTrack,
   }
 }
 
@@ -87,6 +99,8 @@ const mdp = (dispatch) => {
     fetchTrack: (id) => dispatch(fetchTrack(id)),
     fetchUser: (id) => dispatch(fetchUser(id)),
     destroyTrack: (id) => dispatch(destroyTrack(id)),
+    receivePlayingTrack: (track) => dispatch(receivePlayingTrack(track)),
+    toggleTrack: () => dispatch(toggleTrack()),
   }
 }
 

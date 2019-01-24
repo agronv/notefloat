@@ -4,6 +4,11 @@
   position: relative;
 }
 
+.cover-art {
+  width: 180px;
+  height: 180px;
+}
+
 .album-covers {
   display: flex;
   flex-wrap: wrap;
@@ -18,11 +23,9 @@
 
 .track-info {
   padding-right: 20px;
-}
-
-.album-cover::after {
-  display: block;
-  position: relative;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
 }
 
 .track-icon {
@@ -44,9 +47,23 @@
   color: #FC3200;
 }
 
+.user-info {
+  color: rgb(153,153,153);
+  font-size: 12px;
+}
 
+.track-name {
+  color: #999;
+  font-size: 14px;
+}
 
+.track-name:hover {
+  color: #333;
+}
 
+.track-info-link {
+  display: inline;
+}
 
 
 

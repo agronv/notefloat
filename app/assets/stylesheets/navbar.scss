@@ -1,11 +1,22 @@
 header {
   background-color: #333333;
   height: 45px;
-  padding-bottom: 10px;
+  position: fixed;
+  width: 100%;
+}
+
+header::after {
+  content: " ";
+  padding: 20px 3000px;
 }
 
 .navbar-index {
   display: flex;
+}
+
+.spaceholder {
+  height: 45px;
+  width: 100%;
 }
 
 .notefloat {

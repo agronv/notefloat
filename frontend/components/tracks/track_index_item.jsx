@@ -9,19 +9,22 @@ class TrackIndexItem extends React.Component {
   render() {
     const { track } = this.props;
 
-    const image = track.photoUrl ? (<img src={track.photoUrl} />) :
-      (<img src={window.defaultTrackPhoto} />)
+    const image = track.photoUrl ? (<img className="cover-art" src={track.photoUrl} />) :
+      (<img className="cover-art" src={window.defaultTrackPhoto} />)
 
     return (
       <li className="track-info">
         <div className='image-div'>
-        <Link to={`/tracks/${this.props.track.id}`}>
-          { image }
-        </Link>
-          <i className="fas fa-play-circle track-icon"></i>
+          <Link to={`/tracks/${track.id}`}>
+            { image }
+          </Link>
+            <i className="fas fa-play-circle track-icon"></i>
         </div>
-        <Link to={`/tracks/${this.props.track.id}`}>
-          <p>{this.props.track.title}</p>
+        <Link className="track-info-link"to={`/tracks/${track.id}`}>
+          {track.title}
+        </Link>
+        <Link className="track-info-link"to={`/users/${track.id}`}>
+          <p className="user-info">{track.username}</p>
         </Link>
       </li>
     )

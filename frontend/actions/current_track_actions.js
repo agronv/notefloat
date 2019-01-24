@@ -1,7 +1,6 @@
 import * as TrackAPI from "../utils/tracks_util";
-export default RECEIVE_PLAYING_TRACK = "RECEIVE_PLAYING_TRACK";
-export default PLAY_TRACK = "PLAY_TRACK";
-export default PAUSE_TRACK = "PAUSE_TRACK";
+export const RECEIVE_PLAYING_TRACK = "RECEIVE_PLAYING_TRACK";
+export const TOGGLE_PLAY = "TOGGLE_PLAY";
 
 export const receivePlayingTrack = (track) => {
   return {
@@ -10,15 +9,9 @@ export const receivePlayingTrack = (track) => {
   };
 };
 
-export const playTrack = () => {
+export const toggleTrack = () => {
   return {
-    type: PLAY_TRACK,
-  };
-};
-
-export const pauseTrack = () => {
-  return {
-    type: PAUSE_TRACK,
+    type: TOGGLE_PLAY,
   };
 };
 

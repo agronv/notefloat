@@ -1,0 +1,28 @@
+footer {
+  background-color: #F2F2F2;
+  border-top: 1px solid rgb(206, 206, 206);
+  height: 48px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.music-bar-content {
+  width: 1240px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.music-bar-image {
+  height: 30px;
+  width: 30px;
+}
+
+.toggle-play {
+  font-size: 15px;
+  color: black;
+}
