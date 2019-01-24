@@ -27,7 +27,7 @@ class TrackForm extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.track.photoUrl) {
+    if (!this.state.photoUrl) {
       this.setState({photoUrl: window.defaultTrackPhoto});
     }
   }
@@ -53,10 +53,15 @@ class TrackForm extends React.Component {
   render() {
     const mp3 = this.props.formType === "edit" ? null : (
       <label htmlFor="track">
-        <p>Track</p>
-        <input type="file" className="track-input" onChange={this.handleFile("mp3")} id="track" accept="audio/mp3"/>
+        <p className="track-input">choose file to upload*</p>
+        <input type="file" onChange={this.handleFile("mp3")} id="track" accept="audio/mp3"/>
       </label> 
     ) 
+
+
+    const submit = this.state.title.length > 0 && this.state.mp3 ? (
+      <button className="track-submit">{this.props.formType}</button>
+    ) : ( <p className="track-form-protected">{this.props.formType}</p>)
 
     let previewPhoto;
     if (this.state.photo) {
@@ -72,16 +77,17 @@ class TrackForm extends React.Component {
         <div className="photo-form">
           {previewPhoto}
           <label htmlFor="photo">
+              <p className="photo-input"><i className="fas fa-camera"></i>Artwork (optional)</p>
             <input type="file" onChange={this.handleFile("photoUrl")} id="photo" accept="image/*"/>
           </label> 
         </div>
         <div className="right-side-form">
           <label htmlFor="title"> 
-            <p>Title</p>
+            <p>Title*</p>
             <input type="text" className="title-input" onChange={this.updateTitle} id="title" value={this.state.title}/>
           </label> 
           {mp3}
-          <button className="track-submit">{this.props.formType}</button>
+          {submit}
         </div>
       </form>
     </section>
