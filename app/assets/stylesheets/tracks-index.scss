@@ -47,27 +47,24 @@
   color: #FC3200;
 }
 
-.user-info {
-  color: rgb(153,153,153);
-  font-size: 12px;
-}
 
 .track-name {
-  color: #999;
+  color: black;
   font-size: 14px;
 }
 
-.track-name:hover {
-  color: #333;
+.user-info {
+  color: #999;
+  font-size: 12px;
 }
 
-.track-info-link {
-  display: inline;
+.user-info:hover {
+  color: black;
 }
 
-
-
-
+.track-icon-active {
+  visibility: visible;
+}
 
 
 

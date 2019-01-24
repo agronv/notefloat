@@ -18,10 +18,11 @@ class TrackForm extends React.Component {
     e.preventDefault();
     const formData = new FormData();  
     formData.append('track[title]', this.state.title);
+    formData.append('track[mp3_file]', this.state.mp3);
     if (this.state.photoUrl){
       formData.append('track[photo]', this.state.photoUrl);
     }
-    if (this.props.formType) {
+    if (this.props.formType === 'edit') {
       const that = this;
       this.props.action(this.state.id, formData).then((result) => {
         that.props.history.push(`/tracks/${result.track.id}`);

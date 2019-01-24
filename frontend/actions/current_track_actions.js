@@ -17,8 +17,8 @@ export const toggleTrack = () => {
 
 export const fetchPlayingTrack = (id) => {
   return (dispatch) => {
-    return TrackAPI.fetchTrack(id).then((track) => {
-      dispatch(receivePlayingTrack(track));
+    return TrackAPI.fetchTrack(id).then((info) => {
+      dispatch(receivePlayingTrack(info.track));
     }),
     errors => dispatch(receiveTrackErrors(errors.responseJSON));
   };
