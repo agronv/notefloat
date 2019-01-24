@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import TrackForm from './track_form';
 import { createTrack } from '../../actions/track_actions';
-import { withRouter } from 'react-router-dom';
 
 const msp = (state) => {
   return {
@@ -16,4 +15,4 @@ const mdp = (dispatch) => {
   };
 };
 
-export default withRouter(connect(msp, mdp)(TrackForm));
+export default connect(msp, mdp)(TrackForm);

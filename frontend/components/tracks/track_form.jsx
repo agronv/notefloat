@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class TrackForm extends React.Component {
   constructor(props) {
@@ -20,24 +21,16 @@ class TrackForm extends React.Component {
     if (this.state.photoUrl){
       formData.append('track[photo]', this.state.photoUrl);
     }
-    if (this.state.mp3){
-      formData.append('track[mp3_file]', this.state.mp3);
-    }
-    if (this.state.id) {
+    if (this.props.formType) {
+      const that = this;
       this.props.action(this.state.id, formData).then((result) => {
-        this.props.history.push(`/tracks/${result.track.id}`);
-      });
+        that.props.history.push(`/tracks/${result.track.id}`);
+      }); 
     }
     else {
       this.props.action(formData).then((result) => {
         this.props.history.push(`/tracks/${result.track.id}`);
       });
-    }
-  }
-
-  componentDidMount() {
-    if (!this.state.photoUrl) {
-      this.setState({photoUrl: window.defaultTrackPhoto});
     }
   }
 
@@ -78,6 +71,9 @@ class TrackForm extends React.Component {
     else if (this.state.photoUrl) {
       previewPhoto = <img className="image-preview"src={this.state.photoUrl}></img>
     }
+    else {
+      previewPhoto = <img className="image-preview" src={window.defaultTrackPhoto}></img>
+    }
 
     return (
     <section className="track-form-section">
@@ -104,4 +100,4 @@ class TrackForm extends React.Component {
   }
 }
 
-export default TrackForm;
+export default withRouter(TrackForm);

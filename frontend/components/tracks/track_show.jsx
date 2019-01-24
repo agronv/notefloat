@@ -47,6 +47,10 @@ class TrackShow extends React.Component {
       <Link to={`/tracks/edit/${track.id}`} >Edit</Link> ) : null;
     const destroy = currentUser && currentUser.id === artist.id ? (
     <button onClick={this.destroyTrack}>Delete</button>) : null;
+
+    const image = track.photoUrl ? (<img src={track.photoUrl} id="album-cover" />) :
+      (<img src={window.defaultTrackPhoto} id="album-cover" />)
+      
     return (
       <div className="track-show">
       <section className="track-section">
@@ -57,7 +61,7 @@ class TrackShow extends React.Component {
             <p className="artist-info">{artist.username}</p>  
           </div>
         </div>
-        <img src={track.photoUrl} id="album-cover"/>
+        {image}
       </section>
         {edit}
         {destroy}

@@ -1,9 +1,12 @@
 class Api::TracksController < ApplicationController 
 
   def create 
-    debugger
-    @track = Track.new(track_params)
-    @track.user = current_user
+    if params[:track][:photo]
+      @track = Track.new(track_params)
+    else 
+      @track = Track.new({title: params[:track][:title], mp3_file: params[:track][:mp3_file]})
+    end
+    @track.user_id = current_user.id
     if @track.save 
       render :show 
     else
