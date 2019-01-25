@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class MusicBar extends React.Component {
   constructor(props) {
@@ -6,7 +7,7 @@ class MusicBar extends React.Component {
     this.state = this.props.currentTrack;
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate() {
     if (this.props.currentTrack) {
       let audio = document.getElementById('audio');
       if (this.props.currentTrack.isPlaying) audio.play();
@@ -29,8 +30,20 @@ class MusicBar extends React.Component {
       <footer className="music-bar">
         <div className="music-bar-content">
           {togglePlay}
-          {image}
-          <audio src={currentTrack.mp3} id="audio" type="audio/mp3"></audio>
+          <div className="music-bar-song-info">
+            < Link to={`/tracks/${currentTrack.id}`}>
+              {image}
+            </Link>
+            <div className="music-bar-text">
+              < Link to={`/users/${currentTrack.user_id}`}>
+                <p className="music-bar-artist">{currentTrack.username}</p>
+              </Link>
+              < Link to={`/tracks/${currentTrack.id}`}>
+                <p className="music-bar-title">{currentTrack.title}</p>
+              </Link>
+            </div>
+          </div>
+          <audio src={currentTrack.mp3} preloaded="metadata" id="audio" type="audio/mp3"></audio>
         </div>
       </footer>
     )

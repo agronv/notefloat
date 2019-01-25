@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+@font-face {
+  font-family: "Interstate";
+  src: font-url("Interstate-Light_gdi.otf")format("otf");
+  font-weight: 400;
+}
+/* 
+body {
+  font-family: "Interstate";
+  font-weight: 400;
+} */

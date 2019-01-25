@@ -20,9 +20,34 @@ footer {
 .music-bar-image {
   height: 30px;
   width: 30px;
+  margin-right: 10px;
 }
 
 .toggle-play {
   font-size: 15px;
+  color: black;
+}
+
+.music-bar-song-info {
+  display: flex;
+  color: black;
+  align-items: center;
+}
+
+.music-bar-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+}
+
+.music-bar-artist {
+  color: rgb(153, 153, 153);
+}
+
+.music-bar-title {
+  color: rgb(102, 102, 102);
+}
+
+.music-bar-title:hover, .music-bar-artist:hover {
   color: black;
 }
