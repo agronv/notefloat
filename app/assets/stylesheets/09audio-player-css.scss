@@ -1,0 +1,15 @@
+.music-time {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.music-progress-bar {
+  width: 250px;
+  // visibility: hidden;
+}
+
+.outer-music-bar {
+  width: 25px;
+}

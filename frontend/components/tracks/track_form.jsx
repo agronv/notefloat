@@ -16,7 +16,7 @@ class TrackForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const formData = new FormData();  
+    const formData = new FormData(); 
     formData.append('track[title]', this.state.title);
     formData.append('track[mp3_file]', this.state.mp3);
     if (this.state.photoUrl){
@@ -57,7 +57,7 @@ class TrackForm extends React.Component {
     const mp3 = this.props.formType === "edit" ? null : (
       <label htmlFor="track">
         <p className="track-input">choose file to upload*</p>
-        <input type="file" onChange={this.handleFile("mp3")} id="track" accept="audio/mp3"/>
+        <input type="file" onChange={this.handleFile('mp3')} id="track" accept="audio/*"/>
       </label> 
     ) 
 
@@ -77,26 +77,26 @@ class TrackForm extends React.Component {
     }
 
     return (
-    <section className="track-form-section">
-      <h2>{this.props.formType}</h2>
-      <form className='track-form' onSubmit={this.handleSubmit}>
-        <div className="photo-form">
-          {previewPhoto}
-          <label htmlFor="photo">
-              <p className="photo-input"><i className="fas fa-camera"></i>Artwork (optional)</p>
-            <input type="file" onChange={this.handleFile("photoUrl")} id="photo" accept="image/*"/>
-          </label> 
-        </div>
-        <div className="right-side-form">
-          <label htmlFor="title"> 
-            <p>Title*</p>
-            <input type="text" className="title-input" onChange={this.updateTitle} id="title" value={this.state.title}/>
-          </label> 
-          {mp3}
-          {submit}
-        </div>
-      </form>
-    </section>
+      <section className="track-form-section">
+        <h2>{this.props.formType}</h2>
+        <form className='track-form' onSubmit={this.handleSubmit}>
+          <div className="photo-form">
+            {previewPhoto}
+            <label htmlFor="photo">
+                <p className="photo-input"><i className="fas fa-camera"></i>Artwork (optional)</p>
+              <input type="file" onChange={this.handleFile("photoUrl")} id="photo" accept="image/*"/>
+            </label> 
+          </div>
+          <div className="right-side-form">
+            <label htmlFor="title"> 
+              <p>Title*</p>
+              <input type="text" className="title-input" onChange={this.updateTitle} id="title" value={this.state.title}/>
+            </label> 
+            {mp3}
+            {submit}
+          </div>
+        </form>
+      </section>
     )
   }
 }
