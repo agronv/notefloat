@@ -51,6 +51,10 @@ class AudioPlayer extends React.Component {
     return finalMinutes + finalSeconds;
   }
 
+  nextTrack() {
+    debugger
+  }
+
   render() {
     let { currentTrack } = this.props;
     let { currentTime, length } = this.state;
@@ -63,7 +67,7 @@ class AudioPlayer extends React.Component {
       <>
         { togglePlay }
         <div className="music-time">
-          <p >{this.formatTime(currentTime)}</p>
+          <p className="current-time">{this.formatTime(currentTime)}</p>
           <div className="progress-bar">
             <input type="range" className="music-progress-bar" min="0" max={length} step="0.25" onChange={this.setTime}/>
             <div className="outer-music-bar">
@@ -74,7 +78,7 @@ class AudioPlayer extends React.Component {
           <p>{this.formatTime(length)}</p>
 
         </div>
-        <audio src={this.props.source} ref={this.audioRef}></audio>
+        <audio src={this.props.source} ref={this.audioRef} onEnded={this.nextTrack}></audio>
       </>
     )
   }

@@ -6,9 +6,8 @@
 }
 
 .progress-bar {
-  width: 70%;
+  width: 85%;
   position: relative;
-  cursor: default;
 }
 
 .music-progress-bar {
@@ -29,7 +28,7 @@
 }
 
 .progress-bar:hover .progress-ball{
-  visibility: visible;
+  opacity: 1;
 }
 
 .progress-ball{
@@ -39,7 +38,8 @@
   position: absolute;
   border-radius: 50%;
   top: -2px;
-  visibility: hidden;
+  opacity: 0;
+  transition: opacity .2s;
 }
 
 .outer-music-bar {
@@ -47,16 +47,18 @@
   background-color: rgb(204, 204, 204);
   height: 2px;
   position: relative;
-  cursor: default;
 }
 
 .inner-music-bar {
   background-color: #F65502;
   height: 2px;
-  cursor: default;
 }
 
 .music-time p {
   font-size: 11px;
   width: 30px;
+}
+
+.current-time {
+  color: #F65502;
 }
