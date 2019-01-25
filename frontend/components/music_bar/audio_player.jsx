@@ -71,7 +71,7 @@ class AudioPlayer extends React.Component {
               <div className="progress-ball" style={{ left: `${100 * (currentTime / length) || 1}%` }}></div>
             </div>
           </div>
-          <p>{this.formatTime(length)}</span>
+          <p>{this.formatTime(length)}</p>
 
         </div>
         <audio src={this.props.source} ref={this.audioRef}></audio>
