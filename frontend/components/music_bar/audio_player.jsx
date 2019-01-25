@@ -59,12 +59,11 @@ class AudioPlayer extends React.Component {
     <i className="fas fa-pause toggle-play" onClick={() => this.props.toggleTrack()}></i>) : (
     <i className="fas fa-play toggle-play" onClick={() => this.props.toggleTrack()}></i>);
     
-
     return (
       <>
         { togglePlay }
         <div className="music-time">
-          <p>{this.formatTime(currentTime)}</p>
+          <p >{this.formatTime(currentTime)}</p>
           <div className="progress-bar">
             <input type="range" className="music-progress-bar" min="0" max={length} step="0.25" onChange={this.setTime}/>
             <div className="outer-music-bar">
@@ -72,7 +71,7 @@ class AudioPlayer extends React.Component {
               <div className="progress-ball" style={{ left: `${100 * (currentTime / length) || 1}%` }}></div>
             </div>
           </div>
-          <p>{this.formatTime(length)}</p>
+          <p>{this.formatTime(length)}</span>
 
         </div>
         <audio src={this.props.source} ref={this.audioRef}></audio>
