@@ -1,15 +1,38 @@
 .music-time {
-  width: 300px;
+  width: 400px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.music-progress-bar {
+.progress-bar {
   width: 250px;
-  // visibility: hidden;
+  position: relative;
+  background: transparent; 
+}
+
+.progress-bar::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+  background: rgba(246, 85, 2, 0.02);
+  border-radius: 0px;
+  border: 0px solid rgba(0, 0, 0, 0);
+}
+
+.music-progress-bar {
+  width: 100%;
+  position: absolute;
 }
 
 .outer-music-bar {
-  width: 25px;
+  width: 100%;
+  background-color: rgb(204, 204, 204);
+  height: 5px;
+}
+
+.inner-music-bar {
+  background-color: #F65502;
+  height: 5px;
 }
