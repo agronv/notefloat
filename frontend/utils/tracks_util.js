@@ -38,3 +38,10 @@ export const destroyTrack = (id) => {
     url: `/api/tracks/${id}`,
   });
 };
+
+export const fetchRandomTracks = () => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/random_tracks`,
+  });
+};

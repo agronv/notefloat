@@ -1,4 +1,4 @@
-import { receivePlayingTrack, toggleTrack } from '../../actions/current_track_actions';
+import { toggleTrack, fetchNextTrack } from '../../actions/current_track_actions';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -7,14 +7,16 @@ class AudioPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.audioRef = React.createRef();
-    this.state = {length: 0, currentTime: 0};
+    this.state = {length: 0, currentTime: 0, volume: 0.5};
     this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
     this.setTime = this.setTime.bind(this);
+    this.nextTrack = this.nextTrack.bind(this);
   }
 
   componentDidMount() {
     if (this.props.currentTrack.isPlaying) this.audioRef.current.play();
     else this.audioRef.current.pause();
+    this.audioRef.current.volume = 0.1;
     this.timeInterval = setInterval(this.handleTimeUpdate, 400);
   }
 
@@ -52,12 +54,12 @@ class AudioPlayer extends React.Component {
   }
 
   nextTrack() {
-    debugger
+    this.props.fetchNextTrack();
   }
 
   render() {
     let { currentTrack } = this.props;
-    let { currentTime, length } = this.state;
+    let { currentTime, length} = this.state;
 
     const togglePlay = currentTrack.isPlaying ? (
     <i className="fas fa-pause toggle-play" onClick={() => this.props.toggleTrack()}></i>) : (
@@ -78,7 +80,10 @@ class AudioPlayer extends React.Component {
           <p>{this.formatTime(length)}</p>
 
         </div>
-        <audio src={this.props.source} ref={this.audioRef} onEnded={this.nextTrack}></audio>
+        <audio src={this.props.source} 
+        ref={this.audioRef} 
+        onEnded={this.nextTrack}
+        loop={false}></audio>
       </>
     )
   }
@@ -93,6 +98,7 @@ const msp = (state) => {
 const mdp = (dispatch) => {
   return {
     toggleTrack: () => dispatch(toggleTrack()),
+    fetchNextTrack: () => dispatch(fetchNextTrack()),
   };
 };
 

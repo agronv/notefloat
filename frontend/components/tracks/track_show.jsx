@@ -45,24 +45,21 @@ class TrackShow extends React.Component {
   }
 
   render() {
-    if (!this.props.track) {
-      return null;
-    }
+    if (!this.props.track) return null;
     const { track, artist, currentUser } = this.props;
-
 
     const icon = this.playing() ? <i className="fas fa-pause-circle big-icon" onClick={this.handleChange} /> : 
       <i className="fas fa-play-circle big-icon" onClick={this.handleChange} />;
 
-    const edit = currentUser && currentUser.id === artist.id ? (
+    const edit = currentUser && currentUser.id === track.user_id ? (
       <Link to={`/tracks/edit/${track.id}`} >Edit</Link> ) : null;
       
-    const destroy = currentUser && currentUser.id === artist.id ? (
+    const destroy = currentUser && currentUser.id === track.user_id ? (
     <button onClick={this.destroyTrack}>Delete</button>) : null;
 
     const image = track.photoUrl ? (<img src={track.photoUrl} id="album-cover" />) :
       (<img src={window.defaultTrackPhoto} id="album-cover" />)
-      
+    
     return (
       <div className="track-show">
       <section className="track-section">
@@ -70,7 +67,7 @@ class TrackShow extends React.Component {
           {icon}
           <div className="text-info">
             <p className="title-info">{track.title}</p>  
-            <p className="artist-info">{artist.username}</p>  
+            <Link className="artist-info" to={`/users/${track.user_id}`}>{track.username}</Link>  
           </div>
         </div>
         {image}
@@ -83,6 +80,7 @@ class TrackShow extends React.Component {
 }
 
 const msp = (state, ownProps) => {
+  
   const track = state.entities.tracks[ownProps.match.params.trackId];
   let artist;
   if (track) artist = state.entities.users[track.user_id];

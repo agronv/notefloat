@@ -1,6 +1,6 @@
 import { RECEIVE_PLAYING_TRACK, 
   TOGGLE_PLAY,
-  NEXT_TRACK } from '../../actions/current_track_actions';
+  RECEIVE_NEXT_TRACK } from '../../actions/current_track_actions';
 import { REMOVE_TRACK } from '../../actions/track_actions';
 import { merge } from 'lodash';
 
@@ -11,7 +11,7 @@ export default (state = null, action) => {
     case RECEIVE_PLAYING_TRACK:
       action.track.isPlaying = true;
       return action.track;
-    case NEXT_TRACK:
+    case RECEIVE_NEXT_TRACK:
       action.track.isPlaying = state.isPlaying ;
       return action.track;
     case TOGGLE_PLAY:

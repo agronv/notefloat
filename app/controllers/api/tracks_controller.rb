@@ -1,5 +1,10 @@
 class Api::TracksController < ApplicationController 
 
+  def random
+    @track = Track.order("RANDOM()").first 
+    render :show 
+  end
+
   def create 
     if params[:track][:photo]
       @track = Track.new(track_params)

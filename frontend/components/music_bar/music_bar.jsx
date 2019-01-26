@@ -32,7 +32,6 @@ class MusicBar extends React.Component {
               </Link>
             </div>
           </div>
-          <audio src={currentTrack.mp3} preloaded="metadata" id="audio" type="audio/mp3"></audio>
         </div>
       </footer>
     )
