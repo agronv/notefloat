@@ -21,6 +21,7 @@ class User < ApplicationRecord
   attr_reader :password
 
   has_many :tracks
+  has_one_attached :photo
   
   def ensure_session 
     self.session_token ||= SecureRandom.urlsafe_base64

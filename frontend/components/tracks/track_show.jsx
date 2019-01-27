@@ -51,12 +51,6 @@ class TrackShow extends React.Component {
     const icon = this.playing() ? <i className="fas fa-pause-circle big-icon" onClick={this.handleChange} /> : 
       <i className="fas fa-play-circle big-icon" onClick={this.handleChange} />;
 
-    const edit = currentUser && currentUser.id === track.user_id ? (
-      <Link to={`/tracks/edit/${track.id}`} >Edit</Link> ) : null;
-      
-    const destroy = currentUser && currentUser.id === track.user_id ? (
-    <button onClick={this.destroyTrack}>Delete</button>) : null;
-
     const image = track.photoUrl ? (<img src={track.photoUrl} id="album-cover" />) :
       (<img src={window.defaultTrackPhoto} id="album-cover" />)
     
@@ -72,8 +66,6 @@ class TrackShow extends React.Component {
         </div>
         {image}
       </section>
-        {edit}
-        {destroy}
       </div>
     );
   }

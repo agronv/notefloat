@@ -1,0 +1,31 @@
+.user-show {
+  width: 1240px;
+  color: white;
+  margin: 0 auto;
+}
+
+.user-section {
+  width: 100%;
+  padding: 20px;
+  background-color: #555;   
+  display: flex;
+  align-items: flex-start;
+}
+
+.user-show-image {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.user-show-text {
+  margin-top: 30px;
+  background-color: #272728;
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.user-tracks-title {
+  color: black;
+}

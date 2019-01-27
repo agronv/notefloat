@@ -28,9 +28,26 @@ export const fetchUser = (id) => {
   });
 };
 
+export const fetchCompleteUser = (id) => {
+  return $.ajax({
+    method: "GET",
+    url: `api/users_complete_show/${id}`
+  });
+};
+
 export const fetchUsers = () => {
   return $.ajax({
     method: "GET",
     url: `api/users`
+  });
+};
+
+export const updateUser = (id, user) => {
+  return $.ajax({
+    method: "PATCH",
+    url: `api/users/${id}`,
+    data: user,
+    contentType: false,
+    processData: false,
   });
 };

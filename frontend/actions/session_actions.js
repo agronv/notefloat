@@ -74,9 +74,31 @@ export const signUp = user => {
   };
 };
 
+export const updateUser = (id, user) => {
+  return dispatch => {
+    return APIUtil.updateUser(id, user).then(
+      user => {
+        return dispatch(receiveCurrentUser(user));
+      },
+      errors => dispatch(receiveSessionErrors(errors.responseJSON))
+    );
+  };
+};
+
 export const fetchUser = id => {
   return dispatch => {
     return APIUtil.fetchUser(id).then(
+      user => {
+        return dispatch(receiveUser(user));
+      },
+      errors => dispatch(receiveSessionErrors(errors.responseJSON))
+    );
+  };
+};
+
+export const fetchCompleteUser = id => {
+  return dispatch => {
+    return APIUtil.fetchCompleteUser(id).then(
       user => {
         return dispatch(receiveUser(user));
       },

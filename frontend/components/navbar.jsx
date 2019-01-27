@@ -10,13 +10,21 @@ class NavBar extends React.Component {
   }
 
   render() {
+    const { currentUser } = this.props;
+    const userPhoto = currentUser && currentUser.photo ? (
+      <img className="user-photo" src={currentUser.photoUrl} /> ) :( 
+      <img className="user-photo" src={window.defaultUserPhoto} />);
+
     const buttons = this.props.currentUser ? (
       <ul className="nav-buttons">
         <li>
           <Link to="/tracks/new">Upload</Link>
         </li>
         <li className="nav-user">
-          <Link to={`users/${this.props.currentUser.id}`}>{this.props.currentUser.username}</Link>
+          <Link to={`users/${this.props.currentUser.id}`}>
+            {userPhoto}
+            <p>{this.props.currentUser.username}</p>
+          </Link>
         </li>
         <li className="log-out">
           <button onClick={this.props.logOut}>Log Out</button>
