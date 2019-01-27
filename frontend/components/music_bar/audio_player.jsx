@@ -1,4 +1,4 @@
-import { toggleTrack, fetchNextTrack, nextInQueue, prevInQueue } from '../../actions/current_track_actions';
+import { toggleTrack, fetchNextTrack, nextInQueue, prevInQueue, fetchRandomNextTrack } from '../../actions/current_track_actions';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -7,17 +7,21 @@ class AudioPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.audioRef = React.createRef();
-    this.state = {length: 0, currentTime: 0, volume: 0.5};
+    this.state = {length: 0, currentTime: 0, volume: 0.1, loop: false, shuffle: false, mute: false};
     this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
     this.setTime = this.setTime.bind(this);
     this.nextTrack = this.nextTrack.bind(this);
     this.prevTrack = this.prevTrack.bind(this);
+    this.changeLoop = this.changeLoop.bind(this);
+    this.changeShuffle = this.changeShuffle.bind(this);
+    this.changeVolume = this.changeVolume.bind(this);
+    this.toggleMute = this.toggleMute.bind(this);
   }
 
   componentDidMount() {
     if (this.props.isPlaying) this.audioRef.current.play();
     else this.audioRef.current.pause();
-    this.audioRef.current.volume = 0.1;
+    this.audioRef.current.volume = this.state.volume;
     this.timeInterval = setInterval(this.handleTimeUpdate, 250);
   }
 
@@ -26,7 +30,7 @@ class AudioPlayer extends React.Component {
     else this.audioRef.current.pause();
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     clearInterval(this.timeInterval);
   }
 
@@ -55,22 +59,46 @@ class AudioPlayer extends React.Component {
   }
 
   nextTrack() {
-    const { queue, queuePos, currentTrack, fetchNextTrack, nextInQueue } = this.props;
-    if (queuePos === queue.length - 1) {
-      fetchNextTrack(currentTrack.genre);
+    const { queue, queuePos, currentTrack, fetchNextTrack, nextInQueue, fetchRandomNextTrack } = this.props;
+    if (this.state.loop) this.audioRef.current.currentTime = 0;
+    else if (queuePos === queue.length - 1) {
+      if (this.state.shuffle) fetchRandomNextTrack();
+      else fetchNextTrack(currentTrack.genre);
     }
-    else {
-      nextInQueue(queue[queuePos+1]);
-    }
+    else nextInQueue(queue[queuePos+1]);
+  }
+
+  changeLoop() {
+    if (this.state.loop) this.setState({ loop: false});
+    else this.setState({ loop: true });
+  }
+
+  changeShuffle() {
+    if (this.state.shuffle) this.setState({ shuffle: false});
+    else this.setState({ shuffle: true });
+  }
+
+  changeVolume(e) {
+    this.setState({volume: e.target.value});
+    this.audioRef.current.volume = this.state.volume;
   }
 
   prevTrack() {
     const { queue, queuePos, prevInQueue } = this.props;
-    if (queuePos === 0) {
+    if (queuePos === 0 || this.audioRef.current.currentTime > 1.5 || this.state.loop) {
       this.audioRef.current.currentTime = 0;
     }
+    else prevInQueue(queue[queuePos-1]);
+  }
+
+  toggleMute() {
+    if (this.state.mute) {
+      this.setState({mute: false, volume: 0.5});
+      this.audioRef.current.volume = 0.5;
+    }
     else {
-      prevInQueue(queue[queuePos-1]);
+      this.setState({ mute: true, volume: 0 });
+      this.audioRef.current.volume = 0;
     }
   }
 
@@ -81,13 +109,22 @@ class AudioPlayer extends React.Component {
     const togglePlay = isPlaying ? (
     <i className="fas fa-pause toggle-play" onClick={this.props.toggleTrack}></i>) : (
     <i className="fas fa-play toggle-play" onClick={this.props.toggleTrack}></i>);
+
+    const volumeButton = this.state.mute ? (
+      <i className="fas fa-volume-mute volume-button" onClick={this.toggleMute}></i>) : (
+      <i className="fas fa-volume-up volume-button" onClick={this.toggleMute}></i>
+    )
     
+    const loopClass = this.state.loop ? "button-active" : ""
+    const shuffleClass = this.state.shuffle ? "button-active" : ""
     return (
       <>
         <div className="music-buttons">
           <i className="fas fa-step-backward" onClick={this.prevTrack}></i>
           { togglePlay }
           <i className="fas fa-step-forward" onClick={this.nextTrack}></i>
+          <i className={`fas fa-random ${shuffleClass}`} onClick={this.changeShuffle}></i>
+          <i className={`fas fa-undo ${loopClass}`} onClick={this.changeLoop}></i>
         </div>
         <div className="music-time">
           <p className="current-time">{this.formatTime(currentTime)}</p>
@@ -99,12 +136,13 @@ class AudioPlayer extends React.Component {
             </div>
           </div>
           <p>{this.formatTime(length)}</p>
-
         </div>
+        {volumeButton}
+        <input type="range" className="volume-bar" min="0" max="1" step="0.01" onChange={this.changeVolume} value={this.state.volume}/>
         <audio src={currentTrack.mp3} 
         ref={this.audioRef} 
         onEnded={this.nextTrack}
-        loop={false}></audio>
+        loop={this.state.loop}></audio>
       </>
     )
   }
@@ -125,10 +163,8 @@ const mdp = (dispatch) => {
     fetchNextTrack: (genre) => dispatch(fetchNextTrack(genre)),
     nextInQueue: (id) => dispatch(nextInQueue(id)),
     prevInQueue: (id) => dispatch(prevInQueue(id)),
+    fetchRandomNextTrack: () => dispatch(fetchRandomNextTrack()),
   };
 };
-
-
-
 
 export default connect(msp, mdp)(AudioPlayer);

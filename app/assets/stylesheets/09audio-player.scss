@@ -32,12 +32,12 @@
 }
 
 .progress-ball{
-  width: 7px;
-  height: 7px;
-  background-color: #ff5000;
+  width: 9px;
+  height: 9px;
+  background-color: #F65502;
   position: absolute;
   border-radius: 50%;
-  top: -2px;
+  top: -3px;
   opacity: 0;
   transition: opacity .2s;
 }
@@ -66,7 +66,7 @@
 .music-buttons {
   display: flex;
   color: #333333;
-  width: 90px;
+  width: 160px;
   align-items: center;
   justify-content: space-between;
 }
@@ -74,4 +74,16 @@
 .toggle-play {
   color: #333333;
   font-size: 16px;
+}
+
+.button-active {
+  color: #F65502;
+}
+
+.volume-bar {
+  visibility: hidden;
+}
+
+.volume-button:hover .volume-bar{
+  visibility: visible;
 }

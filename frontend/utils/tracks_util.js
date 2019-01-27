@@ -46,3 +46,10 @@ export const fetchRandomTracks = (genre) => {
     data: { genre }
   });
 };
+
+export const fetchCompleteRandomTracks = () => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/complete_random_tracks`,
+  });
+};

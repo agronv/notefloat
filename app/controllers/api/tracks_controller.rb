@@ -5,6 +5,11 @@ class Api::TracksController < ApplicationController
     render :show 
   end
 
+  def complete_random
+    @track = Track.order("RANDOM()").first 
+    render :show 
+  end
+
   def create 
     @track = Track.new(track_params)
     @track.user_id = current_user.id

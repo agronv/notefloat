@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :tracks, only: [:create, :index, :show, :update, :destroy]
     get '/random_tracks', to: 'tracks#random'
+    get '/complete_random_tracks', to: 'tracks#complete_random'
   end
 end
