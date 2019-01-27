@@ -1,4 +1,4 @@
-import { toggleTrack, fetchNextTrack } from '../../actions/current_track_actions';
+import { toggleTrack, fetchNextTrack, nextInQueue, prevInQueue } from '../../actions/current_track_actions';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -11,17 +11,18 @@ class AudioPlayer extends React.Component {
     this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
     this.setTime = this.setTime.bind(this);
     this.nextTrack = this.nextTrack.bind(this);
+    this.prevTrack = this.prevTrack.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.currentTrack.isPlaying) this.audioRef.current.play();
+    if (this.props.isPlaying) this.audioRef.current.play();
     else this.audioRef.current.pause();
     this.audioRef.current.volume = 0.1;
     this.timeInterval = setInterval(this.handleTimeUpdate, 400);
   }
 
   componentDidUpdate() {
-    if (this.props.currentTrack.isPlaying) this.audioRef.current.play();
+    if (this.props.isPlaying) this.audioRef.current.play();
     else this.audioRef.current.pause();
   }
 
@@ -54,20 +55,40 @@ class AudioPlayer extends React.Component {
   }
 
   nextTrack() {
-    this.props.fetchNextTrack();
+    const { queue, queuePos, currentTrack, fetchNextTrack, nextInQueue } = this.props;
+    debugger
+    if (queuePos === queue.length - 1) {
+      debugger
+      fetchNextTrack(currentTrack.genre);
+    }
+    else {
+      nextInQueue(queue[queuePos+1]);
+    }
+  }
+
+  prevTrack() {
+    const { queue, queuePos, prevInQueue } = this.props;
+    if (queuePos === 0) {
+      this.audioRef.current.currentTime = 0;
+    }
+    else {
+      prevInQueue(queue[queuePos-1]);
+    }
   }
 
   render() {
-    let { currentTrack } = this.props;
+    let { currentTrack, isPlaying } = this.props;
     let { currentTime, length} = this.state;
 
-    const togglePlay = currentTrack.isPlaying ? (
-    <i className="fas fa-pause toggle-play" onClick={() => this.props.toggleTrack()}></i>) : (
-    <i className="fas fa-play toggle-play" onClick={() => this.props.toggleTrack()}></i>);
+    const togglePlay = isPlaying ? (
+    <i className="fas fa-pause toggle-play" onClick={this.props.toggleTrack}></i>) : (
+    <i className="fas fa-play toggle-play" onClick={this.props.toggleTrack}></i>);
     
     return (
       <>
+        <i className="fas fa-pause toggle-play" onClick={this.prevTrack}></i>
         { togglePlay }
+        <i className="fas fa-pause toggle-play" onClick={this.nextTrack}></i>
         <div className="music-time">
           <p className="current-time">{this.formatTime(currentTime)}</p>
           <div className="progress-bar">
@@ -80,7 +101,7 @@ class AudioPlayer extends React.Component {
           <p>{this.formatTime(length)}</p>
 
         </div>
-        <audio src={this.props.source} 
+        <audio src={currentTrack.mp3} 
         ref={this.audioRef} 
         onEnded={this.nextTrack}
         loop={false}></audio>
@@ -91,14 +112,19 @@ class AudioPlayer extends React.Component {
 
 const msp = (state) => {
   return {
-    currentTrack: state.ui.currentTrack,
+    currentTrack: state.ui.audio.currentTrack,
+    isPlaying: state.ui.audio.isPlaying,
+    queue: state.ui.audio.queue,
+    queuePos: state.ui.audio.queuePos,
   };
 };
 
 const mdp = (dispatch) => {
   return {
     toggleTrack: () => dispatch(toggleTrack()),
-    fetchNextTrack: () => dispatch(fetchNextTrack()),
+    fetchNextTrack: (genre) => dispatch(fetchNextTrack(genre)),
+    nextInQueue: (id) => dispatch(nextInQueue(id)),
+    prevInQueue: (id) => dispatch(prevInQueue(id)),
   };
 };
 

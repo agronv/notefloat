@@ -35,9 +35,9 @@ class TrackShow extends React.Component {
   }
 
   playing() {
-    const { currentTrack, track } = this.props;
+    const { currentTrack, track, isPlaying } = this.props;
     if (currentTrack) {
-      if (currentTrack.id === track.id && currentTrack.isPlaying) {
+      if (currentTrack.id === track.id && isPlaying) {
         return true;
       } 
     }
@@ -88,7 +88,8 @@ const msp = (state, ownProps) => {
     track,
     artist,
     currentUser: state.entities.users[state.session.id],
-    currentTrack: state.ui.currentTrack,
+    currentTrack: state.ui.audio.currentTrack,
+    isPlaying: state.ui.audio.isPlaying,
   }
 }
 

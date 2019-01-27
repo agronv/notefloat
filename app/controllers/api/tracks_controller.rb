@@ -1,16 +1,12 @@
 class Api::TracksController < ApplicationController 
 
   def random
-    @track = Track.order("RANDOM()").first 
+    @track = Track.where("genre = '#{params[:genre]}'").order("RANDOM()").first 
     render :show 
   end
 
   def create 
-    if params[:track][:photo]
-      @track = Track.new(track_params)
-    else 
-      @track = Track.new({title: params[:track][:title], mp3_file: params[:track][:mp3_file]})
-    end
+    @track = Track.new(track_params)
     @track.user_id = current_user.id
     if @track.save 
       render :show 
@@ -60,11 +56,11 @@ class Api::TracksController < ApplicationController
   end
 
   def track_params 
-    params.require(:track).permit(:title, :photo, :mp3_file)
+    params.require(:track).permit(:title, :photo, :mp3_file, :genre)
   end
 
   def update_params
-    params.require(:track).premit(:title, :photo)
+    params.require(:track).premit(:title, :photo, :genre)
   end
   
 end

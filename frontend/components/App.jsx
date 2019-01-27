@@ -8,7 +8,7 @@ import EditFormContainer from "./tracks/track_edit_container";
 import TrackIndex from "./tracks/track_index";
 import TrackShow from "./tracks/track_show";
 import { ProtectedRoute } from '../utils/route_util';
-import MusicBar from './music_bar/music_bar_container';
+import MusicBar from './music_bar/music_bar';
 
 const App = () => (
   <>

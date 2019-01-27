@@ -22,9 +22,9 @@ class TrackIndexItem extends React.Component {
   }
 
   playing() {
-    const { currentTrack, track } = this.props;
+    const { currentTrack, track, isPlaying } = this.props;
     if (currentTrack) {
-      if (currentTrack.id === track.id && currentTrack.isPlaying) {
+      if (currentTrack.id === track.id && isPlaying) {
         return true;
       }
     }
@@ -32,7 +32,7 @@ class TrackIndexItem extends React.Component {
   }
 
   render() {
-    const { track, currentTrack } = this.props;
+    const { track } = this.props;
 
     const image = track.photoUrl ? (<img className="cover-art" src={track.photoUrl} />) :
       (<img className="cover-art" src={window.defaultTrackPhoto} />)
@@ -66,7 +66,8 @@ class TrackIndexItem extends React.Component {
 
 const msp = (state) => {
   return {
-    currentTrack: state.ui.currentTrack,
+    currentTrack: state.ui.audio.currentTrack,
+    isPlaying: state.ui.audio.isPlaying,
   }
 }
 

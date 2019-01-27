@@ -4,7 +4,8 @@ import { receivePlayingTrack, toggleTrack} from '../../actions/current_track_act
 
 const msp = (state) => {
   return {
-    currentTrack: state.ui.currentTrack,
+    currentTrack: state.ui.audio.currentTrack,
+    isPlaying: state.ui.audio.isPlaying,
   };
 };
 

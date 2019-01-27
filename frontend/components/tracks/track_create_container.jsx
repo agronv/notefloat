@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import TrackForm from './track_form';
 import { createTrack } from '../../actions/track_actions';
 
-const msp = (state) => {
+const msp = () => {
   return {
-    track: {title: "", photoUrl: null, mp3: null, photo: null},
+    track: { title: "", photoUrl: null, mp3: null, photo: null, genre: "alternative_rock"},
     formType: "create",
   };
 };

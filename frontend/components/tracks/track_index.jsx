@@ -13,16 +13,101 @@ class TrackIndex extends React.Component {
   }
 
   render() {
-    const tracks = this.props.tracks.map((track) =>
-    {
-      return < TrackIndexItem track={track} key={track.id} />
+    this.genres = {
+      alternative_rock: [],
+      classical: [],
+      classic_rock: [],
+      pop: [],
+      rap: [],
+      techno: [],
+    };
+
+    this.props.tracks.map((track) => {
+      this.genres[`${track.genre}`].push(track);
     });
+
+    let alternative_rock = null;
+    if (this.genres.alternative_rock.length > 0) {
+      alternative_rock = (
+        <div className="genre-section">
+          <h3 className="genre-title">Alternative Rock</h3>
+          <ul className="album-covers">
+            {this.genres.alternative_rock.map((track) => {
+              return < TrackIndexItem track={track} key={track.id} />})}
+          </ul>
+        </div>
+      )
+    } 
+    let classical = null;
+    if (this.genres.classical.length > 0) {
+      classical = (
+        <div className="genre-section">
+          <h3 className="genre-title">Classical</h3>
+          <ul className="album-covers">
+            {this.genres.classical.map((track) => {
+              return < TrackIndexItem track={track} key={track.id} />})}
+          </ul>
+        </div>
+      )
+    } 
+    let classic_rock = null;
+    if (this.genres.classic_rock.length > 0) {
+      classic_rock = (
+        <div className="genre-section">
+          <h3 className="genre-title">Classic Rock</h3>
+          <ul className="album-covers">
+            {this.genres.classic_rock.map((track) => {
+              return < TrackIndexItem track={track} key={track.id} />})}
+          </ul>
+        </div>
+      )
+    } 
+    let pop = null;
+    if (this.genres.pop.length > 0) {
+      pop = (
+        <div className="genre-section">
+          <h3 className="genre-title">Pop</h3>
+          <ul className="album-covers">
+            {this.genres.pop.map((track) => {
+              return < TrackIndexItem track={track} key={track.id} />})}
+          </ul>
+        </div>
+      )
+    } 
+    let rap = null;
+    if (this.genres.rap.length > 0) {
+      rap = (
+        <div className="genre-section">
+          <h3 className="genre-title">Rap</h3>
+          <ul className="album-covers">
+            {this.genres.rap.map((track) => {
+              return < TrackIndexItem track={track} key={track.id} />})}
+          </ul>
+        </div>
+      )
+    } 
+    let techno = null;
+    if (this.genres.techno.length > 0) {
+      techno = (
+        <div className="genre-section">
+          <h3 className="genre-title">Techno</h3>
+          <ul className="album-covers">
+            {this.genres.techno.map((track) => {
+              return < TrackIndexItem track={track} key={track.id} />})}
+          </ul>
+        </div>
+      )
+    } 
+    
     return (
       <section className="tracks-section">
         <h1>All Songs</h1>
-        <ul className="album-covers">
-          {tracks}
-        </ul>
+        {alternative_rock}
+        {classical}
+        {classic_rock}
+        {pop}
+        {rap}
+        {techno}
       </section>
     )
   }

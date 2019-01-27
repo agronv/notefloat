@@ -1,5 +1,8 @@
 class Track < ApplicationRecord
-  validates :user_id, :title, presence: true 
+  GENRES = %w(pop techno classic_rock alternative_rock rap classical).freeze
+
+  validates :user_id, :title, :genre, presence: true 
+  validates :genre, inclusion: GENRES, unless: -> { genre.blank? }
   validate :ensure_mp3 
 
   has_one_attached :photo

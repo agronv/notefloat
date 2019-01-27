@@ -1,3 +1,5 @@
+import { connect } from 'react-redux';
+import { receivePlayingTrack, toggleTrack } from '../../actions/current_track_actions';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import AudioPlayer from './audio_player';
@@ -18,7 +20,7 @@ class MusicBar extends React.Component {
     return (
       <footer className="music-bar">
         <div className="music-bar-content">
-          < AudioPlayer source={currentTrack.mp3} />
+          < AudioPlayer currentTrack={currentTrack} />
           <div className="music-bar-song-info">
             < Link to={`/tracks/${currentTrack.id}`}>
               {image}
@@ -38,4 +40,19 @@ class MusicBar extends React.Component {
   }
 }
 
-export default MusicBar;
+
+const msp = (state) => {
+  return {
+    currentTrack: state.ui.audio.currentTrack,
+    isPlaying: state.ui.audio.isPlaying,
+  };
+};
+
+const mdp = (dispatch) => {
+  return {
+    receivePlayingTrack: (id) => dispatch(receivePlayingTrack(id)),
+    toggleTrack: () => dispatch(toggleTrack()),
+  };
+};
+
+export default connect(msp, mdp)(MusicBar);

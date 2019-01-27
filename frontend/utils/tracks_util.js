@@ -39,9 +39,10 @@ export const destroyTrack = (id) => {
   });
 };
 
-export const fetchRandomTracks = () => {
+export const fetchRandomTracks = (genre) => {
   return $.ajax({
     method: "GET",
     url: `/api/random_tracks`,
+    data: { genre }
   });
 };

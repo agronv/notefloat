@@ -8,16 +8,22 @@ class TrackForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
+    this.updateGenre = this.updateGenre.bind(this);
   }
 
   updateTitle(e) {
     this.setState({ title: e.target.value });
   } 
 
+  updateGenre(e) {
+    this.setState({ genre: e.target.value });
+  } 
+
   handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(); 
     formData.append('track[title]', this.state.title);
+    formData.append('track[genre]', this.state.genre);
     formData.append('track[mp3_file]', this.state.mp3);
     if (this.state.photoUrl){
       formData.append('track[photo]', this.state.photoUrl);
@@ -53,6 +59,10 @@ class TrackForm extends React.Component {
     };
   } 
 
+  titleize(word) { 
+    return word.split("_").join(" ");
+  }
+
   render() {
     const mp3 = this.props.formType === "edit" ? null : (
       <label htmlFor="track">
@@ -76,6 +86,10 @@ class TrackForm extends React.Component {
       previewPhoto = <img className="image-preview" src={window.defaultTrackPhoto}></img>
     }
 
+    const genres = ["alternative_rock", "classic_rock", "classical", "pop", "rap", "techno"].map((genre, i) => {
+      return <option value={genre} key={i}>{this.titleize(genre)}</option>;
+    })
+
     return (
       <section className="track-form-section">
         <h2>{this.props.formType}</h2>
@@ -91,6 +105,15 @@ class TrackForm extends React.Component {
             <label htmlFor="title"> 
               <p>Title*</p>
               <input type="text" className="title-input" onChange={this.updateTitle} id="title" value={this.state.title}/>
+            </label> 
+            <label htmlFor="genre"> 
+              <select
+                value={this.state.genre}
+                onChange={this.updateGenre}
+                className="genre-input"
+              >
+                {genres}
+              </select>
             </label> 
             {mp3}
             {submit}

@@ -64,3 +64,8 @@
 .session-error-active {
   border: 1px solid #F65502 !important;
 }
+
+.genre {
+  display: flex;
+  flex-direction: column;
+}

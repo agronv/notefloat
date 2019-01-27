@@ -12,7 +12,6 @@
 .album-covers {
   display: flex;
   flex-wrap: wrap;
-  padding: 0 20px;
 }
 
 .tracks-section {
@@ -23,7 +22,7 @@
 
 .track-info {
   padding-right: 20px;
-  padding-bottom: 50px;
+  margin-bottom: 30px;
   display: flex;
   flex-direction: column;
 }
@@ -66,7 +65,14 @@
   visibility: visible;
 }
 
+.genre-section {
+  padding: 0 20px;
+}
 
+.genre-title {
+  margin-bottom: 10px;
+  font-size: 30px;
+}
 
 
 
