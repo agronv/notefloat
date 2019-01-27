@@ -137,8 +137,12 @@ class AudioPlayer extends React.Component {
           </div>
           <p>{this.formatTime(length)}</p>
         </div>
-        {volumeButton}
-        <input type="range" className="volume-bar" min="0" max="1" step="0.01" onChange={this.changeVolume} value={this.state.volume}/>
+        <div className="volume-div">
+          {volumeButton}
+          <div className="volume-bar-div">
+            <input type="range" className="volume-bar" min="0" max="1" step="0.01" onChange={this.changeVolume} value={this.state.volume}/>
+          </div>
+        </div>
         <audio src={currentTrack.mp3} 
         ref={this.audioRef} 
         onEnded={this.nextTrack}

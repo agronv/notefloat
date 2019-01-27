@@ -1,5 +1,5 @@
 .music-time {
-  width: 50%;
+  width: 65%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -80,10 +80,44 @@
   color: #F65502;
 }
 
-.volume-bar {
-  visibility: hidden;
+.volume-button {
+  height: 22px;
+  width: 30px;
 }
 
-.volume-button:hover .volume-bar{
+.volume-div:hover .volume-bar-div{
   visibility: visible;
+}
+
+.volume-bar::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: -8px;
+  width: 0; 
+  height: 0; 
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent; 
+  border-right: 7px solid rgb(150, 150, 150);
+}
+
+.volume-bar-div {
+  visibility: hidden;
+  border: 1px solid rgb(206, 206, 206);
+  background-color: white; 
+  box-shadow: 0px 1px 2px rgb(206, 206, 206);
+  padding: 10px;
+  position: absolute;
+  bottom: 70px;
+  left: -50px;
+  -webkit-transform: rotate(-90deg); 
+  -moz-transform: rotate(-90deg);
+}
+
+.volume-div {
+  position: relative;
+}
+
+.volume-bar {
+  width: 100px;
 }
