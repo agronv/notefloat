@@ -7,7 +7,6 @@ class TrackIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.toggleTrack = this.toggleTrack.bind(this);
-    this.playing = this.playing.bind(this);
   }
 
   toggleTrack(e) {
@@ -31,6 +30,16 @@ class TrackIndexItem extends React.Component {
     return false;
   }
 
+  paused() {
+    const { currentTrack, track, isPlaying } = this.props;
+    if (currentTrack) {
+      if (currentTrack.id === track.id && !(isPlaying)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   render() {
     const { track } = this.props;
 
@@ -40,8 +49,11 @@ class TrackIndexItem extends React.Component {
 
     const icon = this.playing() ? (
       <i className="fas fa-pause-circle track-icon track-icon-active" onClick={this.toggleTrack}></i>
-    ) : (
-      <i className="fas fa-play-circle track-icon" onClick={this.toggleTrack}></i>
+    ) : ( this.paused() ? (
+        <i className="fas fa-play-circle track-icon track-icon-active" onClick={this.toggleTrack}></i> 
+        ) : (
+          <i className="fas fa-play-circle track-icon" onClick={this.toggleTrack}></i> 
+        )
     )
 
     return (

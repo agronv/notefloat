@@ -18,7 +18,7 @@ class AudioPlayer extends React.Component {
     if (this.props.isPlaying) this.audioRef.current.play();
     else this.audioRef.current.pause();
     this.audioRef.current.volume = 0.1;
-    this.timeInterval = setInterval(this.handleTimeUpdate, 400);
+    this.timeInterval = setInterval(this.handleTimeUpdate, 250);
   }
 
   componentDidUpdate() {
@@ -56,9 +56,7 @@ class AudioPlayer extends React.Component {
 
   nextTrack() {
     const { queue, queuePos, currentTrack, fetchNextTrack, nextInQueue } = this.props;
-    debugger
     if (queuePos === queue.length - 1) {
-      debugger
       fetchNextTrack(currentTrack.genre);
     }
     else {
@@ -86,9 +84,11 @@ class AudioPlayer extends React.Component {
     
     return (
       <>
-        <i className="fas fa-pause toggle-play" onClick={this.prevTrack}></i>
-        { togglePlay }
-        <i className="fas fa-pause toggle-play" onClick={this.nextTrack}></i>
+        <div className="music-buttons">
+          <i className="fas fa-step-backward" onClick={this.prevTrack}></i>
+          { togglePlay }
+          <i className="fas fa-step-forward" onClick={this.nextTrack}></i>
+        </div>
         <div className="music-time">
           <p className="current-time">{this.formatTime(currentTime)}</p>
           <div className="progress-bar">

@@ -62,3 +62,16 @@
 .current-time {
   color: #F65502;
 }
+
+.music-buttons {
+  display: flex;
+  color: #333333;
+  width: 90px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-play {
+  color: #333333;
+  font-size: 16px;
+}
