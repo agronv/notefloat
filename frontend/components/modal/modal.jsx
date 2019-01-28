@@ -5,6 +5,7 @@ import LoginFormContainer from '../session_form/login_form_container';
 import SignupFormContainer from '../session_form/signup_form_container';
 import UserEdit from '../users/user_edit';
 import TrackEdit from '../tracks/track_edit_container';
+import DeleteTrack from '../tracks/delete_track';
 
 class Modal extends React.Component {
   constructor(props) {
@@ -27,6 +28,9 @@ class Modal extends React.Component {
     }
     else if (modal === 'edit-track') {
       component = <TrackEdit track={track}/>;
+    }
+    else if (modal === 'delete-track') {
+      component = <DeleteTrack track={track}/>;
     }
     else return null;
 

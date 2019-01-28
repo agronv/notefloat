@@ -33,8 +33,8 @@ export default (state = defaultState, action) => {
       else newState.isPlaying = true;
       return newState;
     case REMOVE_TRACK:
-      if (action.trackId === newState.currentTrack.id) newState.currentTrack === null;
-      newState.queue = newState.queuefilter(id => id !== action.trackId);
+      if (newState.currentTrack && action.trackId === newState.currentTrack.id) newState.currentTrack === null;
+      newState.queue = newState.queue.filter(id => id !== action.trackId);
       newState.queuePos = newState.queue.length - 1;
       return newState; 
     case RECEIVE_NEXT_IN_QUEUE:
