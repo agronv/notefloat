@@ -10,12 +10,19 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def edit 
+  def update 
     @user = User.find_by(id: params[:id])
-    if @user.update(update_params)
-      render :complete_show
+    if @user
+      @user.username = update_params[:username]
+      @user.description = update_params[:description]
+      @user.photo = update_params[:photo]
+      if @user.save
+        render :complete_show
+      else  
+        render json: @user.errors.full_messages, status: 422
+      end
     else
-      render json: @user.errors.full_messages, status: 422
+      render json: ["invalid information"], status: 422
     end
   end
 
@@ -47,7 +54,7 @@ class Api::UsersController < ApplicationController
   end
 
   def update_params 
-    params.require(:user).permit(:photo, :password, :description)
+    params.require(:user).permit(:photo, :description, :username)
   end
   
 end

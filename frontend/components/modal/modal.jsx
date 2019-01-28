@@ -3,6 +3,7 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import LoginFormContainer from '../session_form/login_form_container';
 import SignupFormContainer from '../session_form/signup_form_container';
+import UserEdit from '../users/user_edit';
 
 class Modal extends React.Component {
   constructor(props) {
@@ -19,6 +20,9 @@ class Modal extends React.Component {
     }
     else if (modal === 'signup') {
       component = <SignupFormContainer />;
+    }
+    else if (modal === 'edit') {
+      component = <UserEdit />;
     }
     else return null;
 

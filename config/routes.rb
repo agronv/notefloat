@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root 'static_pages#root'
 
   namespace :api, defaults: {format: :json} do 
-    resources :users, only: [:create, :index, :show, :edit]
+    resources :users, only: [:create, :index, :show, :update]
     resource :session, only: [:create, :destroy]
     resources :tracks, only: [:create, :index, :show, :update, :destroy]
     get '/random_tracks', to: 'tracks#random'

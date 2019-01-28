@@ -10,12 +10,12 @@
 User.destroy_all
 Track.destroy_all
 
-u1 = User.create({username: 'not_agron', password: 'appacademy'})
-u2 = User.create({username: 'not_harry', password: 'appacadasdfemy'})
-u3 = User.create({username: 'not_harrison', password: 'appacasdfasdfademy'})
-u4 = User.create({username: 'david_ro', password: 'appacademasfdy'})
-u5 = User.create({username: 'username1', password: 'appacad234emy'})
-u6 = User.create({username: 'asdf', password: 'asdf'})
+# u1 = User.create({username: 'not_agron', password: 'appacademy'})
+# u2 = User.create({username: 'not_harry', password: 'appacadasdfemy'})
+# u3 = User.create({username: 'not_harrison', password: 'appacasdfasdfademy'})
+# u4 = User.create({username: 'david_ro', password: 'appacademasfdy'})
+# u5 = User.create({username: 'username1', password: 'appacad234emy'})
+# u6 = User.create({username: 'asdf', password: 'asdf'})
 u7 = User.create({username: 'demo', password: 'demo'})
 
 # t2 = Track.create({title: "faDFSSADADF", user_id: u2.id})

@@ -7,9 +7,10 @@
 .user-section {
   width: 100%;
   padding: 20px;
-  background-color: #555;   
+  background-color: #8D8A81;   
   display: flex;
   align-items: flex-start;
+  box-sizing: border-box;
 }
 
 .user-show-image {
@@ -28,4 +29,56 @@
 
 .user-tracks-title {
   color: black;
+}
+
+.edit-button {
+  margin-top: 100px;
+}
+
+.image-preview-user{
+  height: 340px;
+  width: 340px;
+  border-radius: 50%;
+}
+
+.user-input-photo {
+  left: 100px;
+  bottom: 30px;
+}
+
+.user-form {
+  width: 750px;
+}
+
+.description-input {
+  height: 150px; 
+}
+
+.right-side-form-user {
+  height: 340px;
+}
+
+.user-form-section {
+  z-index: 11;
+  position: absolute;
+  top: 50px;
+  left: 17.7%;
+}
+
+.edit-button {
+  align-self: flex-end;
+  margin-left: 840px;
+  padding: 5px;
+  background-color: white;
+  color: black; 
+  border: 1px solid rgb(150, 150, 150);
+  transition: border .2s;
+}
+
+.fa-pencil-alt {
+  margin-right: 5px;
+}
+
+.edit-button:hover {
+  border: 1px solid rgb(204, 204, 204);
 }

@@ -4,7 +4,7 @@ import { destroyTrack } from '../../actions/track_actions';
 import { fetchPlayingTrack, toggleTrack } from '../../actions/current_track_actions';
 import { fetchCompleteUser } from '../../actions/session_actions';
 import TrackIndexItem from '../tracks/track_index_item';
-import openModal from '../modal/modal';
+import { openModal } from '../../actions/modal_actions';
 
 
 class UserShow extends React.Component {
@@ -17,10 +17,10 @@ class UserShow extends React.Component {
   }
 
   render() {
-    const { user } = this.props;
+    const { user, currentUser } = this.props;
     if (!user) return null;
-    const userImage = user.photo ? (
-      <img src={user.photo} className="user-show-image"></img>
+    const userImage = user.photoUrl ? (
+      <img src={user.photoUrl} className="user-show-image"></img>
     ) : (
       <img src={window.defaultUserPhoto} className="user-show-image"></img>
     )
@@ -32,12 +32,19 @@ class UserShow extends React.Component {
       });
     }
 
+    const edit = currentUser && currentUser.id === user.id ? (
+      <button className="edit-button" onClick={() => this.props.openModal('edit')}>
+        <i class="fas fa-pencil-alt"></i>
+        <p>Edit</p>
+      </button>
+    ) : ( null )
+
     return (
       <div className="user-show">
         <section className="user-section">
           {userImage}
           <p className="user-show-text">{user.username}</p>
-          <button className="edit-button" onClick={() => this.props.openModal('edit')}>Edit</button>
+          {edit}
         </section>
         <section className="user-tracks-section">
           <h1 className="user-tracks-title">Tracks</h1>
@@ -53,6 +60,7 @@ class UserShow extends React.Component {
 const msp = (state, ownProps) => {
   return {
     user: state.entities.users[ownProps.match.params.userId],
+    currentUser: state.entities.users[state.session.id]
   }
 }
 

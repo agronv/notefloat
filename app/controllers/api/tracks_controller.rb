@@ -25,13 +25,14 @@ class Api::TracksController < ApplicationController
     if @track && @track.user_id = current_user.id
       @track.title = track_params[:title]
       @track.photo = track_params[:photo]
+      @track.genre = track_params[:genre]
       if @track.save
         render :show 
       else
-        render json: ["invalid credentials"], status: 422
+        render json: ["invalid information"], status: 422
       end
     else
-      render json: ["invalid credentials"], status: 422
+      render json: ["invalid information"], status: 422
     end
   end
 

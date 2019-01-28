@@ -23,7 +23,7 @@ const App = () => (
         <ProtectedRoute exact path="/tracks/new" component={CreateFormContainer} />
         <Route path="/tracks/:trackId" component={TrackShow} />
         <Route exact path="/tracks" component={TrackIndex} />
-        <ProtectedRoute path="/users/:userId" component={UserShow} />
+        <ProtectedRoute exact path="/users/:userId" component={UserShow} />
       </Switch>
     < MusicBar />
   </>

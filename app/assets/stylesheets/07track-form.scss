@@ -1,4 +1,4 @@
-.track-form-section {
+.track-form-section, .user-form-section {
   width: 1240px;
   height: 600px;
   background-color: white;
@@ -6,12 +6,12 @@
   margin-top: 100px; 
 }
 
-.track-form-section h2 {
+.track-form-section h2, .edit-title {
   text-align: center;
   padding-top: 20px;
 }
 
-.track-form {
+.track-form, .user-form {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -26,20 +26,20 @@
   width: 340px;
 }
 
-.right-side-form {
+.right-side-form, .right-side-form-user {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 280px;
 }
 
-.title-input, .track-submit, select{
+.title-input, .track-submit, select, .username-input, .description-input{
   width: 100%;
   height: 38px;
   border-radius: 5px;
 }
 
-.title-input, select {
+.title-input, select, .username-input, .description-input {
   border: 1px solid #ccc;
   padding-left: 10px;
   box-sizing: border-box;
@@ -52,7 +52,7 @@
   font-size: 18px;
 }
 
-input[type="file"] {
+input[type=file] {
   display: none;
 }
 
