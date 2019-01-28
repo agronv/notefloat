@@ -23,6 +23,7 @@ class Api::TracksController < ApplicationController
   def update 
     @track = Track.find_by(id: params[:id])
     if @track && @track.user_id == current_user.id
+      # debugger
       if @track.update(update_params)
         render :show 
       else
@@ -72,7 +73,7 @@ class Api::TracksController < ApplicationController
   end
 
   def update_params
-    params.require(:track).permit(:title, :photo, :genre)
+    params.require(:track).permit(:title, :genre)
   end
   
 end

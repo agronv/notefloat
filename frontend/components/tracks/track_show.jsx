@@ -53,19 +53,26 @@ class TrackShow extends React.Component {
 
     const image = track.photoUrl ? (<img src={track.photoUrl} id="album-cover" />) :
       (<img src={window.defaultTrackPhoto} id="album-cover" />)
+
+    const userImage = artist.photoUrl ? (<img src={artist.photoUrl} className="user-track-photo" />) :
+      (<img src={window.defaultUserPhoto} className="user-track-photo" />)
     
     return (
       <div className="track-show">
-      <section className="track-section">
-        <div className='song-info'>
-          {icon}
-          <div className="text-info">
-            <p className="title-info">{track.title}</p>  
-            <Link className="artist-info" to={`/users/${track.user_id}`}>{track.username}</Link>  
+        <section className="track-section">
+          <div className='song-info'>
+            {icon}
+            <div className="text-info">
+              <p className="title-info">{track.title}</p>  
+              <Link className="artist-info" to={`/users/${track.user_id}`}>{track.username}</Link>  
+            </div>
           </div>
+          {image}
+        </section>
+        <div className="track-users-section">
+          <Link to={`/users/${artist.id}`}>{userImage}</Link>  
+          <Link to={`/users/${artist.id}`}>{artist.username}</Link>  
         </div>
-        {image}
-      </section>
       </div>
     );
   }

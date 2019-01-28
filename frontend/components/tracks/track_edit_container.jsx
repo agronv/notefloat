@@ -8,14 +8,15 @@ import { closeModal } from '../../actions/modal_actions';
 class TrackEdit extends React.Component {
 
   render() {
-    const { action, formType, track } = this.props;
+    const { action, formType, track, closeModal } = this.props;
     if (!track) return null;
     
     return (
       <TrackForm
         action={action}
         formType={formType}
-        track={track} />
+        track={track} 
+        closeModal={closeModal}/>
     );
   }
 }

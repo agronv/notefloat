@@ -95,7 +95,7 @@
 .user-track-buttons button {
   padding: 3px 13px 3px 14px;
   color: rgb(100, 100, 100);
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,0.5);
   z-index: 4;
 }
 
@@ -108,6 +108,23 @@
 }
 
 .user-track-buttons button:hover {
-  background-color: rgba(255,255,255,0.7);
+  background-color: rgba(255,255,255,0.8);
   color: rgb(50, 50, 50);
+}
+
+.user-track-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.track-users-section {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  width: 180px
+}
+
+.track-users-section a {
+  margin: 0 auto;
 }

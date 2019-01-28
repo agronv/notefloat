@@ -33,7 +33,7 @@ class TrackForm extends React.Component {
     if (this.props.formType === 'edit') {
       const that = this;
       this.props.action(this.state.id, formData).then((result) => {
-        that.props.history.push(`/tracks/${result.track.id}`);
+        that.props.history.push(`/users/${result.track.user_id}`);
       }).then(that.props.closeModal); 
     }
     else {
