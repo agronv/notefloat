@@ -83,13 +83,9 @@
   color: black;
 }
 
-.user-track-image {
-  position: relative;
-}
-
 .user-track-buttons {
   position: absolute;
-  bottom: 4px;
+  bottom: 0px;
   width: 180px;
   display: flex;
   justify-content: space-around;

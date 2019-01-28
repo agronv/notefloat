@@ -73,14 +73,12 @@ class UserTrackItem extends React.Component {
       <li className="track-info">
         <div className='image-div'>
           <Link to={`/tracks/${track.id}`}>
-          <div className="user-track-image">
             {image}
-            <div className="user-track-buttons">
-              {editTrack}
-              {deleteTrack}
-            </div>
-          </div>
           </Link>
+          <div className="user-track-buttons" onClick={(e) => e.stopPropagation()}>
+            {editTrack}
+            {deleteTrack}
+          </div>
           {icon}
         </div>
         <Link className="track-info-text" to={`/tracks/${track.id}`}>
