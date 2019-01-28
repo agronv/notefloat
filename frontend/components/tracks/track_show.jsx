@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchTrack, destroyTrack } from '../../actions/track_actions';
-import { receivePlayingTrack, toggleTrack } from '../../actions/current_track_actions';
+import { fetchPlayingTrack, toggleTrack } from '../../actions/current_track_actions';
 import { fetchUser } from '../../actions/session_actions';
 import { Link } from 'react-router-dom';
 
@@ -27,7 +27,7 @@ class TrackShow extends React.Component {
     e.preventDefault();
     let {currentTrack, track} = this.props;
     if (!currentTrack || track.id !== currentTrack.id) {
-      this.props.receivePlayingTrack(track);
+      this.props.fetchPlayingTrack(track.id);
     }
     else {
       this.props.toggleTrack();
@@ -90,7 +90,7 @@ const mdp = (dispatch) => {
     fetchTrack: (id) => dispatch(fetchTrack(id)),
     fetchUser: (id) => dispatch(fetchUser(id)),
     destroyTrack: (id) => dispatch(destroyTrack(id)),
-    receivePlayingTrack: (track) => dispatch(receivePlayingTrack(track)),
+    fetchPlayingTrack: (id) => dispatch(fetchPlayingTrack(id)),
     toggleTrack: () => dispatch(toggleTrack()),
   }
 }

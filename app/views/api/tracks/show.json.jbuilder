@@ -5,9 +5,11 @@ json.track do
   if @track.photo.attached?
     json.photoUrl url_for(@track.photo)
   end
-  json.mp3 url_for(@track.mp3_file)
 end 
 
 json.user do 
-  json.partial! 'api/users/user', user: @track.user 
+  json.extract! @track.user , :id, :username
+  if @track.user.photo.attached?
+    json.photoUrl url_for(@track.user.photo)
+  end
 end

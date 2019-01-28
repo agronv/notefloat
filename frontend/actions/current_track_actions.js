@@ -41,8 +41,8 @@ export const toggleTrack = () => {
 
 export const fetchPlayingTrack = (id) => {
   return (dispatch) => {
-    return TrackAPI.fetchTrack(id).then((info) => {
-      dispatch(receivePlayingTrack(info.track));
+    return TrackAPI.fetchCompleteTrack(id).then((track) => {
+      dispatch(receivePlayingTrack(track));
     }),
     errors => dispatch(receiveTrackErrors(errors.responseJSON));
   };
@@ -50,8 +50,8 @@ export const fetchPlayingTrack = (id) => {
 
 export const fetchNextTrack = (genre) => {
   return (dispatch) => {
-    return TrackAPI.fetchRandomTracks(genre).then((info) => {
-      dispatch(receiveNextTrack(info.track));
+    return TrackAPI.fetchRandomTracks(genre).then((track) => {
+      dispatch(receiveNextTrack(track));
     }),
     errors => dispatch(receiveTrackErrors(errors.responseJSON));
   };
@@ -59,8 +59,8 @@ export const fetchNextTrack = (genre) => {
 
 export const nextInQueue = (id) => {
   return (dispatch) => {
-    return TrackAPI.fetchTrack(id).then((info) => {
-      dispatch(receieveNextInQueue(info.track));
+    return TrackAPI.fetchCompleteTrack(id).then((track) => {
+      dispatch(receieveNextInQueue(track));
     }),
       errors => dispatch(receiveTrackErrors(errors.responseJSON));
   };
@@ -68,8 +68,8 @@ export const nextInQueue = (id) => {
 
 export const prevInQueue = (id) => {
   return (dispatch) => {
-    return TrackAPI.fetchTrack(id).then((info) => {
-      dispatch(receievePrevInQueue(info.track));
+    return TrackAPI.fetchCompleteTrack(id).then((track) => {
+      dispatch(receievePrevInQueue(track));
     }),
       errors => dispatch(receiveTrackErrors(errors.responseJSON));
   };

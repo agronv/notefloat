@@ -25,6 +25,13 @@ export const fetchTrack = (id) => {
   });
 };
 
+export const fetchCompleteTrack = (id) => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/tracks_complete_show/${id}`,
+  });
+};
+
 export const fetchTracks = () => {
   return $.ajax({
     method: "GET",

@@ -2,12 +2,12 @@ class Api::TracksController < ApplicationController
 
   def random
     @track = Track.where("genre = '#{params[:genre]}'").order("RANDOM()").first 
-    render :show 
+    render :complete_show 
   end
 
   def complete_random
     @track = Track.order("RANDOM()").first 
-    render :show 
+    render :complete_show 
   end
 
   def create 
@@ -37,6 +37,15 @@ class Api::TracksController < ApplicationController
     @track = Track.find_by(id: params[:id])
     if @track
       render :show
+    else
+      render json: ['track does not exist'], status: 404
+    end
+  end
+
+  def complete_show 
+    @track = Track.find_by(id: params[:id])
+    if @track
+      render :complete_show
     else
       render json: ['track does not exist'], status: 404
     end
