@@ -5,6 +5,7 @@ export const RECEIVE_SESSION_ERRORS = "RECEIVE_ERRORS";
 export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
 export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
+export const RECEIVE_COMPLETE_USER = "RECEIVE_COMPLETE_USER";
 
 export const receiveCurrentUser = user => {
   return {
@@ -17,6 +18,14 @@ export const receiveUser = user => {
   return {
     type: RECEIVE_USER,
     user
+  };
+};
+
+export const receiveCompleteUser = ({user, tracks}) => {
+  return {
+    type: RECEIVE_COMPLETE_USER,
+    user, 
+    tracks,
   };
 };
 
@@ -99,8 +108,8 @@ export const fetchUser = id => {
 export const fetchCompleteUser = id => {
   return dispatch => {
     return APIUtil.fetchCompleteUser(id).then(
-      user => {
-        return dispatch(receiveUser(user));
+      data => {
+        return dispatch(receiveCompleteUser(data));
       },
       errors => dispatch(receiveSessionErrors(errors.responseJSON))
     );

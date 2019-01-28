@@ -3,6 +3,7 @@ import {
   RECEIVE_TRACKS,
   REMOVE_TRACK,
 } from "../../actions/track_actions";
+import { RECEIVE_COMPLETE_USER } from '../../actions/session_actions';
 import { merge } from "lodash";
 
 export default (state = {}, action) => {
@@ -19,6 +20,7 @@ export default (state = {}, action) => {
       return newState;
 
     case RECEIVE_TRACKS:
+    case RECEIVE_COMPLETE_USER:
       return action.tracks;
 
     default:

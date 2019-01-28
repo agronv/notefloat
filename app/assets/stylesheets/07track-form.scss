@@ -108,3 +108,76 @@ select {
   top: 50px;
   left: 17.7%;
 }
+
+.track-delete-section {
+  z-index: 11;
+  position: absolute;
+  top: 250px;
+  left: 37.5%;
+  width: 475px;
+  height: 275px;
+  padding: 25px;
+  box-sizing: border-box;
+  background: white;
+  margin: 0 auto;
+}
+
+.delete-play, .delete-paused, .delete-playing {
+  font-size: 50px;
+  margin-right: 10px;
+}
+
+.delete-play {
+  color: #F65502;
+}
+
+.delete-paused, .delete-playing, .delete-play:hover {
+  color: #FC3200;
+}
+
+.main-delete {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.delete-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 205px;
+}
+
+.track-delete-info, .track-delete-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.delete-button, .cancel-button  {
+  border-radius: 3px;
+  color: rgb(51, 51, 51);
+  font-size: 14px;
+  padding: 2px 9px;
+}
+
+.delete-button {
+  background-color: #F65502;
+  border: 1px solid #F65502;
+  color: white;
+}
+
+.cancel-button {
+  border: 1px solid rgb(204, 204, 204);
+  background-color: white;
+  color: black;
+  transition: border .2s;
+}
+
+.cancel-button:hover {
+  border: 1px solid rgb(150, 150, 150);
+}
+
+.track-delete-buttons {
+  width: 100%;
+  justify-content: space-evenly;
+}

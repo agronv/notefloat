@@ -5,6 +5,7 @@ import { fetchPlayingTrack, toggleTrack } from '../../actions/current_track_acti
 import { fetchCompleteUser } from '../../actions/session_actions';
 import UserTrackItem from '../tracks/users_track_item';
 import { openModal } from '../../actions/modal_actions';
+import { getUsertracks } from '../../reducers/selectors/selectors';
 
 
 class UserShow extends React.Component {
@@ -17,7 +18,7 @@ class UserShow extends React.Component {
   }
 
   render() {
-    const { user, currentUser } = this.props;
+    const { user, currentUser, tracks } = this.props;
     if (!user) return null;
     const userImage = user.photoUrl ? (
       <img src={user.photoUrl} className="user-show-image"></img>
@@ -25,9 +26,9 @@ class UserShow extends React.Component {
       <img src={window.defaultUserPhoto} className="user-show-image"></img>
     )
 
-    let tracks = null;
-    if (user.tracks) {
-      tracks = user.tracks.map((track) => {
+    let track = null;
+    if (tracks) {
+      track = tracks.map((track) => {
         return < UserTrackItem track={track} key={track.id} />
       });
     }
@@ -49,7 +50,7 @@ class UserShow extends React.Component {
         <section className="user-tracks-section">
           <h1 className="user-tracks-title">Tracks</h1>
           <ul className="album-covers">
-            {tracks}
+            {track}
           </ul>
         </section>
       </div>
@@ -60,6 +61,7 @@ class UserShow extends React.Component {
 const msp = (state, ownProps) => {
   return {
     user: state.entities.users[ownProps.match.params.userId],
+    tracks: getUsertracks(state.entities.tracks, ownProps.match.params.userId),
     currentUser: state.entities.users[state.session.id]
   }
 }

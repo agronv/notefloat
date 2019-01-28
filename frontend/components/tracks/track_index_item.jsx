@@ -68,7 +68,7 @@ class TrackIndexItem extends React.Component {
         <Link className="track-info-text"to={`/tracks/${track.id}`}>
           <p className="track-name">{track.title}</p>
         </Link>
-        <Link className="track-info-text"to={`/users/${track.id}`}>
+        <Link className="track-info-text"to={`/users/${track.user_id}`}>
           <p className="user-info">{track.username}</p>
         </Link>
       </li>

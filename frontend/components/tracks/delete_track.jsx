@@ -57,22 +57,32 @@ class DeleteTrack extends React.Component {
       (<img className="cover-art" src={window.defaultTrackPhoto} />)
 
     const icon = this.playing() ? (
-      <i className="fas fa-pause-circle" onClick={this.toggleTrack}></i>
+      <i className="fas fa-pause-circle delete-playing" onClick={this.toggleTrack}></i>
     ) : (this.paused() ? (
-      <i className="fas fa-play-circle" onClick={this.toggleTrack}></i>
+      <i className="fas fa-play-circle delete-paused" onClick={this.toggleTrack}></i>
     ) : (
-        <i className="fas fa-play-circle" onClick={this.toggleTrack}></i>
+        <i className="fas fa-play-circle delete-play" onClick={this.toggleTrack}></i>
       )
       )
 
     return (
       <section className="track-delete-section">
-        <h2>Delete Track</h2>
-        {image}
-        {icon}
-        <p>{track.title}</p>
-        <button onClick={this.props.closeModal}>Cancel</button>
-        <button onClick={this.deleteTrack}>Delete forever</button>
+        <h4>Delete Track</h4>
+        <div className="main-delete">
+        <div className="delete-left">
+          {image}
+        </div>
+        <div className="delete-right">
+          <div className="track-delete-info">
+            {icon}
+            <p>{track.title}</p>
+          </div>
+          <div className="track-delete-buttons">
+            <button className="cancel-button" onClick={this.props.closeModal}>Cancel</button>
+            <button className="delete-button" onClick={this.deleteTrack}>Delete forever</button>
+          </div>
+        </div>
+        </div>
       </section>
     )
   }
