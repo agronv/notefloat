@@ -24,7 +24,9 @@ class TrackForm extends React.Component {
     const formData = new FormData(); 
     formData.append('track[title]', this.state.title);
     formData.append('track[genre]', this.state.genre);
-    formData.append('track[mp3_file]', this.state.mp3);
+    if (this.state.mp3) {
+      formData.append('track[mp3_file]', this.state.mp3);
+    }
     if (this.state.photoUrl){
       formData.append('track[photo]', this.state.photoUrl);
     }
@@ -32,7 +34,7 @@ class TrackForm extends React.Component {
       const that = this;
       this.props.action(this.state.id, formData).then((result) => {
         that.props.history.push(`/tracks/${result.track.id}`);
-      }); 
+      }).then(that.props.closeModal); 
     }
     else {
       this.props.action(formData).then((result) => {
@@ -71,7 +73,7 @@ class TrackForm extends React.Component {
       </label> 
     ) 
 
-    const submit = this.state.title.length > 0 && this.state.mp3 ? (
+    const submit = this.state.title.length > 0 && (this.state.mp3 || this.props.formType === 'edit') ? (
       <button className="track-submit">{this.props.formType}</button>
     ) : ( <p className="track-form-protected">{this.props.formType}</p>)
 
@@ -91,7 +93,7 @@ class TrackForm extends React.Component {
     })
 
     return (
-      <section className="track-form-section">
+      <section className="track-form-section edit-form-section">
         <h2>{this.props.formType}</h2>
         <form className='track-form' onSubmit={this.handleSubmit}>
           <div className="photo-form">

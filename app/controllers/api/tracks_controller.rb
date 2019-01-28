@@ -22,11 +22,8 @@ class Api::TracksController < ApplicationController
 
   def update 
     @track = Track.find_by(id: params[:id])
-    if @track && @track.user_id = current_user.id
-      @track.title = track_params[:title]
-      @track.photo = track_params[:photo]
-      @track.genre = track_params[:genre]
-      if @track.save
+    if @track && @track.user_id == current_user.id
+      if @track.update(update_params)
         render :show 
       else
         render json: ["invalid information"], status: 422
@@ -66,7 +63,7 @@ class Api::TracksController < ApplicationController
   end
 
   def update_params
-    params.require(:track).premit(:title, :photo, :genre)
+    params.require(:track).permit(:title, :photo, :genre)
   end
   
 end

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class SessionForm extends React.Component {
 
@@ -22,7 +23,15 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    this.props.submitAction(user).then(() => this.props.closeModal());
+    if (this.props.formType === "Sign In") {
+      this.props.submitAction(user).then(() => this.props.closeModal());
+    }
+    else {
+      const that = this;
+      this.props.submitAction(user).then((result) => {
+        that.props.history.push(`/users/${result.user.id}`);
+      }).then(() => this.props.closeModal());
+    }
   }
 
   render() {
@@ -46,4 +55,4 @@ class SessionForm extends React.Component {
 }
 
 
-export default SessionForm;
+export default withRouter(SessionForm);

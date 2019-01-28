@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LoginFormContainer from '../session_form/login_form_container';
 import SignupFormContainer from '../session_form/signup_form_container';
 import UserEdit from '../users/user_edit';
+import TrackEdit from '../tracks/track_edit_container';
 
 class Modal extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { modal, closeModal } = this.props;
+    const { modal, closeModal, track } = this.props;
     if (!modal) return null;
   
     let component;
@@ -23,6 +24,9 @@ class Modal extends React.Component {
     }
     else if (modal === 'edit') {
       component = <UserEdit />;
+    }
+    else if (modal === 'edit-track') {
+      component = <TrackEdit track={track}/>;
     }
     else return null;
 
@@ -39,7 +43,8 @@ class Modal extends React.Component {
 
 const msp = (state) => {
   return {
-    modal: state.ui.modal,
+    modal: state.ui.modal.modal,
+    track: state.ui.modal.track,
   };
 };
 

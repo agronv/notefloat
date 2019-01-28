@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { destroyTrack } from '../../actions/track_actions';
 import { fetchPlayingTrack, toggleTrack } from '../../actions/current_track_actions';
 import { fetchCompleteUser } from '../../actions/session_actions';
-import TrackIndexItem from '../tracks/track_index_item';
+import UserTrackItem from '../tracks/users_track_item';
 import { openModal } from '../../actions/modal_actions';
 
 
@@ -28,13 +28,13 @@ class UserShow extends React.Component {
     let tracks = null;
     if (user.tracks) {
       tracks = user.tracks.map((track) => {
-        return < TrackIndexItem track={track} key={track.id} />
+        return < UserTrackItem track={track} key={track.id} />
       });
     }
 
     const edit = currentUser && currentUser.id === user.id ? (
       <button className="edit-button" onClick={() => this.props.openModal('edit')}>
-        <i class="fas fa-pencil-alt"></i>
+        <i className="fas fa-pencil-alt"></i>
         <p>Edit</p>
       </button>
     ) : ( null )

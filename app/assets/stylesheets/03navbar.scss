@@ -6,11 +6,6 @@ header {
   z-index: 10;
 }
 
-header::after {
-  content: " ";
-  padding: 20px 3000px;
-}
-
 .navbar-index {
   display: flex;
 }

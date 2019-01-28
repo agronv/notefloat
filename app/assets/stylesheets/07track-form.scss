@@ -101,3 +101,10 @@ select {
    background-image: url(...);   /* add custom arrow */
    font-size: 16px;
 }
+
+.edit-form-section {
+  z-index: 11;
+  position: absolute;
+  top: 50px;
+  left: 17.7%;
+}

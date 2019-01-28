@@ -4,9 +4,9 @@ if @user.photo.attached?
 end
 json.tracks do 
   json.array! @user.tracks do |track|
-    json.extract! track, :id, :title
+    json.extract! track, :id, :title, :user_id, :genre
     if track.photo.attached?
-      json.trackPhoto url_for(track.photo)
+      json.photoUrl url_for(track.photo)
     end
   end
 end

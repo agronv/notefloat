@@ -75,10 +75,14 @@
   transition: border .2s;
 }
 
-.fa-pencil-alt {
+.fa-pencil-alt, .fa-trash-alt {
   margin-right: 5px;
 }
 
 .edit-button:hover {
   border: 1px solid rgb(204, 204, 204);
+}
+
+.delete-track-button, .edit-track-button {
+  color: black;
 }
