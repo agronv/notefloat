@@ -73,7 +73,7 @@ class Api::TracksController < ApplicationController
   end
 
   def update_params
-    params.require(:track).permit(:title, :genre)
+    params.require(:track).permit(:title, :photo, :genre)
   end
   
 end

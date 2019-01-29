@@ -6,11 +6,12 @@ export const RECEIVE_TRACK_ERRORS = "RECEIVE_TRACK_ERRORS";
 export const CLEAR_TRACK_ERRORS = "CLEAR_TRACK_ERRORS";
 
 
-export const receiveTrack = ({track, user}) => {
+export const receiveTrack = ({track, users, comments}) => {
   return {
     type: RECEIVE_TRACK,
     track,
-    user,
+    users,
+    comments,
   };
 };
 
@@ -39,8 +40,8 @@ export const clearTrackErrors = () => {
 export const fetchTrack = id => {
   return dispatch => {
     return TrackAPI.fetchTrack(id).then(
-      track => {
-        return dispatch(receiveTrack(track));
+      info => {
+        return dispatch(receiveTrack(info));
       },
       errors => dispatch(receiveTrackErrors(errors.responseJSON))
     );
