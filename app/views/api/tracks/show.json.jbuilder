@@ -1,4 +1,3 @@
-
 json.track do 
   json.extract! @track, :id, :user_id, :title, :length, :genre, :comment_ids
   json.username @track.user.username
@@ -17,7 +16,7 @@ end
 json.comments do 
   @track.comments.each do |comment|
     json.set! comment.id do 
-      json.extract! comment, :id, :track_id, :user_id, :body
+      json.extract! comment, :id, :track_id, :user_id, :body, :parent_comment_id
       if comment.parent_comment_id 
         json.parent_comment_id comment.parent_comment_id
       end

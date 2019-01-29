@@ -6,6 +6,7 @@ import { createComment, destroyComment} from '../../actions/comment_actions';
 import { trackComments } from '../../reducers/selectors/selectors';
 import { fetchUser } from '../../actions/session_actions';
 import { Link } from 'react-router-dom';
+import ParentCommentShow from '../comments/parent_comment_show';
 
 class TrackShow extends React.Component {
   constructor(props) {
@@ -74,7 +75,7 @@ class TrackShow extends React.Component {
       (<img src={window.defaultUserPhoto} className="user-track-photo" />)
 
     const commentz = comments.map( (comment) => {
-      return <li key={comment.id}>{comment.body}</li>
+      return <ParentCommentShow comment={comment} />
     });
     
     return (
@@ -92,10 +93,11 @@ class TrackShow extends React.Component {
         <div className="track-users-section">
           <Link to={`/users/${artist.id}`}>{userImage}</Link>  
           <Link to={`/users/${artist.id}`}>{artist.username}</Link>  
-        </div>
+        </div> 
         <section className="comments-section">
           <form onSubmit={this.createComment}>
             <input type="text" 
+            className="big-comment-form"
             value={this.state.body} 
             placeholder="Write a comment"
             onChange={this.handleCommentChange}/>
