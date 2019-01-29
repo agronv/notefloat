@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 class TrackShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { commentBody: ""};
+    this.state = { body: ""};
     this.handleChange = this.handleChange.bind(this);
     this.destroyTrack = this.destroyTrack.bind(this);
     this.playing = this.playing.bind(this);
@@ -50,19 +50,18 @@ class TrackShow extends React.Component {
   }
 
   handleCommentChange(e) {
-    this.setState({ commentBody: e.target.value });
+    this.setState({ body: e.target.value });
   }
 
   createComment() {
     const that = this;
-    debugger
     this.props.createComment(this.props.track.id, this.state).then( () => {
-      that.setState({ commentBody: ""});
+      that.setState({ body: ""});
     });
   }
 
   render() {
-    if (!this.props.track) return null;
+    if (!this.props.track || !this.props.artist) return null;
     const { track, artist, currentUser, comments } = this.props;
 
     const icon = this.playing() ? <i className="fas fa-pause-circle big-icon" onClick={this.handleChange} /> : 
@@ -97,7 +96,7 @@ class TrackShow extends React.Component {
         <section className="comments-section">
           <form onSubmit={this.createComment}>
             <input type="text" 
-            value={this.state.commentBody} 
+            value={this.state.body} 
             placeholder="Write a comment"
             onChange={this.handleCommentChange}/>
           </form>
@@ -111,7 +110,6 @@ class TrackShow extends React.Component {
 }
 
 const msp = (state, ownProps) => {
-  
   const track = state.entities.tracks[ownProps.match.params.trackId];
   let artist;
   if (track) artist = state.entities.users[track.user_id];
@@ -119,7 +117,7 @@ const msp = (state, ownProps) => {
     track,
     artist,
     currentUser: state.entities.users[state.session.id],
-    comments: trackComments(state.entities.tracks, ownProps.match.params.trackId),
+    comments: trackComments(state.entities.comments, ownProps.match.params.trackId),
     currentTrack: state.ui.audio.currentTrack,
     isPlaying: state.ui.audio.isPlaying,
   }

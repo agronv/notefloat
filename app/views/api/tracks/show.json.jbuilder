@@ -7,20 +7,10 @@ json.track do
   end
 end 
 
-json.users do 
-  json.set! @track.user_id do
-    json.extract! @track.user, :id, :username
-    if @track.user.photo.attached?
-      json.photoUrl url_for(@track.user.photo)
-    end
-  end 
-  @track.comments.each do |comment| 
-    json.set comment.user_id do 
-      json.extract! @track.user, :id, :username
-      if @track.user.photo.attached?
-        json.photoUrl url_for(@track.user.photo)
-      end
-    end
+json.user do 
+  json.extract! @track.user, :id, :username
+  if @track.user.photo.attached?
+    json.photoUrl url_for(@track.user.photo)
   end
 end
 
@@ -31,6 +21,10 @@ json.comments do
       if comment.parent_comment_id 
         json.parent_comment_id comment.parent_comment_id
       end
+      if comment.user.photo 
+        json.photoUrl url_for(comment.user.photo)
+      end
+      json.username comment.user.username
     end
   end
 end

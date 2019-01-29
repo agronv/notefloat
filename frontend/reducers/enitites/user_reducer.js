@@ -9,10 +9,10 @@ export default (state = {}, action) => {
     case RECEIVE_USER:
     case RECEIVE_CURRENT_USER:
     case RECEIVE_COMPLETE_USER:
+    case RECEIVE_TRACK:
       newState[action.user.id] = action.user;
       return newState;
     case RECEIVE_ALL_USERS:
-    case RECEIVE_TRACK:
       return action.users;
     default:
       return newState;

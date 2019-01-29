@@ -5,7 +5,6 @@ class Api::CommentsController < ApplicationController
     track_id: params[:track_id], 
     body: params[:comment][:body],
     parent_comment_id: params[:comment][:parent_comment_id])
-    debugger
     if @comment.save 
       render :show 
     else
