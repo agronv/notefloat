@@ -9,6 +9,8 @@ class Track < ApplicationRecord
   has_one_attached :mp3_file
 
   belongs_to :user
+  has_many :comments
+
 
 
   def ensure_mp3 

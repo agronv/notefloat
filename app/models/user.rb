@@ -21,6 +21,7 @@ class User < ApplicationRecord
   attr_reader :password
 
   has_many :tracks
+  has_many :comments
   has_one_attached :photo
   
   def ensure_session 
