@@ -56,8 +56,11 @@ class TrackIndexItem extends React.Component {
         )
     )
 
+    const klass = ((this.props.liId + 1) % 6) !== 0 ? (
+      "margin-right-20") : ("");
+
     return (
-      <li className="track-info">
+      <li className={`track-info ${klass}`}>
         <div className='image-div'>
           <Link to={`/tracks/${track.id}`}>
             { image }

@@ -32,8 +32,8 @@ class TrackIndex extends React.Component {
         <div className="genre-section first-genre">
           <h3 className="genre-title">Alternative Rock</h3>
           <ul className="album-covers">
-            {this.genres.alternative_rock.map((track) => {
-              return < TrackIndexItem track={track} key={track.id} />})}
+            {this.genres.alternative_rock.map((track, i) => {
+              return < TrackIndexItem liId={i} track={track} key={track.id} />})}
           </ul>
         </div>
       )
@@ -44,8 +44,8 @@ class TrackIndex extends React.Component {
         <div className="genre-section">
           <h3 className="genre-title">Classical</h3>
           <ul className="album-covers">
-            {this.genres.classical.map((track) => {
-              return < TrackIndexItem track={track} key={track.id} />})}
+            {this.genres.classical.map((track, i) => {
+              return < TrackIndexItem liId={i} track={track} key={track.id} />})}
           </ul>
         </div>
       )
@@ -56,8 +56,8 @@ class TrackIndex extends React.Component {
         <div className="genre-section">
           <h3 className="genre-title">Classic Rock</h3>
           <ul className="album-covers">
-            {this.genres.classic_rock.map((track) => {
-              return < TrackIndexItem track={track} key={track.id} />})}
+            {this.genres.classic_rock.map((track, i) => {
+              return < TrackIndexItem liId={i} track={track} key={track.id} />})}
           </ul>
         </div>
       )
@@ -68,8 +68,8 @@ class TrackIndex extends React.Component {
         <div className="genre-section">
           <h3 className="genre-title">Pop</h3>
           <ul className="album-covers">
-            {this.genres.pop.map((track) => {
-              return < TrackIndexItem track={track} key={track.id} />})}
+            {this.genres.pop.map((track, i) => {
+              return < TrackIndexItem liId={i} track={track} key={track.id} />})}
           </ul>
         </div>
       )
@@ -80,8 +80,8 @@ class TrackIndex extends React.Component {
         <div className="genre-section">
           <h3 className="genre-title">Rap</h3>
           <ul className="album-covers">
-            {this.genres.rap.map((track) => {
-              return < TrackIndexItem track={track} key={track.id} />})}
+            {this.genres.rap.map((track, i) => {
+              return < TrackIndexItem liId={i} track={track} key={track.id} />})}
           </ul>
         </div>
       )
@@ -92,8 +92,8 @@ class TrackIndex extends React.Component {
         <div className="genre-section last-genre">
           <h3 className="genre-title">Techno</h3>
           <ul className="album-covers">
-            {this.genres.techno.map((track) => {
-              return < TrackIndexItem track={track} key={track.id} />})}
+            {this.genres.techno.map((track, i) => {
+              return < TrackIndexItem liId={i} track={track} key={track.id} />})}
           </ul>
         </div>
       )

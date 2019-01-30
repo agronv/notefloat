@@ -28,8 +28,8 @@ class UserShow extends React.Component {
 
     let track = null;
     if (tracks) {
-      track = tracks.map((track) => {
-        return < UserTrackItem track={track} key={track.id} />
+      track = tracks.map((track, i) => {
+        return < UserTrackItem track={track} liId={i} key={track.id} />
       });
     }
 
