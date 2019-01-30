@@ -45,7 +45,7 @@ class ParentCommentShow extends React.Component {
     })
 
     const form = this.state.isShowing ? (
-      <div className="small-comment-form-section">
+      <div className="small-comment-form-section parent-form">
         <form onSubmit={this.createComment} className="small-comment-form">
           <label className="actual-input">
             <Link className="comment-parent-user-info" to={`/users/${comment.user_id}`}>@{comment.username}: </Link>
@@ -55,8 +55,8 @@ class ParentCommentShow extends React.Component {
               placeholder="Write a comment"
               onChange={this.handleCommentChange} />
           </label>
-        </form> 
-      </div> ) : ( null )
+        </form>
+      </div>) : (null)
 
     return (
       <>

@@ -92,10 +92,12 @@ class TrackShow extends React.Component {
         <section className="track-section">
           <div className='song-info'>
             {icon}
-            <div className="text-info">
-              <p className="title-info">{track.title}</p>  
-              <Link className="artist-info" to={`/users/${artist.id}`}>{artist.username}</Link>  
-            </div>
+            <ul className="text-info">
+              <li className="title-info">{track.title}</li>  
+              <li>
+                <Link className="artist-info" to={`/users/${artist.id}`}>{artist.username}</Link>  
+              </li>
+            </ul>
           </div>
           {image}
         </section>

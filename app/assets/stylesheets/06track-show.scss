@@ -36,22 +36,18 @@
   color: white;
 }
 
-.text-info p {
+.title-info, .artist-info {
   background-color: #272728;
   padding: 5px 10px;
   text-align: center;
+  height: 40px;
 }
 
 .title-info {
   font-size: 24px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .text-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.artist-info {
-  display: inline-block;
+  height: 80px;
 }

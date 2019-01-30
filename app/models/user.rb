@@ -16,11 +16,18 @@ class User < ApplicationRecord
   validates :username, :session_token, uniqueness: true
   validates :password, length: {minimum: 4, allow_nil: true}
   after_initialize :ensure_session
+  validate :ensure_no_space
   attr_reader :password
 
   has_many :tracks
   has_many :comments
   has_one_attached :photo
+
+  def ensure_no_space 
+    if self.username.split(" ").length != 1
+      errors[:username] << "username cannot contain a space"
+    end
+  end
   
   def ensure_session 
     self.session_token ||= SecureRandom.urlsafe_base64
