@@ -7,7 +7,7 @@ class AudioPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.audioRef = React.createRef();
-    this.state = {length: 0, currentTime: 0, volume: 0.1, loop: false, shuffle: false, mute: false};
+    this.state = {length: 0, currentTime: 0, volume: 0.5, loop: false, shuffle: false, mute: false};
     this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
     this.setTime = this.setTime.bind(this);
     this.nextTrack = this.nextTrack.bind(this);
