@@ -27,6 +27,9 @@ class User < ApplicationRecord
     if self.username.split(" ").length != 1
       errors[:username] << "username cannot contain a space"
     end
+    if self.username.length > 16 
+      errors[:username] << "username cannot be longer than 16 characters"
+    end
   end
   
   def ensure_session 

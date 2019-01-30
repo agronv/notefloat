@@ -65,9 +65,16 @@ header {
   border-left: 1px solid black;
 }
 
+.nav-buttons li:nth-child(2) {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .nav-buttons li a, .nav-buttons li button, .tracks-button {
   display: block;
-  padding: 13px 0 13px 0;
+  height: 45px;
   margin: 0 auto;
 }
 
@@ -102,8 +109,22 @@ header {
   border-radius: 50%;
 }
 
-.nav-user a {
+.user-button {
+  width: 200px;
+  height: 45px;
+}
+
+.log-out-button {
+  width: 104px;
+}
+
+.upload-link {
+  padding-top: 14px;
+}
+
+.user-button-info {
   display: flex;
+  height: 100%;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }

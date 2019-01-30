@@ -77,8 +77,8 @@ export const prevInQueue = (id) => {
 
 export const fetchRandomNextTrack = () => {
   return (dispatch) => {
-    return TrackAPI.fetchCompleteRandomTracks().then((info) => {
-      dispatch(receiveNextTrack(info.track));
+    return TrackAPI.fetchCompleteRandomTracks().then((track) => {
+      dispatch(receiveNextTrack(track));
     }),
       errors => dispatch(receiveTrackErrors(errors.responseJSON));
   };

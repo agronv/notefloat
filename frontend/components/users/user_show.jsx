@@ -41,18 +41,22 @@ class UserShow extends React.Component {
     ) : ( null )
 
     return (
-      <div className="user-show">
-        <section className="user-section">
-          {userImage}
-          <p className="user-show-text">{user.username}</p>
-          {edit}
-        </section>
-        <section className="user-tracks-section">
-          <h1 className="user-tracks-title">Tracks</h1>
-          <ul className="album-covers">
-            {track}
-          </ul>
-        </section>
+      <div className="big-user-div">
+        <div className="user-show">
+          <section className="user-section">
+            {userImage}
+            <section className="user-section-div">
+              <p className="user-show-text">{user.username}</p>
+              {edit}
+            </section>
+          </section>
+          <section className="user-tracks-section">
+            <h3 className="user-tracks-title">Tracks</h3>
+            <ul className="album-covers">
+              {track}
+            </ul>
+          </section>
+        </div>
       </div>
     )
   }

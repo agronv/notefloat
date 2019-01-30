@@ -24,7 +24,7 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const user = Object.assign({}, this.state);
     if (this.props.formType === "Sign In") {
-      this.props.submitAction(user).then(() => this.props.closeModal());
+      this.props.submitAction(user).then(() => this.props.history.push("/tracks")).then(() => this.props.closeModal());
     }
     else {
       const that = this;

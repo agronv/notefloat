@@ -29,7 +29,7 @@ class TrackIndex extends React.Component {
     let alternative_rock = null;
     if (this.genres.alternative_rock.length > 0) {
       alternative_rock = (
-        <div className="genre-section">
+        <div className="genre-section first-genre">
           <h3 className="genre-title">Alternative Rock</h3>
           <ul className="album-covers">
             {this.genres.alternative_rock.map((track) => {
@@ -89,7 +89,7 @@ class TrackIndex extends React.Component {
     let techno = null;
     if (this.genres.techno.length > 0) {
       techno = (
-        <div className="genre-section">
+        <div className="genre-section last-genre">
           <h3 className="genre-title">Techno</h3>
           <ul className="album-covers">
             {this.genres.techno.map((track) => {
@@ -100,15 +100,16 @@ class TrackIndex extends React.Component {
     } 
     
     return (
-      <section className="tracks-section">
-        <h1>All Songs</h1>
-        {alternative_rock}
-        {classical}
-        {classic_rock}
-        {pop}
-        {rap}
-        {techno}
-      </section>
+      <div className="bigger-index-div">
+        <section className="tracks-section">
+          {alternative_rock}
+          {classical}
+          {classic_rock}
+          {pop}
+          {rap}
+          {techno}
+        </section>
+      </div>
     )
   }
 }

@@ -1,7 +1,13 @@
+.big-user-div {
+  width: 100%;
+  background-color: #F2F2F2;
+  color: white;
+}
+
 .user-show {
   width: 1240px;
-  color: white;
   margin: 0 auto;
+  background-color: white; 
 }
 
 .user-section {
@@ -22,13 +28,17 @@
 .user-show-text {
   margin-top: 30px;
   background-color: #272728;
+  height: 40px;
   padding: 5px 10px;
   text-align: center;
   font-size: 24px;
 }
 
 .user-tracks-title {
-  color: black;
+  color: #777;
+  padding: 20px 0 10px 0;
+  border-bottom: 1px solid  #aaa;
+  font-size: 35px;
 }
 
 .image-preview-user{
@@ -63,7 +73,6 @@
 
 .edit-button {
   align-self: flex-end;
-  margin-left: 840px;
   padding: 5px;
   background-color: white;
   color: black; 
@@ -125,5 +134,17 @@
 }
 
 .track-users-section a {
+  margin: 0 auto;
+}
+
+.user-section-div {
+  display: flex;
+  width: 1000px;
+  height: 205px;
+  justify-content: space-between;
+}
+
+.user-tracks-section {
+  width: 1200px;
   margin: 0 auto;
 }

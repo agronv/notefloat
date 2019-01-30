@@ -18,16 +18,18 @@ class NavBar extends React.Component {
     const buttons = this.props.currentUser ? (
       <ul className="nav-buttons">
         <li>
-          <Link to="/tracks/new">Upload</Link>
+          <Link className="upload-link" to="/tracks/new">Upload</Link>
         </li>
         <li className="nav-user">
-          <Link to={`users/${this.props.currentUser.id}`}>
-            {userPhoto}
-            <p>{this.props.currentUser.username}</p>
+          <Link className="user-button" to={`/users/${this.props.currentUser.id}`}>
+            <div className="user-button-info">
+              {userPhoto}
+              <p>{this.props.currentUser.username}</p>
+            </div>
           </Link>
         </li>
         <li className="log-out">
-          <button onClick={this.props.logOut}>Log Out</button>
+          <button className="log-out-button"onClick={this.props.logOut}>Log Out</button>
         </li>
       </ul>
     ) : (
@@ -46,7 +48,7 @@ class NavBar extends React.Component {
             <i className="fab fa-soundcloud"></i>
             <h3>NoteFloat</h3>
           </div>
-          <button className="tracks-button">Home</button>
+          <button className="tracks-button">Collection</button>
         </Link>
         {buttons}
       </nav>
