@@ -18,7 +18,7 @@ export default (state = defaultState, action) => {
   let newState = merge({}, state);
   switch (action.type) {
     case RECEIVE_PLAYING_TRACK:
-      if (state.currentTrack === null) newState.isPlaying = true;
+      newState.isPlaying = true;
       newState.currentTrack = action.track;
       newState.queue.push(action.track.id);
       newState.queuePos = newState.queue.length - 1;

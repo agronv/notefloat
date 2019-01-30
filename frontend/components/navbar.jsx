@@ -41,18 +41,21 @@ class NavBar extends React.Component {
     );
     
     return (
-    <>
-      <nav className='nav-row'> 
-        <Link className='navbar-index' to='/tracks'>
-          <div className="notefloat"> 
-            <i className="fab fa-soundcloud"></i>
-            <h3>NoteFloat</h3>
-          </div>
-          <button className="tracks-button">Collection</button>
-        </Link>
-        {buttons}
-      </nav>
-    </>
+      <>
+        <header>
+          <nav className='nav-row'> 
+            <Link className='navbar-index' to='/tracks'>
+              <div className="notefloat"> 
+                <i className="fab fa-soundcloud"></i>
+                <h3>NoteFloat</h3>
+              </div>
+              <button className="tracks-button">Collection</button>
+            </Link>
+            {buttons}
+          </nav>
+        </header>
+        <div className="spaceholder"></div>
+      </>
     );
   }
 }

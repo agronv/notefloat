@@ -39,6 +39,13 @@ export const fetchTracks = () => {
   });
 };
 
+export const fetchSplashtracks = () => {
+  return $.ajax({
+    method: "GET",
+    url: `/api/splash_tracks/`,
+  });
+};
+
 export const destroyTrack = (id) => {
   return $.ajax({
     method: "DELETE",

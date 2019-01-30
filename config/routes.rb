@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
     get '/random_tracks', to: 'tracks#random'
     get '/complete_random_tracks', to: 'tracks#complete_random'
+    get '/splash_tracks', to: 'tracks#splash_tracks'
     get '/users_complete_show/:id', to: 'users#complete_show'
     get '/tracks_complete_show/:id', to: 'tracks#complete_show'
   end

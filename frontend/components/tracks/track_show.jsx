@@ -78,7 +78,7 @@ class TrackShow extends React.Component {
     const artistImage = artist.photoUrl ? (<img src={artist.photoUrl} className="user-track-photo" />) :
       (<img src={window.defaultUserPhoto} className="user-track-photo" />)
 
-    const userImage = currentUser.photoUrl ? (<img src={currentUser.photoUrl} className="currentUser-track-photo" />) :
+    const userImage = currentUser && currentUser.photoUrl ? (<img src={currentUser.photoUrl} className="currentUser-track-photo" />) :
       (<img src={window.defaultUserPhoto} className="currentUser-track-photo" />)
 
     const commentz = comments.map( (comment) => {

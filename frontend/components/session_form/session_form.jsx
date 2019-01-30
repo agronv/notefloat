@@ -29,7 +29,7 @@ class SessionForm extends React.Component {
     else {
       const that = this;
       this.props.submitAction(user).then((result) => {
-        that.props.history.push(`/users/${result.user.id}`);
+        that.props.history.push(`/tracks`);
       }).then(() => this.props.closeModal());
     }
   }

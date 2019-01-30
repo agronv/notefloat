@@ -10,6 +10,11 @@ class Api::TracksController < ApplicationController
     render :complete_show 
   end
 
+  def splash_tracks
+    @tracks = Track.order("RANDOM()").limit(12) 
+    render :splash_tracks 
+  end
+
   def create 
     @track = Track.new(track_params)
     @track.user_id = current_user.id

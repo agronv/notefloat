@@ -54,6 +54,13 @@ export const fetchTracks = () => {
   };
 };
 
+export const fetchSplashtracks = () => {
+  return dispatch => {
+    return TrackAPI.fetchSplashtracks().then(
+      tracks => {return dispatch(receiveTracks(tracks));});
+  };
+};
+
 export const createTrack = (track) => {
   return dispatch => {
     return TrackAPI.createTrack(track).then(
