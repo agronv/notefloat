@@ -11,7 +11,7 @@ import ParentCommentShow from '../comments/parent_comment_show';
 class TrackShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { body: ""};
+    this.state = { body: "", commentCount: 0};
     this.handleChange = this.handleChange.bind(this);
     this.destroyTrack = this.destroyTrack.bind(this);
     this.playing = this.playing.bind(this);
@@ -20,7 +20,10 @@ class TrackShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchTrack(this.props.match.params.trackId);
+    const that = this;
+    this.props.fetchTrack(this.props.match.params.trackId).then((result) => {
+      that.setState({commentCount:  Object.keys(result.comments).length});
+    });
   }
 
   destroyTrack() {
@@ -56,8 +59,9 @@ class TrackShow extends React.Component {
 
   createComment() {
     const that = this;
-    this.props.createComment(this.props.track.id, this.state).then( () => {
-      that.setState({ body: ""});
+    this.props.createComment(this.props.track.id, {body: this.state.body} ).then( () => {
+      const newCount = that.state.commentCount+1;
+      that.setState({ body: "", commentCount: newCount});
     });
   }
 
@@ -71,11 +75,16 @@ class TrackShow extends React.Component {
     const image = track.photoUrl ? (<img src={track.photoUrl} id="album-cover" />) :
       (<img src={window.defaultTrackPhoto} id="album-cover" />)
 
-    const userImage = artist.photoUrl ? (<img src={artist.photoUrl} className="user-track-photo" />) :
+    const artistImage = artist.photoUrl ? (<img src={artist.photoUrl} className="user-track-photo" />) :
       (<img src={window.defaultUserPhoto} className="user-track-photo" />)
 
+    const userImage = currentUser.photoUrl ? (<img src={currentUser.photoUrl} className="currentUser-track-photo" />) :
+      (<img src={window.defaultUserPhoto} className="currentUser-track-photo" />)
+
     const commentz = comments.map( (comment) => {
-      return <ParentCommentShow comment={comment} />
+      return <li className="parent-comment-li" key={comment.id}>
+        <ParentCommentShow comment={comment} />
+      </li>
     });
     
     return (
@@ -90,21 +99,31 @@ class TrackShow extends React.Component {
           </div>
           {image}
         </section>
-        <div className="track-users-section">
-          <Link to={`/users/${artist.id}`}>{userImage}</Link>  
-          <Link to={`/users/${artist.id}`}>{artist.username}</Link>  
-        </div> 
-        <section className="comments-section">
-          <form onSubmit={this.createComment}>
-            <input type="text" 
-            className="big-comment-form"
-            value={this.state.body} 
-            placeholder="Write a comment"
-            onChange={this.handleCommentChange}/>
-          </form>
-          <ul>
-            {commentz}
-          </ul>
+        <section className="second-part">
+          <div className="comment-form-section">
+            {userImage}
+            <form onSubmit={this.createComment} className="comment-form">
+              <input type="text" 
+              className="big-comment-form"
+              value={this.state.body} 
+              placeholder="Write a comment"
+              onChange={this.handleCommentChange}/>
+            </form>
+          </div>
+          <div className="commenting-section">
+            <div className="track-users-section">
+              <Link to={`/users/${artist.id}`}>{artistImage}</Link>  
+              <Link to={`/users/${artist.id}`}>{artist.username}</Link>  
+            </div> 
+            <div className="comments-section">
+              <p className="comment-count">
+                <i className="fas fa-comment"></i> {this.state.commentCount} comments
+              </p>
+              <ul>
+                {commentz}
+              </ul>
+            </div>
+          </div>
         </section>
       </div>
     );

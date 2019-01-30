@@ -1,0 +1,142 @@
+.second-part {
+  width: 95%;
+  margin-top: 20px;
+  margin-left: 2.5%;
+}
+
+.currentUser-track-photo {
+  width: 54px;
+  height: 54px;
+}
+
+.comment-form-section {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #aaa;
+}
+
+.small-comment-form-section {
+  display: flex;
+  align-items: center;
+  width: 976px;
+  background-color: rgb(229, 229, 229);
+  height: 44px;
+}
+
+.small-comment-input {
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.big-comment-form {
+  width: 1093px;
+  height: 24px;
+  box-sizing: content-box;
+  padding: 5px 0 5px 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border .2s;
+}
+
+.actual-input {
+  width: 700px;
+  box-sizing: content-box;
+  padding: 3px 0 3px 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border .2s;
+  background-color: white;
+}
+
+.comment-form {
+  width: 1133px;
+  height: 54px;
+  background-color: rgb(229, 229, 229);
+}
+
+.big-comment-form:focus {
+  border: 1px solid #555;
+}
+
+.commenting-section {
+  display: flex;
+}
+
+.comment-count {
+  color: #999;
+  width: 1000px;
+  margin: 20px 0;
+}
+
+.comment-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comment-div {
+  display: flex;  
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.comment-info {
+  display: flex;
+}
+
+.comment-text{
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-user-info {
+  cursor: pointer;
+  color: #999;
+  font-size: 14px;
+  transition: color .2s;
+}
+
+.comment-user-info:hover {
+  color: black;
+}
+
+.reply-button {
+  justify-self: flex-end;
+  font-size: 12px;
+  padding: 5px 10px; 
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  transition: border .2s;
+  visibility: hidden;
+}
+
+.reply-button:hover {
+  border: 1px solid #777;
+}
+
+.comment-div:hover {
+  .reply-button {
+    visibility: visible;
+  }
+  background-color: #dedede; 
+}
+
+.children-comment {
+  margin-left: 25px;
+}
+
+.comment-parent-user-info{
+  font-size: 12px;
+  color: #38d;
+}

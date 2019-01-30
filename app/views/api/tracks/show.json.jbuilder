@@ -19,6 +19,8 @@ json.comments do
       json.extract! comment, :id, :track_id, :user_id, :body, :parent_comment_id
       if comment.parent_comment_id 
         json.parent_comment_id comment.parent_comment_id
+        json.parentUserName comment.parent_comment.user.username
+        json.parentUserId comment.parent_comment.user_id
       end
       if comment.user.photo 
         json.photoUrl url_for(comment.user.photo)

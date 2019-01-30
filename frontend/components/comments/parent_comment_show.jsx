@@ -2,6 +2,7 @@ import React from 'react';
 import { connect }from 'react-redux';
 import { createComment, destroyComment } from '../../actions/comment_actions';
 import { childrenComments } from '../../reducers/selectors/selectors';
+import { Link } from 'react-router-dom';
 import ChildrenCommentShow from './children_comment_show';
 
 class ParentCommentShow extends React.Component {
@@ -17,9 +18,8 @@ class ParentCommentShow extends React.Component {
 
   createComment() {
     const that = this;
-    debugger
     const comment = { body: this.state.body, parent_comment_id: this.props.comment.id };
-    this.props.createComment(this.props.track.id, comment).then(() => {
+    this.props.createComment(this.props.comment.track_id, comment).then(() => {
       that.setState({ body: "", isShowing: false });
     });
   }
@@ -29,7 +29,7 @@ class ParentCommentShow extends React.Component {
   }
 
   changeForm() {
-    this.setState({ isShowing: !this.props.isShowing});
+    this.setState({ isShowing: !this.state.isShowing});
   }
 
   render() {
@@ -39,30 +39,45 @@ class ParentCommentShow extends React.Component {
       <img src={window.defaultUserPhoto} className="comment-image"></img>)
     
     const childrenCommentz = childrenComments.map( childComment => {
-      return < ChildrenCommentShow comment={childComment} />
+      return <li className="child-comment-li" key={childComment.id}>
+        <ChildrenCommentShow comment={childComment} />
+      </li>
     })
 
     const form = this.state.isShowing ? (
-      <form onSubmit={this.createComment}>
-        <input type="text"
-          className="small-comment-form"
-          value={this.state.body}
-          placeholder="Write a comment"
-          onChange={this.handleCommentChange} />
-      </form>
-    ) : ( null )
+      <div className="small-comment-form-section">
+        <form onSubmit={this.createComment} className="small-comment-form">
+          <label className="actual-input">
+            <Link className="comment-parent-user-info" to={`/users/${comment.user_id}`}>@{comment.username}: </Link>
+            <input type="text"
+              className="small-comment-input"
+              value={this.state.body}
+              placeholder="Write a comment"
+              onChange={this.handleCommentChange} />
+          </label>
+        </form> 
+      </div> ) : ( null )
 
     return (
-      <li key={comment.id}>
-        {commentImage}
-        <p>{comment.username}</p>
-        <p>{comment.body}</p>
-        <button onClick={this.changeForm}>Reply</button>
-        <ul>
+      <>
+        <div className="comment-div">
+          <div className="comment-info">
+            {commentImage}
+            <div className="comment-text">
+              <Link className="comment-user-info" to={`/users/${comment.user_id}`}>{comment.username}</Link>  
+              <p>{comment.body}</p>
+            </div>
+          </div>
+          <button onClick={this.changeForm} className="reply-button">
+            <i className="fas fa-reply"></i>
+            <p>Reply</p>
+          </button>
+        </div>
+        <ul className="children-comment">
           {childrenCommentz}
         </ul>
         {form}
-      </li>
+      </>
     )
   }
 }
