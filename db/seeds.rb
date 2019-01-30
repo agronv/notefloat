@@ -35,14 +35,32 @@ file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/eleanor.jpg')
 u5.photo.attach(io: file, filename: 'eleanor.jpg')
 u5.save!
 
-# u6 = User.create({username: 'tamar', password: 'password'})
-# u7 = User.create({username: 'sweat_tea', password: 'password'})
-# u8 = User.create({username: 'first_place', password: 'password'})
-# u9 = User.create({username: 'bone', password: 'password'})
-# u10 = User.create({username: 'angry_harrison', password: 'password'})
-# u11 = User.create({username: 'JUUL_harrison', password: 'password'})
+u6 = User.create({username: 'Olivia-Mae', password: 'password'})
+file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Olivia-Mae.jpg')
+u6.photo.attach(io: file, filename: 'Olivia-Mae.jpg')
+u6.save!
 
-t1 = Track.new({title: "Song 1", user_id: u1.id, genre: 'alternative_rock'})
+u7 = User.create({username: 'Cohan', password: 'password'})
+file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Cohan.jpg')
+u7.photo.attach(io: file, filename: 'Cohan.jpg')
+u7.save!
+
+u8 = User.create({username: 'Zidane', password: 'password'})
+file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Zidane.jpg')
+u8.photo.attach(io: file, filename: 'Zidane.jpg')
+u8.save!
+
+u9 = User.create({username: 'Mylah', password: 'password'})
+file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Mylah.jpg')
+u9.photo.attach(io: file, filename: 'Mylah.jpg')
+u9.save!
+
+u10 = User.create({username: 'Brent', password: 'password'})
+file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Brent.jpg')
+u10.photo.attach(io: file, filename: 'Brent.jpg')
+u10.save!
+
+t1 = Track.new({title: "Without My Bed", user_id: u1.id, genre: 'alternative_rock'})
 file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/art_vs_science.jpg')
 t1.photo.attach(io: file, filename: 'art_vs_science.jpg')
 track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
