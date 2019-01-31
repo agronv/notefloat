@@ -64,8 +64,8 @@ u10.save!
 #tracks
 
 t1 = Track.new({title: "Reptilia", user_id: u1.id, genre: 'alternative_rock'})
-file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Reptilia.jpg')
-t1.photo.attach(io: file, filename: 'Reptilia.jpg')
+file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/reptilia.jpg')
+t1.photo.attach(io: file, filename: 'reptilia.jpg')
 track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
 t1.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
 t1.save!
@@ -105,9 +105,9 @@ track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
 t6.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
 t6.save!
 
-t7 = Track.new({title: "Smells like teen spirit.jpg", user_id: u2.id, genre: 'alternative_rock'})
-file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/smells_like_teen_spirit.jpg.jpg')
-t7.photo.attach(io: file, filename: 'smells_like_teen_spirit.jpg.jpg')
+t7 = Track.new({title: "Smells like teen spirit", user_id: u2.id, genre: 'alternative_rock'})
+file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/smells_like_teen_spirit.jpg')
+t7.photo.attach(io: file, filename: 'smells_like_teen_spirit.jpg')
 track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
 t7.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
 t7.save!
@@ -118,13 +118,6 @@ t8.photo.attach(io: file, filename: 'mozart.jpg')
 track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
 t8.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
 t8.save!
-
-t9 = Track.new({title: "Wake me up", user_id: u2.id, genre: 'pop'})
-file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/wake_me_up.jpg')
-t9.photo.attach(io: file, filename: 'wake_me_up.jpg')
-track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
-t9.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
-t9.save!
 
 t10 = Track.new({title: "Gold_digger", user_id: u2.id, genre: 'rap'})
 file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/gold_digger.jpg')
@@ -147,21 +140,14 @@ track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
 t12.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
 t12.save!
 
-t13 = Track.new({title: "Mr.brightside.", user_id: u3.id, genre: 'alternative_rock'})
-file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/mr.brightside..jpg')
-t13.photo.attach(io: file, filename: 'mr.brightside..jpg')
+t13 = Track.new({title: "Mr.brightside", user_id: u3.id, genre: 'alternative_rock'})
+file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/mr.brightside.jpg')
+t13.photo.attach(io: file, filename: 'mr.brightside.jpg')
 track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
 t13.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
 t13.save!
 
-t38 = Track.new({title: "Without My Bed", user_id: u3.id, genre: 'classical'})
-file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/art_vs_science.jpg')
-t38.photo.attach(io: file, filename: 'art_vs_science.jpg')
-track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
-t38.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
-t38.save!
-
-t14 = Track.new({title: "Tchaikovsky", user_id: u3.id, genre: 'pop'})
+t14 = Track.new({title: "Tchaikovsky", user_id: u3.id, genre: 'classical'})
 file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/tchaikovsky.jpg')
 t14.photo.attach(io: file, filename: 'tchaikovsky.jpg')
 track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
