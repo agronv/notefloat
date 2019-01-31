@@ -9,6 +9,10 @@
 
 User.destroy_all
 Track.destroy_all
+Comments.destroy_all
+
+
+# Users
 
 u1 = User.new({username: 'demo', password: 'demo'})
 file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/birdy.jpg')
@@ -119,6 +123,13 @@ track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
 t8.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
 t8.save!
 
+t9 = Track.new({title: "Tchaikovsky", user_id: u7.id, genre: 'classical'})
+file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/tchaikovsky.jpg')
+t9.photo.attach(io: file, filename: 'tchaikovsky.jpg')
+track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
+t9.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
+t9.save!
+
 t10 = Track.new({title: "Gold_digger", user_id: u2.id, genre: 'rap'})
 file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/gold_digger.jpg')
 t10.photo.attach(io: file, filename: 'gold_digger.jpg')
@@ -141,8 +152,8 @@ t12.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
 t12.save!
 
 t13 = Track.new({title: "Mr.brightside", user_id: u3.id, genre: 'alternative_rock'})
-file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/mr.brightside.jpg')
-t13.photo.attach(io: file, filename: 'mr.brightside.jpg')
+file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/mr.brightside.jpeg')
+t13.photo.attach(io: file, filename: 'mr.brightside.jpeg')
 track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
 t13.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
 t13.save!
@@ -259,6 +270,13 @@ track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
 t29.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
 t29.save!
 
+t30 = Track.new({title: "debussy", user_id: u7.id, genre: 'classical'})
+file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/debussy.jpg')
+t30.photo.attach(io: file, filename: 'debussy.jpg')
+track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
+t30.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
+t30.save!
+
 t31 = Track.new({title: "Runaway", user_id: u6.id, genre: 'techno'})
 file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/runaway.jpg')
 t31.photo.attach(io: file, filename: 'runaway.jpg')
@@ -287,18 +305,17 @@ track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
 t34.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
 t34.save!
 
-t37 = Track.new({title: "debussy", user_id: u7.id, genre: 'classical'})
-file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/debussy.jpg')
-t37.photo.attach(io: file, filename: 'debussy.jpg')
-track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
-t37.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
-t37.save!
 
-t38 = Track.new({title: "Tchaikovsky", user_id: u7.id, genre: 'classical'})
-file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/tchaikovsky.jpg')
-t38.photo.attach(io: file, filename: 'tchaikovsky.jpg')
-track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Baby_Steps.mp3')
-t38.mp3_file.attach(io: track, filename: 'Baby_Steps.mp3')
-t38.save!
-# t3 = Track.create({title: "kingfASDFSisher", user_id: u3.id})
-# t4 = Track.create({title: "iSDFsdf", user_id: u4.id})
+#Comments 
+
+c1 = Comment.new({body: "absolute fire", track_id: t1.id, user_id: u1.id})
+c2 = Comment.new({body: "amazing", track_id: t1.id, user_id: u2.id})
+c3 = Comment.new({body: "better than music of today", track_id: t1.id, user_id: u3.id})
+c4 = Comment.new({body: "I remember seeing them live", track_id: t1.id, user_id: u4.id})
+c5 = Comment.new({body: "WOOOOOW", track_id: t1.id, user_id: u5.id})
+
+c6 = Comment.new({body: "absolute fire", track_id: t2.id, user_id: u6.id})
+c7 = Comment.new({body: "amazing", track_id: t2.id, user_id: u7.id})
+c8 = Comment.new({body: "better than music of today", track_id: t2.id, user_id: u8.id})
+c9 = Comment.new({body: "I remember seeing them live", track_id: t2.id, user_id: u9.id})
+c10 = Comment.new({body: "WOOOOOW", track_id: t2.id, user_id: u10.id}) 
