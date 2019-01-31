@@ -9,6 +9,7 @@
 #album-cover {
   width: 340px;
   height: 340px;
+  align-self: center;
 }
 
 .track-section {
@@ -51,4 +52,13 @@
 
 .text-info {
   height: 80px;
+}
+
+.waveform {
+  width: 800px;
+}
+
+.left-side-show {
+  display: flex;
+  flex-direction: column;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'; 
-import waveSurfer from 'waveSurfer.js';
+import waveSurfer from 'wavesurfer.js';
 import { receiveNextTrack, setWaveTime } from '../../actions/current_track_actions';
 
 class WaveForm extends React.Component {
@@ -26,6 +26,10 @@ class WaveForm extends React.Component {
       removeMediaElementOnDestroy: false
     });
     this.waveSurfer.load(this.song.mp3);
+  }
+
+  componentWillUnmount() {
+    this.waveSurfer.destroy();
   }
   
   componentDidUpdate(prevProps) {
@@ -74,6 +78,4 @@ const mdp = (dispatch) => {
   }
 }
 
-
 export default connect(msp, mdp)(WaveForm);
-// export default WaveForm;

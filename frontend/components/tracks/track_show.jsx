@@ -8,6 +8,7 @@ import { fetchUser } from '../../actions/session_actions';
 import { Link } from 'react-router-dom';
 import ParentCommentShow from '../comments/parent_comment_show';
 import WaveForm from './wave_form';
+import { openModal } from "../../actions/modal_actions";
 
 class TrackShow extends React.Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class TrackShow extends React.Component {
     this.playing = this.playing.bind(this);
     this.handleCommentChange = this.handleCommentChange.bind(this);
     this.createComment = this.createComment.bind(this);
+    this.checkLoggedIn = this.checkLoggedIn.bind(this);
   }
 
   componentDidMount() {
@@ -66,6 +68,12 @@ class TrackShow extends React.Component {
     });
   }
 
+  checkLoggedIn() {
+    if (!this.props.currentUser) {
+      this.props.openModal('login');
+    }
+  }
+
   render() {
     if (!this.props.track || !this.props.artist) return null;
     const { track, artist, currentUser, comments } = this.props;
@@ -108,7 +116,7 @@ class TrackShow extends React.Component {
         <section className="second-part">
           <div className="comment-form-section">
             {userImage}
-            <form onSubmit={this.createComment} className="comment-form">
+            <form onSubmit={this.createComment} onClick={this.checkLoggedIn}className="comment-form">
               <input type="text" 
               className="big-comment-form"
               value={this.state.body} 
@@ -159,6 +167,7 @@ const mdp = (dispatch) => {
     toggleTrack: () => dispatch(toggleTrack()),
     createComment: (trackId, comment) => dispatch(createComment(trackId, comment)),
     destroyComment: (trackId, id) => dispatch(destroyComment(trackId, id)),
+    openModal: (modal) => dispatch(openModal(modal)),
   }
 }
 
