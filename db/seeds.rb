@@ -279,8 +279,8 @@ t30.save!
 t31 = Track.new({title: "Runaway", user_id: u6.id, genre: 'techno'})
 file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/runaway.jpg')
 t31.photo.attach(io: file, filename: 'runaway.jpg')
-track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/runaway.mp3')
-t31.mp3_file.attach(io: track, filename: 'runaway.mp3')
+track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/Runaway.mp3')
+t31.mp3_file.attach(io: track, filename: 'Runaway.mp3')
 t31.save!
 
 t32 = Track.new({title: "Sound and Color", user_id: u7.id, genre: 'alternative_rock'})

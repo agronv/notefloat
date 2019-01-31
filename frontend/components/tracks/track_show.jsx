@@ -7,6 +7,7 @@ import { trackComments } from '../../reducers/selectors/selectors';
 import { fetchUser } from '../../actions/session_actions';
 import { Link } from 'react-router-dom';
 import ParentCommentShow from '../comments/parent_comment_show';
+import WaveForm from './wave_form';
 
 class TrackShow extends React.Component {
   constructor(props) {
@@ -99,6 +100,7 @@ class TrackShow extends React.Component {
               </li>
             </ul>
           </div>
+          < WaveForm track={track} />
           {image}
         </section>
         <section className="second-part">
