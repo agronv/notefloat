@@ -91,16 +91,18 @@ class TrackShow extends React.Component {
     return (
       <div className="track-show">
         <section className="track-section">
-          <div className='song-info'>
-            {icon}
-            <ul className="text-info">
-              <li className="title-info">{track.title}</li>  
-              <li>
-                <Link className="artist-info" to={`/users/${artist.id}`}>{artist.username}</Link>  
-              </li>
-            </ul>
+          <div className="left-side-show">
+            <div className='song-info'>
+              {icon}
+              <ul className="text-info">
+                <li className="title-info">{track.title}</li>  
+                <li>
+                  <Link className="artist-info" to={`/users/${artist.id}`}>{artist.username}</Link>  
+                </li>
+              </ul>
+            </div>
+            < WaveForm track={track} />
           </div>
-          < WaveForm track={track} />
           {image}
         </section>
         <section className="second-part">

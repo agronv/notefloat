@@ -1,4 +1,10 @@
-import { toggleTrack, fetchNextTrack, nextInQueue, prevInQueue, fetchRandomNextTrack } from '../../actions/current_track_actions';
+import { toggleTrack, 
+        fetchNextTrack, 
+        nextInQueue, 
+        prevInQueue, 
+        fetchRandomNextTrack, 
+        handleTimeUpdate } 
+        from '../../actions/current_track_actions';
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -10,6 +16,7 @@ class AudioPlayer extends React.Component {
     this.state = {length: 0, currentTime: 0, volume: 0.5, loop: false, shuffle: false, mute: false};
     this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
     this.setTime = this.setTime.bind(this);
+    this.setTimeFromProps = this.setTimeFromProps.bind(this);
     this.nextTrack = this.nextTrack.bind(this);
     this.prevTrack = this.prevTrack.bind(this);
     this.changeLoop = this.changeLoop.bind(this);
@@ -22,12 +29,17 @@ class AudioPlayer extends React.Component {
     if (this.props.isPlaying) this.audioRef.current.play();
     else this.audioRef.current.pause();
     this.audioRef.current.volume = this.state.volume;
-    this.timeInterval = setInterval(this.handleTimeUpdate, 250);
+    if (this.props.isPlaying) {
+      this.timeInterval = setInterval(this.handleTimeUpdate, 440);
+    }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     if (this.props.isPlaying) this.audioRef.current.play();
     else this.audioRef.current.pause();
+    if (this.props.waveTime !== prevProps.waveTime) {
+      this.setTimeFromProps(this.props.waveTime);
+    }
   }
 
   componentWillUnmount() {
@@ -35,15 +47,25 @@ class AudioPlayer extends React.Component {
   }
 
   handleTimeUpdate() {
-    this.setState({
-      length: this.audioRef.current.duration,
-      currentTime: this.audioRef.current.currentTime,
-    });
+    if (this.props.isPlaying) {
+      const currentTime = this.audioRef.current.currentTime;
+      const length = this.audioRef.current.duration;
+      this.setState({
+        length: length,
+        currentTime: currentTime,
+      });
+      this.props.handleTimeUpdate(currentTime, length);
+    }
   }
 
   setTime(e) {
     this.audioRef.current.currentTime = e.target.value;
     this.setState({ currentTime: e.target.value });
+  }
+  
+  setTimeFromProps(time) {
+    this.audioRef.current.currentTime = time;
+    this.setState({ currentTime: time });
   }
 
   formatTime(secs) {
@@ -158,6 +180,7 @@ const msp = (state) => {
     isPlaying: state.ui.audio.isPlaying,
     queue: state.ui.audio.queue,
     queuePos: state.ui.audio.queuePos,
+    waveTime: state.ui.audio.waveTime,
   };
 };
 
@@ -168,6 +191,7 @@ const mdp = (dispatch) => {
     nextInQueue: (id) => dispatch(nextInQueue(id)),
     prevInQueue: (id) => dispatch(prevInQueue(id)),
     fetchRandomNextTrack: () => dispatch(fetchRandomNextTrack()),
+    handleTimeUpdate: (time, length) => dispatch(handleTimeUpdate(time, length)),
   };
 };
 

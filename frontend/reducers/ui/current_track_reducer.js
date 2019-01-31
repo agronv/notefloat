@@ -2,7 +2,9 @@ import { RECEIVE_PLAYING_TRACK,
   TOGGLE_PLAY,
   RECEIVE_NEXT_TRACK, 
   RECEIVE_NEXT_IN_QUEUE, 
-  RECEIVE_PREV_IN_QUEUE } from '../../actions/current_track_actions';
+  RECEIVE_PREV_IN_QUEUE,
+  HANDLE_TIME_UPDATE,
+  SET_WAVE_TIME } from '../../actions/current_track_actions';
 import { REMOVE_TRACK } from '../../actions/track_actions';
 import { merge } from 'lodash';
 
@@ -11,6 +13,9 @@ const defaultState = {
   queue: [],
   isPlaying: false,
   queuePos: null,
+  time: 0,
+  length: 0,
+  waveTime: 0,
 };
 
 export default (state = defaultState, action) => {
@@ -22,11 +27,13 @@ export default (state = defaultState, action) => {
       newState.currentTrack = action.track;
       newState.queue.push(action.track.id);
       newState.queuePos = newState.queue.length - 1;
+      newState.time = 0;
       return newState;
     case RECEIVE_NEXT_TRACK:
       newState.currentTrack = action.track;
       newState.queue.push(action.track.id);
       newState.queuePos = newState.queue.length - 1;
+      newState.time = 0;
       return newState;
     case TOGGLE_PLAY:
       if (newState.isPlaying) newState.isPlaying = false;
@@ -40,10 +47,19 @@ export default (state = defaultState, action) => {
     case RECEIVE_NEXT_IN_QUEUE:
       newState.queuePos++;
       newState.currentTrack = action.track;
+      newState.time = 0;
       return newState;
     case RECEIVE_PREV_IN_QUEUE:
       newState.queuePos--;
       newState.currentTrack = action.track;
+      newState.time = 0;
+      return newState;
+    case HANDLE_TIME_UPDATE:
+      newState.time = action.time;
+      newState.length = action.length;
+      return newState;
+    case SET_WAVE_TIME:
+      newState.waveTime = action.time;
       return newState;
     default: 
       return state;

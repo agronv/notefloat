@@ -4,6 +4,8 @@ export const TOGGLE_PLAY = "TOGGLE_PLAY";
 export const RECEIVE_NEXT_TRACK = "RECEIVE_NEXT_TRACK";
 export const RECEIVE_NEXT_IN_QUEUE = "RECEIVE_NEXT_IN_QUEUE";
 export const RECEIVE_PREV_IN_QUEUE = "RECEIVE_PREV_IN_QUEUE";
+export const HANDLE_TIME_UPDATE = "HANDLE_TIME_UPDATE";
+export const SET_WAVE_TIME = "SET_WAVE_TIME";
 
 export const receivePlayingTrack = (track) => {
   return {
@@ -36,6 +38,21 @@ export const receievePrevInQueue = (track) => {
 export const toggleTrack = () => {
   return {
     type: TOGGLE_PLAY,
+  };
+};
+
+export const handleTimeUpdate = (time, length) => {
+  return {
+    type: HANDLE_TIME_UPDATE,
+    time,
+    length,
+  };
+};
+
+export const setWaveTime = (time) => {
+  return {
+    type: SET_WAVE_TIME,
+    time,
   };
 };
 
