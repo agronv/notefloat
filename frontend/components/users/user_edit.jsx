@@ -28,14 +28,14 @@ class UserEdit extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('user[username]', this.state.username);
+    // formData.append('user[username]', this.state.username);
     formData.append('user[description]', this.state.description);
     if (this.state.photoUrl) {
       formData.append('user[photo]', this.state.photoUrl);
     }
     const that = this;
     this.props.updateUser(this.state.id, formData).then((result) => {
-      that.props.history.push(`/users/${result.user.id}`);
+      that.props.history.push(`/users/${result.user.user.id}`);
     }).then(that.props.closeModal);
   }
 
@@ -76,10 +76,10 @@ class UserEdit extends React.Component {
             </label>
           </div>
           <div className="right-side-form-user">
-            <label htmlFor="username">
+            {/* <label htmlFor="username">
               <p>Display name*</p>
               <input type="text" className="username-input" onChange={this.handleInput("username")} id="username" value={this.state.username} />
-            </label>
+            </label> */}
             <label htmlFor="description">
               <p>Description</p>
               <textarea type="text" className="description-input" onChange={this.handleInput("description")} id="description" value={textareVal} />

@@ -33,7 +33,7 @@ class WaveForm extends React.Component {
   }
   
   componentDidUpdate(prevProps) {
-    if (this.props.track.id === this.props.currentTrack.id) {
+    if (this.props.currentTrack && this.song.id === this.props.currentTrack.id) {
       if (prevProps.time !== this.props.time) {
         this.waveSurfer.seekTo(this.props.time / this.props.length);
       }

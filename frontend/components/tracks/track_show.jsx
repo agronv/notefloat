@@ -25,7 +25,7 @@ class TrackShow extends React.Component {
   componentDidMount() {
     const that = this;
     this.props.fetchTrack(this.props.match.params.trackId).then((result) => {
-      that.setState({commentCount:  Object.keys(result.comments).length});
+      that.setState({commentCount: Object.keys(result.comments).length});
     });
   }
 

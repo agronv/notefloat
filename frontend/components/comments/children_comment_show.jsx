@@ -4,6 +4,8 @@ import { createComment, destroyComment } from '../../actions/comment_actions';
 import { childrenComments } from '../../reducers/selectors/selectors';
 import CommentChildrenChild from './children_comment_show';
 import { Link } from 'react-router-dom';
+import { openModal } from "../../actions/modal_actions";
+
 
 class ChildrenCommentShow extends React.Component {
   constructor(props) {
@@ -30,7 +32,12 @@ class ChildrenCommentShow extends React.Component {
   }
 
   changeForm() {
-    this.setState({ isShowing: !this.state.isShowing });
+    if (!this.props.loggedIn) {
+      this.props.openModal('login');
+    }
+    else {
+      this.setState({ isShowing: !this.state.isShowing });
+    }
   }
 
   render() {
@@ -40,7 +47,7 @@ class ChildrenCommentShow extends React.Component {
         <img src={window.defaultUserPhoto} className="comment-image"></img>)
     const childrenCommentz = childrenComments ? (childrenComments.map(childComment => {
       return <li className="child-comment-li" key={childComment.id}>
-        <ChildrenCommentShow comment={childComment} />
+        <CommentChildrenChild comment={childComment} />
       </li>
     })) : (null );
 
@@ -88,6 +95,7 @@ class ChildrenCommentShow extends React.Component {
 const msp = (state, ownProps) => {
   return {
     childrenComments: childrenComments(state.entities.comments, ownProps.comment.track_id, ownProps.comment.id) || [],
+    loggedIn: state.session.id,
   }
 }
 
@@ -95,6 +103,7 @@ const mdp = (dispatch) => {
   return {
     createComment: (track_id, comment) => dispatch(createComment(track_id, comment)),
     destroyComment: (track_id, id) => dispatch(destroyComment(track_id, id)),
+    openModal: (modal) => dispatch(openModal(modal)),
   }
 }
 

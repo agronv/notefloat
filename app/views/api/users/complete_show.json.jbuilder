@@ -1,6 +1,9 @@
 
 json.user do 
   json.extract! @user, :id, :username, :description, :track_ids
+  if @user.description 
+    json.description @user.description
+  end
   if @user.photo.attached?
     json.photoUrl url_for(@user.photo)
   end
