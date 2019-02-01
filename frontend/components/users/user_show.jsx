@@ -11,7 +11,8 @@ import { getUsertracks } from '../../reducers/selectors/selectors';
 class UserShow extends React.Component {
   constructor(props) {
     super(props);
-    this.background = Math.floor(Math.random() * 16777215).toString(16);
+    this.background1 = Math.floor(Math.random() * 10777215).toString(16);
+    this.background2 = Math.floor(Math.random() * 10777215).toString(16);
   }
 
   componentDidMount() {
@@ -42,7 +43,7 @@ class UserShow extends React.Component {
     ) : ( null )
 
     const backgroundColor = {
-      backgroundColor: `#${this.background}`
+      background: `linear-gradient(to bottom right, #${this.background1}, #${this.background2}`
     }
 
     return (

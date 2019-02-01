@@ -136,7 +136,7 @@ track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/gold_digger.mp3'
 t10.mp3_file.attach(io: track, filename: 'gold_digger.mp3')
 t10.save!
 
-t11 = Track.new({title: "Bohemin Rhapsody", user_id: u2.id, genre: 'classic_rock'})
+t11 = Track.new({title: "Bohemian Rhapsody", user_id: u2.id, genre: 'classic_rock'})
 file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/bohemain.jpg')
 t11.photo.attach(io: file, filename: 'bohemain.jpg')
 track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/bohemian_rhapsody.mp3')

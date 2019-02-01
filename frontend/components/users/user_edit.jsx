@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateUser, clearSessionErrors } from '../../actions/session_actions';
+import { updateUser, clearSessionErrors, fetchCompleteUser } from '../../actions/session_actions';
 import { closeModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router-dom';
 
@@ -34,9 +34,8 @@ class UserEdit extends React.Component {
       formData.append('user[photo]', this.state.photoUrl);
     }
     const that = this;
-    this.props.updateUser(this.state.id, formData).then((result) => {
-      that.props.history.push(`/users/${result.user.user.id}`);
-    }).then(that.props.closeModal);
+    this.props.updateUser(this.state.id, formData).then(that.props.closeModal)
+    .then(() => {this.props.fetchCompleteUser(this.props.params.userId)});
   }
 
   handleInput(field) {
@@ -103,6 +102,7 @@ const mdp = (dispatch) => {
     updateUser: (id, user) => dispatch(updateUser(id, user)),
     clearSessionErrors: () => dispatch(clearSessionErrors()),
     closeModal: () => dispatch(closeModal()),
+    fetchCompleteUser: (id) => dispatch(fetchCompleteUser(id)),
   }
 }
 
