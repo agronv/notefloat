@@ -20,8 +20,12 @@ class TrackShow extends React.Component {
     this.handleCommentChange = this.handleCommentChange.bind(this);
     this.createComment = this.createComment.bind(this);
     this.checkLoggedIn = this.checkLoggedIn.bind(this);
-    this.background1 = Math.floor(Math.random() * 10777215).toString(16);
-    this.background2 = Math.floor(Math.random() * 10777215).toString(16);
+    this.r1 = Math.floor(Math.random() * 170);
+    this.r2 = Math.floor(Math.random() * 170);
+    this.r3 = Math.floor(Math.random() * 170);
+    this.r4 = Math.floor(Math.random() * 170);
+    this.r5 = Math.floor(Math.random() * 170);
+    this.r6 = Math.floor(Math.random() * 170);
   }
 
   componentDidMount() {
@@ -99,7 +103,7 @@ class TrackShow extends React.Component {
     });
 
     const backgroundColor = {
-      background: `linear-gradient(to bottom right, #${this.background1}, #${this.background2}`
+      background: `linear-gradient(to bottom right, rgb(${this.r1}, ${this.r2}, ${this.r3}), rgb(${this.r4}, ${this.r5}, ${this.r6}))`
     }
     
     return (
