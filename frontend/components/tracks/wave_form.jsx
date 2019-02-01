@@ -28,9 +28,7 @@ class WaveForm extends React.Component {
       partialRender: true,
       removeMediaElementOnDestroy: true,
     });
-    // debugger
     this.waveSurfer.load(this.props.track.mp3);
-    // debugger
   }
 
   componentWillUnmount() {

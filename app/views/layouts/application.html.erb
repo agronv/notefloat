@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Notefloat</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <title>Notefloat</title>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -14,6 +14,8 @@
       window.defaultUserPhoto = "<%= image_url('default_image_user.png') %>"
       window.splashPhoto = "<%= image_url('splashy.jpg') %>"
     </script>
+
+    <%= favicon_link_tag '/favicon.ico'%>
   </head>
 
   <body>

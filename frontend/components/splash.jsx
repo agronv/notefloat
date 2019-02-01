@@ -49,7 +49,7 @@ class Splash extends React.Component {
           </section>
           <section className="user-tracks-section splash-music">
             <h3 className="splash-music-text">
-              Hear what’s trending for free in the NoteFloat community
+              Hear what’s trending in the NoteFloat community
             </h3>
             <ul className="album-covers">
               {track}
