@@ -153,8 +153,8 @@ t12.save!
 t13 = Track.new({title: "Mr.Brightside", user_id: u3.id, genre: 'alternative_rock'})
 file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/mr.brightside.jpeg')
 t13.photo.attach(io: file, filename: 'mr.brightside.jpeg')
-track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/mr.brightside.mp3')
-t13.mp3_file.attach(io: track, filename: 'mr.brightside.mp3')
+track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/mr_brightside.mp3')
+t13.mp3_file.attach(io: track, filename: 'mr_brightside.mp3')
 t13.save!
 
 t14 = Track.new({title: "One Kiss", user_id: u7.id, genre: 'pop'})

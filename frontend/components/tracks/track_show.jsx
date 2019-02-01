@@ -20,6 +20,7 @@ class TrackShow extends React.Component {
     this.handleCommentChange = this.handleCommentChange.bind(this);
     this.createComment = this.createComment.bind(this);
     this.checkLoggedIn = this.checkLoggedIn.bind(this);
+    this.background = Math.floor(Math.random() * 16777215).toString(16);
   }
 
   componentDidMount() {
@@ -95,10 +96,14 @@ class TrackShow extends React.Component {
         <ParentCommentShow comment={comment} />
       </li>
     });
+
+    const backgroundColor = {
+      backgroundColor: `#${this.background}`
+    }
     
     return (
       <div className="track-show">
-        <section className="track-section">
+        <section className="track-section" style={backgroundColor}>
           <div className="left-side-show">
             <div className='song-info'>
               {icon}
