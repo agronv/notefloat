@@ -11,6 +11,7 @@ class NavBar extends React.Component {
 
   render() {
     const { currentUser } = this.props;
+    
     const userPhoto = currentUser && currentUser.photoUrl ? (
       <img className="user-photo" src={currentUser.photoUrl} /> ) :( 
       <img className="user-photo" src={window.defaultUserPhoto} />);

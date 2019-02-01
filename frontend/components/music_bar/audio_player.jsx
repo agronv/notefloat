@@ -88,6 +88,7 @@ class AudioPlayer extends React.Component {
       else fetchNextTrack(currentTrack.genre);
     }
     else nextInQueue(queue[queuePos+1]);
+    this.audioRef.current.currentTime = 0;
   }
 
   changeLoop() {

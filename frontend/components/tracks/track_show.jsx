@@ -20,12 +20,14 @@ class TrackShow extends React.Component {
     this.handleCommentChange = this.handleCommentChange.bind(this);
     this.createComment = this.createComment.bind(this);
     this.checkLoggedIn = this.checkLoggedIn.bind(this);
+    this.background1 = Math.floor(Math.random() * 10777215).toString(16);
+    this.background2 = Math.floor(Math.random() * 10777215).toString(16);
   }
 
   componentDidMount() {
     const that = this;
     this.props.fetchTrack(this.props.match.params.trackId).then((result) => {
-      that.setState({commentCount:  Object.keys(result.comments).length});
+      that.setState({commentCount: Object.keys(result.comments).length});
     });
   }
 
@@ -95,10 +97,14 @@ class TrackShow extends React.Component {
         <ParentCommentShow comment={comment} />
       </li>
     });
+
+    const backgroundColor = {
+      background: `linear-gradient(to bottom right, #${this.background1}, #${this.background2}`
+    }
     
     return (
       <div className="track-show">
-        <section className="track-section">
+        <section className="track-section" style={backgroundColor}>
           <div className="left-side-show">
             <div className='song-info'>
               {icon}

@@ -13,7 +13,7 @@
 
 class User < ApplicationRecord
   validates_presence_of :username, :password_digest, :session_token
-  validates :username, :session_token, uniqueness: true
+  validates :session_token, uniqueness: true
   validates :password, length: {minimum: 4, allow_nil: true}
   after_initialize :ensure_session
   validate :ensure_no_space

@@ -11,6 +11,8 @@ import { getUsertracks } from '../../reducers/selectors/selectors';
 class UserShow extends React.Component {
   constructor(props) {
     super(props);
+    this.background1 = Math.floor(Math.random() * 10777215).toString(16);
+    this.background2 = Math.floor(Math.random() * 10777215).toString(16);
   }
 
   componentDidMount() {
@@ -40,10 +42,14 @@ class UserShow extends React.Component {
       </button>
     ) : ( null )
 
+    const backgroundColor = {
+      background: `linear-gradient(to bottom right, #${this.background1}, #${this.background2}`
+    }
+
     return (
       <div className="big-user-div">
         <div className="user-show">
-          <section className="user-section">
+          <section className="user-section" style={backgroundColor}>
             {userImage}
             <section className="user-section-div">
               <p className="user-show-text">{user.username}</p>

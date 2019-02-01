@@ -7,7 +7,6 @@ class WaveForm extends React.Component {
   constructor(props) {
     super(props);
     this.waveRef = React.createRef();
-    this.song = this.props.track;
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
@@ -23,17 +22,24 @@ class WaveForm extends React.Component {
       fillParent: true,
       cursorWidth: 0,
       interact: true,
-      removeMediaElementOnDestroy: false
+      autoCenter: true,
+      closeAudioContext: true,
+      hideScrollbar: true,
+      partialRender: true,
+      removeMediaElementOnDestroy: true,
     });
-    this.waveSurfer.load(this.song.mp3);
+    // debugger
+    this.waveSurfer.load(this.props.track.mp3);
+    // debugger
   }
 
   componentWillUnmount() {
     this.waveSurfer.destroy();
+    this.waveSurfer = null;
   }
   
   componentDidUpdate(prevProps) {
-    if (this.props.track.id === this.props.currentTrack.id) {
+    if (this.props.currentTrack && this.props.track.id === this.props.currentTrack.id) {
       if (prevProps.time !== this.props.time) {
         this.waveSurfer.seekTo(this.props.time / this.props.length);
       }
@@ -44,8 +50,8 @@ class WaveForm extends React.Component {
   }
   
   handleChange(e) {
-    if (this.props.currentTrack.id !== this.song.id) {
-      this.props.receiveNextTrack(this.song);
+    if (this.props.currentTrack.id !== this.props.track.id) {
+      this.props.receiveNextTrack(this.props.track);
     }
     this.props.setWaveTime(this.waveSurfer.getCurrentTime());
     this.waveSurfer.un('seek', this.handleChange);
