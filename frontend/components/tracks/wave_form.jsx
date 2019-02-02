@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'; 
 import waveSurfer from 'wavesurfer.js';
 import { receiveNextTrack, setWaveTime } from '../../actions/current_track_actions';
+import { randomColor } from '../../utils/random_color'; 
 
 class WaveForm extends React.Component {
   constructor(props) {
@@ -11,9 +12,9 @@ class WaveForm extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.state = {loading: true, 
     width: 800, 
-    loaderWidth: 300,
-    overflowWidth: 0,
     loaderPosition: 0,
+    loadingDirection: 1,
+    color: 'F65502'
     };
   }
 
@@ -36,22 +37,24 @@ class WaveForm extends React.Component {
     });
     this.waveSurfer.load(this.props.track.mp3);
 
-    this.invterval = setInterval(() => {
-      const loaderPosition = (this.state.loaderPosition + 4) % this.state.width;
-      const overflowWidth = Math.max(loaderPosition + 300 - this.state.width, 0);
-      const loaderWidth = 300 - overflowWidth;
+    this.interval = setInterval(() => {
+      if (this.state.loaderPosition <= 0) {
+        this.setState({ loadingDirection: 1, color: randomColor()});
+      }
+      else if  (this.state.loaderPosition >= 500) {
+        this.setState({ loadingDirection: -1, color: randomColor()});
+      }
+      const loaderPosition = (this.state.loaderPosition + 5*(this.state.loadingDirection));
       this.setState(
         {
           loaderPosition: loaderPosition,
-          loaderWidth: loaderWidth,
-          overflowWidth: overflowWidth
         });
-    }, 7);
+    }, 10);
 
 
     this.waveSurfer.on('ready', () => {
       this.setState({loading: false});
-      clearInterval(this.invterval);
+      clearInterval(this.interval);
     });
   }
 
@@ -83,12 +86,7 @@ class WaveForm extends React.Component {
     this.waveSurfer.on('seek', this.handleChange);
   }
 
-  loading() {
-
-  }
-
   render() {
-    
     const width = {
       width: `${this.state.width}px`
     };
@@ -96,10 +94,7 @@ class WaveForm extends React.Component {
     const loading = this.state.loading ? (
       <div style={width} className="outer-loader">
         <div className="inner-loader"
-          style={{ left: '0px', width: `${this.state.overflowWidth}px` }}>
-        </div>
-        <div className="inner-loader"
-          style={{ left: `${this.state.loaderPosition}px`, width: `${this.state.loaderWidth}px` }}>
+          style={{ left: `${this.state.loaderPosition}px`, backgroundColor: `#${this.state.color}` }}>
         </div>
       </div> 
       ): (
@@ -114,11 +109,14 @@ class WaveForm extends React.Component {
 }
 
 const msp = (state) => {
+  const currentTrack = state.ui.audio.currentTrack;
+  let length;
+  if (currentTrack) length = currentTrack.length;
   return {
-    currentTrack: state.ui.audio.currentTrack,
+    currentTrack,
     isPlaying: state.ui.audio.isPlaying,
     time: state.ui.audio.time,
-    length: state.ui.audio.length,
+    length,
   }
 }
 

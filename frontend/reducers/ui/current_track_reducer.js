@@ -14,7 +14,6 @@ const defaultState = {
   isPlaying: false,
   queuePos: null,
   time: 0,
-  length: 0,
   waveTime: 0,
 };
 
@@ -56,7 +55,6 @@ export default (state = defaultState, action) => {
       return newState;
     case HANDLE_TIME_UPDATE:
       newState.time = action.time;
-      newState.length = action.length;
       return newState;
     case SET_WAVE_TIME:
       newState.waveTime = action.time;

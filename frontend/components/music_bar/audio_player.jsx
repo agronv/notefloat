@@ -13,7 +13,7 @@ class AudioPlayer extends React.Component {
   constructor(props) {
     super(props);
     this.audioRef = React.createRef();
-    this.state = {length: 0, currentTime: 0, volume: 0.5, loop: false, shuffle: false, mute: false};
+    this.state = {currentTime: 0, volume: 0.5, loop: false, shuffle: false, mute: false};
     this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
     this.setTime = this.setTime.bind(this);
     this.setTimeFromProps = this.setTimeFromProps.bind(this);
@@ -49,12 +49,10 @@ class AudioPlayer extends React.Component {
   handleTimeUpdate() {
     if (this.props.isPlaying) {
       const currentTime = this.audioRef.current.currentTime;
-      const length = this.audioRef.current.duration;
       this.setState({
-        length: length,
         currentTime: currentTime,
       });
-      this.props.handleTimeUpdate(currentTime, length);
+      this.props.handleTimeUpdate(currentTime);
     }
   }
 
@@ -127,7 +125,8 @@ class AudioPlayer extends React.Component {
 
   render() {
     let { currentTrack, isPlaying } = this.props;
-    let { currentTime, length} = this.state;
+    let { currentTime} = this.state;
+    let { length } = currentTrack;
 
     const togglePlay = isPlaying ? (
     <i className="fas fa-pause toggle-play" onClick={this.props.toggleTrack}></i>) : (
@@ -192,7 +191,7 @@ const mdp = (dispatch) => {
     nextInQueue: (id) => dispatch(nextInQueue(id)),
     prevInQueue: (id) => dispatch(prevInQueue(id)),
     fetchRandomNextTrack: () => dispatch(fetchRandomNextTrack()),
-    handleTimeUpdate: (time, length) => dispatch(handleTimeUpdate(time, length)),
+    handleTimeUpdate: (time) => dispatch(handleTimeUpdate(time)),
   };
 };
 

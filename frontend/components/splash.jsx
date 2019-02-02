@@ -39,10 +39,10 @@ class Splash extends React.Component {
             </div>
             <div className="inspiring-words">
               <h4 className="splash-title">
-                What's next in music is first on SoundCloud
+                What's next in music is first on NoteFloat
               </h4>
               <p className="splash-para">
-                Upload your first track and begin your journey. SoundCloud gives you space
+                Upload your first track and begin your journey. NoteFloat gives you space
                 to create, find your fans, and connect with other artists.
               </p>
             </div>

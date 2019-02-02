@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchTrack, destroyTrack } from '../../actions/track_actions';
-import { fetchPlayingTrack, toggleTrack } from '../../actions/current_track_actions';
+import { fetchPlayingTrack, toggleTrack, receivePlayingTrack } from '../../actions/current_track_actions';
 import { createComment, destroyComment} from '../../actions/comment_actions';
 import { trackComments } from '../../reducers/selectors/selectors';
 import { fetchUser } from '../../actions/session_actions';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import ParentCommentShow from '../comments/parent_comment_show';
 import WaveForm from './wave_form';
 import { openModal } from "../../actions/modal_actions";
+import { randomBackgroundColor } from '../../utils/random_color';
 
 class TrackShow extends React.Component {
   constructor(props) {
@@ -20,18 +21,16 @@ class TrackShow extends React.Component {
     this.handleCommentChange = this.handleCommentChange.bind(this);
     this.createComment = this.createComment.bind(this);
     this.checkLoggedIn = this.checkLoggedIn.bind(this);
-    this.r1 = Math.floor(Math.random() * 170);
-    this.r2 = Math.floor(Math.random() * 170);
-    this.r3 = Math.floor(Math.random() * 170);
-    this.r4 = Math.floor(Math.random() * 170);
-    this.r5 = Math.floor(Math.random() * 170);
-    this.r6 = Math.floor(Math.random() * 170);
+    this.background1 = randomBackgroundColor();
+    this.background2 = randomBackgroundColor();
   }
 
   componentDidMount() {
     const that = this;
     this.props.fetchTrack(this.props.match.params.trackId).then((result) => {
-      that.setState({commentCount: Object.keys(result.comments).length});
+      if (result.comments) {
+        that.setState({commentCount: Object.keys(result.comments).length});
+      }
     });
   }
 
@@ -45,7 +44,7 @@ class TrackShow extends React.Component {
     e.preventDefault();
     let {currentTrack, track} = this.props;
     if (!currentTrack || track.id !== currentTrack.id) {
-      this.props.fetchPlayingTrack(track.id);
+      this.props.receivePlayingTrack(track);
     }
     else {
       this.props.toggleTrack();
@@ -103,7 +102,7 @@ class TrackShow extends React.Component {
     });
 
     const backgroundColor = {
-      background: `linear-gradient(to bottom right, rgb(${this.r1}, ${this.r2}, ${this.r3}), rgb(${this.r4}, ${this.r5}, ${this.r6}))`
+      background: `linear-gradient(to bottom right, #${this.background1}, #${this.background2})`
     }
     
     return (
@@ -174,6 +173,7 @@ const mdp = (dispatch) => {
     fetchUser: (id) => dispatch(fetchUser(id)),
     destroyTrack: (id) => dispatch(destroyTrack(id)),
     fetchPlayingTrack: (id) => dispatch(fetchPlayingTrack(id)),
+    receivePlayingTrack: (track) => dispatch(receivePlayingTrack(track)),
     toggleTrack: () => dispatch(toggleTrack()),
     createComment: (trackId, comment) => dispatch(createComment(trackId, comment)),
     destroyComment: (trackId, id) => dispatch(destroyComment(trackId, id)),

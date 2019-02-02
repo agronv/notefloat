@@ -73,7 +73,7 @@ class Api::TracksController < ApplicationController
   end
 
   def track_params 
-    params.require(:track).permit(:title, :photo, :mp3_file, :genre)
+    params.require(:track).permit(:title, :photo, :mp3_file, :genre, :length)
   end
 
   def update_params

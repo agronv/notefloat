@@ -41,11 +41,10 @@ export const toggleTrack = () => {
   };
 };
 
-export const handleTimeUpdate = (time, length) => {
+export const handleTimeUpdate = (time) => {
   return {
     type: HANDLE_TIME_UPDATE,
     time,
-    length,
   };
 };
 

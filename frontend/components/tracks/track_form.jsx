@@ -24,6 +24,7 @@ class TrackForm extends React.Component {
     const formData = new FormData(); 
     formData.append('track[title]', this.state.title);
     formData.append('track[genre]', this.state.genre);
+    formData.append('track[length]', this.state.length);
     if (this.state.mp3) {
       formData.append('track[mp3_file]', this.state.mp3);
     }
@@ -56,6 +57,12 @@ class TrackForm extends React.Component {
         }
       }
       else {
+        const objectURL = URL.createObjectURL(file);
+        const mySound = new Audio([objectURL]); 
+        that = this;
+        mySound.addEventListener("canplaythrough",() => {
+          that.setState({ length: this.duration });
+        });
         this.setState({ [feild]: file });
       }
     };
