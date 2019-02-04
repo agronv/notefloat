@@ -25,7 +25,6 @@ class TrackForm extends React.Component {
     formData.append('track[title]', this.state.title);
     formData.append('track[genre]', this.state.genre);
     formData.append('track[length]', this.state.length);
-    debugger
     if (this.state.mp3) {
       formData.append('track[mp3_file]', this.state.mp3);
     }
