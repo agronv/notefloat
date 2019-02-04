@@ -90,3 +90,21 @@
 .splash-music {
   height: 640px;
 }
+
+.modal-forms-appear {
+  transform: translate( 0px, -700px);
+}
+
+.modal-forms-appear-active {
+  transform: translate(0px, 0px);
+  transition: transform .5s ease-in-out;
+}
+
+.modal-forms-appear-leave {
+  transform: translate(0px, 0px);
+}
+
+.modal-forms-appear-leave-active {
+  transform: translate(0px, 700px);
+  transition: transform .5s ease-in-out;
+}
