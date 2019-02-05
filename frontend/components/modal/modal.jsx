@@ -8,7 +8,6 @@ import TrackEdit from '../tracks/track_edit_container';
 import DeleteTrack from '../tracks/delete_track';
 import { CSSTransitionGroup } from 'react-transition-group';
 
-
 class Modal extends React.Component {
   constructor(props) {
     super(props);
@@ -42,8 +41,7 @@ class Modal extends React.Component {
         transitionName="modal-forms"
         transitionAppear={true}
         transitionAppearTimeout={500}
-        transitionLeave={true}
-        transitionLeaveTimeout={500}
+        transitionLeave={false}
         transitionEnter={false}>
           <div className="modal-child" onClick={(e) => e.stopPropagation()}>
             {component}
@@ -51,7 +49,6 @@ class Modal extends React.Component {
         </CSSTransitionGroup>
       </div>
     );
-    
   }
 }
 

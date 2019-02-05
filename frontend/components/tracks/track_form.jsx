@@ -5,6 +5,7 @@ class TrackForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.track;
+    this.state.loading = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
@@ -21,6 +22,7 @@ class TrackForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({ loading: true });
     const formData = new FormData(); 
     formData.append('track[title]', this.state.title);
     formData.append('track[genre]', this.state.genre);
@@ -76,6 +78,8 @@ class TrackForm extends React.Component {
   }
 
   render() {
+    const loading = this.state.loading ? <img src={window.loadingGif} className="track-loading" /> : (null);
+    
     const mp3 = this.props.formType === "edit" ? null : (
       <label htmlFor="track">
         <p className="track-input">choose file to upload*</p>
@@ -108,6 +112,7 @@ class TrackForm extends React.Component {
         <form className='track-form' onSubmit={this.handleSubmit}>
           <div className="photo-form">
             {previewPhoto}
+            { loading }
             <label htmlFor="photo">
                 <p className="photo-input"><i className="fas fa-camera"></i>Artwork (optional)</p>
               <input type="file" onChange={this.handleFile("photoUrl")} id="photo" accept="image/*"/>
@@ -120,10 +125,9 @@ class TrackForm extends React.Component {
             </label> 
             <label htmlFor="genre"> 
               <select
-                value={this.state.genre}
-                onChange={this.updateGenre}
-                className="genre-input"
-              >
+              value={this.state.genre}
+              onChange={this.updateGenre}
+              className="genre-input">
                 {genres}
               </select>
             </label> 

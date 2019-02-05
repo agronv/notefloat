@@ -171,7 +171,7 @@ track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/changes.mp3')
 t15.mp3_file.attach(io: track, filename: 'changes.mp3')
 t15.save!
 
-t16 = Track.new({title: "Come Together", user_id: u3.id, genre: 'classic_rock'})
+t16 = Track.new({title: "Come Together", user_id: u3.id, genre: 'classic_rock', length: 259})
 file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/come_together.jpg')
 t16.photo.attach(io: file, filename: 'come_together.jpg')
 track = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/come_together.mp3')
