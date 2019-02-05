@@ -100,11 +100,11 @@
   transition: transform .5s ease-in-out;
 }
 
-.modal-forms-appear-leave {
+.modal-forms-leave {
   transform: translate(0px, 0px);
 }
 
-.modal-forms-appear-leave-active {
+.modal-forms-leave-active {
   transform: translate(0px, 700px);
   transition: transform .5s ease-in-out;
 }

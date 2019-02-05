@@ -74,6 +74,10 @@ class WaveForm extends React.Component {
     }
   }
   
+  handleClick(e) {
+    this.waveSurfer.on('seek', this.handleChange);
+  }
+  
   handleChange(e) {
     if (this.props.currentTrack.id !== this.props.track.id) {
       this.props.receiveNextTrack(this.props.track);
@@ -82,9 +86,6 @@ class WaveForm extends React.Component {
     this.waveSurfer.un('seek', this.handleChange);
   }
 
-  handleClick(e) {
-    this.waveSurfer.on('seek', this.handleChange);
-  }
 
   render() {
     const width = {

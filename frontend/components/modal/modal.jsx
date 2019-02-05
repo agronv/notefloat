@@ -42,7 +42,8 @@ class Modal extends React.Component {
         transitionName="modal-forms"
         transitionAppear={true}
         transitionAppearTimeout={500}
-        transitionLeave={false}
+        transitionLeave={true}
+        transitionLeaveTimeout={500}
         transitionEnter={false}>
           <div className="modal-child" onClick={(e) => e.stopPropagation()}>
             {component}
