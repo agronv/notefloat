@@ -14,12 +14,12 @@ class Api::CommentsController < ApplicationController
 
   def destroy 
     comment = Comment.find_by(id: params[:id])
-    if current_user.id != comment.user_id
-      render json: ['Not valid user'], status: 404 
-    else
-      @track = Track.find_by(comment.track_id)
+    if current_user.id === comment.user_id
+      @track = Track.find_by(id: comment.track_id)
       comment.destroy
-      render json: {} 
+      render 'api/tracks/show'
+    else
+      render json: ['Not valid user'], status: 404 
     end
   end
   

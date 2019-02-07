@@ -30,16 +30,12 @@ class ParentCommentShow extends React.Component {
   }
 
   changeForm() {
-    if (!this.props.loggedIn) {
-      this.props.openModal('login');
-    }
-    else {
-      this.setState({ isShowing: !this.state.isShowing });
-    }
+    if (this.props.loggedIn) this.setState({ isShowing: !this.state.isShowing });
+    else this.props.openModal('login');
   }
 
   render() {
-    const { comment, childrenComments } = this.props;
+    const { comment, childrenComments, loggedIn } = this.props;
     const commentImage = comment.photoUrl ? (
       <img src={comment.photoUrl} className="comment-image"></img> ) : (
       <img src={window.defaultUserPhoto} className="comment-image"></img>)
@@ -64,6 +60,12 @@ class ParentCommentShow extends React.Component {
         </form>
       </div>) : (null)
 
+    const deleter = (loggedIn && loggedIn === comment.user_id) ? (
+      <button onClick={() => this.props.destroyComment(comment.track_id, comment.id)} className="reply-button">
+        <i className="fas fa-trash-alt"></i>
+        <p>Delete</p>
+      </button>) : ( null )
+
     return (
       <>
         <div className="comment-div">
@@ -74,10 +76,13 @@ class ParentCommentShow extends React.Component {
               <p>{comment.body}</p>
             </div>
           </div>
-          <button onClick={this.changeForm} className="reply-button">
-            <i className="fas fa-reply"></i>
-            <p>Reply</p>
-          </button>
+          <div className="edit-buttons">
+            {deleter}
+            <button onClick={this.changeForm} className="reply-button">
+              <i className="fas fa-reply"></i>
+              <p>Reply</p>
+            </button>
+          </div>
         </div>
         <ul className="children-comment">
           {childrenCommentz}

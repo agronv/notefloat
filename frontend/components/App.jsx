@@ -10,11 +10,13 @@ import UserShow from './users/user_show';
 import { ProtectedRoute } from '../utils/route_util';
 import MusicBar from './music_bar/music_bar';
 import Splash from './splash';
+import Ping from './ping';
 
 const App = () => (
   <>
     < Modal />
     <Switch>
+      <Route exact path="/ping" component={Ping} />
       <Route exact path="/" component={Splash} />
       <Route path="/" component={NavBar} />
     </Switch>
