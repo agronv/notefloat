@@ -13,7 +13,7 @@ class WaveForm extends React.Component {
     this.state = {loading: true, 
     width: 800, 
     loaderPosition: 0,
-    loadingDirection: 1,
+    loadingDirection: -1,
     color: 'F65502'
     };
   }
@@ -36,18 +36,13 @@ class WaveForm extends React.Component {
       removeMediaElementOnDestroy: true,
     });
     this.waveSurfer.load(this.props.track.mp3);
+    
     this.interval = setInterval(() => {
-      if (this.state.loaderPosition <= 0) {
-        this.setState({ loadingDirection: 1, color: randomColor()});
-      }
-      else if  (this.state.loaderPosition >= 500) {
-        this.setState({ loadingDirection: -1, color: randomColor()});
+      if (this.state.loaderPosition <= 0 || this.state.loaderPosition >= 500) {
+        this.setState({ loadingDirection: this.state.loadingDirection*-1, color: randomColor()});
       }
       const loaderPosition = (this.state.loaderPosition + 5*(this.state.loadingDirection));
-      this.setState(
-        {
-          loaderPosition: loaderPosition,
-        });
+      this.setState({ loaderPosition});
     }, 10);
 
     this.waveSurfer.on('ready', () => {
@@ -67,9 +62,7 @@ class WaveForm extends React.Component {
         this.waveSurfer.seekTo(this.props.time / this.props.length);
       }
     }
-    else {
-      this.waveSurfer.seekTo(0);
-    }
+    else this.waveSurfer.seekTo(0);
   }
   
   handleClick(e) {
