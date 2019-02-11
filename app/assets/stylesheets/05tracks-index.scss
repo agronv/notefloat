@@ -18,6 +18,7 @@
 
 .tracks-section {
   width: 1240px;
+  min-height: 100vh;
   margin: 0 auto;
   background-color: white;
 }
@@ -92,4 +93,12 @@
 
 .first-genre {
   padding-top: 50px;
+}
+
+.index-loader {
+  height: 200px;
+  width: 200px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 400px;
 }

@@ -65,7 +65,8 @@ class TrackShow extends React.Component {
     this.setState({ body: e.target.value });
   }
 
-  createComment() {
+  createComment(e) {
+    e.preventDefault();
     const that = this;
     this.props.createComment(this.props.track.id, {body: this.state.body} ).then( () => {
       const newCount = that.state.commentCount+1;
@@ -80,7 +81,7 @@ class TrackShow extends React.Component {
   }
 
   render() {
-    if (!this.props.track || !this.props.artist) return null;
+    if (!(this.props.track && this.props.track.mp3) || !this.props.artist) return null;
     const { track, artist, currentUser, comments } = this.props;
 
     const icon = this.playing() ? <i className="fas fa-pause-circle big-icon" onClick={this.handleChange} /> : 

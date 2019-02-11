@@ -36,7 +36,6 @@ class WaveForm extends React.Component {
       removeMediaElementOnDestroy: true,
     });
     this.waveSurfer.load(this.props.track.mp3);
-
     this.interval = setInterval(() => {
       if (this.state.loaderPosition <= 0) {
         this.setState({ loadingDirection: 1, color: randomColor()});
@@ -50,7 +49,6 @@ class WaveForm extends React.Component {
           loaderPosition: loaderPosition,
         });
     }, 10);
-
 
     this.waveSurfer.on('ready', () => {
       this.setState({loading: false});

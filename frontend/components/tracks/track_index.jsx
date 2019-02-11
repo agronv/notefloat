@@ -6,13 +6,24 @@ import TrackIndexItem from './track_index_item';
 class TrackIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {loading: true };
   }
 
   componentDidMount() {
-    this.props.fetchTracks();
+    this.props.fetchTracks().then(() => {
+      this.setState({loading: false});
+    });
   }
 
   render() {
+    if (this.state.loading){
+      return (<div className="bigger-index-div">
+        <section className="tracks-section">
+          <img src={window.loadingGif} className="index-loader" />
+        </section>
+      </div>)
+    }
+
     this.genres = {
       alternative_rock: [],
       classical: [],
