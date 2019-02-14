@@ -64,7 +64,7 @@ class UserEdit extends React.Component {
     const textareVal = this.state.description ? this.state.description : ""
 
     return (
-      <section className="user-form-section">
+      <section className="user-form-section edit-user-form">
         <h2 className="edit-title">Edit Your Profile</h2>
         <form className='user-form' onSubmit={this.handleSubmit}>
           <div className="photo-form">

@@ -18,20 +18,23 @@ class MusicBar extends React.Component {
       (<img src={window.defaultTrackPhoto} className="music-bar-image" />)
 
     return (
-      <footer className="music-bar">
-        <div className="music-bar-content">
-          < AudioPlayer currentTrack={currentTrack} />
-          <div className="music-bar-song-info">
-            < Link to={`/tracks/${currentTrack.id}`}>
-              {image}
-            </Link>
-            <div className="music-bar-text">
-              < Link to={`/users/${currentTrack.user_id}`}>
-                <p className="music-bar-artist">{currentTrack.username}</p>
-              </Link>
+      <footer>
+        <div className="footer-space"></div>
+        <div className="music-bar">
+          <div className="music-bar-content">
+            < AudioPlayer currentTrack={currentTrack} />
+            <div className="music-bar-song-info">
               < Link to={`/tracks/${currentTrack.id}`}>
-                <p className="music-bar-title">{currentTrack.title}</p>
+                {image}
               </Link>
+              <div className="music-bar-text">
+                < Link to={`/users/${currentTrack.user_id}`}>
+                  <p className="music-bar-artist">{currentTrack.username}</p>
+                </Link>
+                < Link to={`/tracks/${currentTrack.id}`}>
+                  <p className="music-bar-title">{currentTrack.title}</p>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
