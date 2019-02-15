@@ -39,7 +39,7 @@
   top: 55px;
   left: 55px;
   font-size: 70px;
-  transition: color 0.2s;
+  transition: 0.2s;
   z-index: 2;
   visibility: hidden;
 }
@@ -54,7 +54,7 @@
 
 
 .track-name {
-  color: black;
+  color: #666;
   font-size: 14px;
 }
 
@@ -63,7 +63,7 @@
   font-size: 12px;
 }
 
-.user-info:hover {
+.user-info:hover, .track-name:hover {
   color: black;
 }
 

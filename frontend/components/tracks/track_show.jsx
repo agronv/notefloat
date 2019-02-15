@@ -76,7 +76,7 @@ class TrackShow extends React.Component {
 
   checkLoggedIn() {
     if (!this.props.currentUser) {
-      this.props.openModal('login');
+      this.props.openModal({modal: 'login'});
     }
   }
 
@@ -178,7 +178,7 @@ const mdp = (dispatch) => {
     toggleTrack: () => dispatch(toggleTrack()),
     createComment: (trackId, comment) => dispatch(createComment(trackId, comment)),
     destroyComment: (trackId, id) => dispatch(destroyComment(trackId, id)),
-    openModal: (modal) => dispatch(openModal(modal)),
+    openModal: (data) => dispatch(openModal(data)),
   }
 }
 

@@ -7,6 +7,12 @@ import { openModal } from "../actions/modal_actions";
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.logOut = this.logOut.bind(this);
+  }
+
+  logOut(e) {
+    this.props.logOut();
+    this.props.history.push("/");
   }
 
   render() {
@@ -30,14 +36,14 @@ class NavBar extends React.Component {
           </Link>
         </li>
         <li className="log-out">
-          <button className="log-out-button"onClick={this.props.logOut}>Log Out</button>
+          <button className="log-out-button"onClick={this.logOut}>Log Out</button>
         </li>
       </ul>
     ) : (
       <div className="logged-out-buttons">
-        <button className="nav-button login" onClick={() => this.props.openModal('login')}>Sign In</button>
-        <button className="nav-button signup" onClick={() => this.props.openModal('signup')}>Create account</button>
-        <button className="nav-button signup" onClick={this.props.demologin}>demo</button>
+        <button className="nav-button login" onClick={() => this.props.openModal({modal: 'login'})}>Sign In</button>
+        <button className="nav-button signup" onClick={() => this.props.openModal({modal: 'signup'})}>Create account</button>
+        <button className="nav-button signup" onClick={() => this.props.openModal({modal: "login", demo: true})}>demo</button>
       </div>
     );
     
@@ -45,7 +51,7 @@ class NavBar extends React.Component {
       <>
         <header>
           <nav className='nav-row'> 
-            <Link className='navbar-index' to='/tracks'>
+            <Link className='navbar-index' to='/'>
               <div className="notefloat"> 
                 <i className="fab fa-soundcloud"></i>
                 <h3>NoteFloat</h3>
@@ -70,8 +76,7 @@ const msp = (state) => {
 const mdp = dispatch => {
   return {
     logOut: () => dispatch(logOut()),
-    openModal: (modal) => dispatch(openModal(modal)),
-    demologin: () => dispatch(logIn({username: 'demo', password: 'demo'})),
+    openModal: (data) => dispatch(openModal(data)),
   };
 };
 

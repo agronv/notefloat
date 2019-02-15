@@ -17,7 +17,8 @@ class ParentCommentShow extends React.Component {
     this.handleCommentChange = this.handleCommentChange.bind(this);
   }
 
-  createComment() {
+  createComment(e) {
+    e.preventDefault();
     const that = this;
     const comment = { body: this.state.body, parent_comment_id: this.props.comment.id };
     this.props.createComment(this.props.comment.track_id, comment).then(() => {
@@ -31,7 +32,7 @@ class ParentCommentShow extends React.Component {
 
   changeForm() {
     if (this.props.loggedIn) this.setState({ isShowing: !this.state.isShowing });
-    else this.props.openModal('login');
+    else this.props.openModal({modal: 'login'});
   }
 
   render() {
@@ -61,7 +62,7 @@ class ParentCommentShow extends React.Component {
       </div>) : (null)
 
     const deleter = (loggedIn && loggedIn === comment.user_id) ? (
-      <button onClick={() => this.props.destroyComment(comment.track_id, comment.id)} className="reply-button">
+      <button onClick={() => this.props.destroyComment(comment.track_id, comment.id)} className="reply-button-delete">
         <i className="fas fa-trash-alt"></i>
         <p>Delete</p>
       </button>) : ( null )
@@ -104,7 +105,7 @@ const mdp = (dispatch) => {
   return {
     createComment: (track_id, comment) => dispatch(createComment(track_id, comment)),
     destroyComment: (track_id, id) => dispatch(destroyComment(track_id, id)),
-    openModal: (modal) => dispatch(openModal(modal)),
+    openModal: (data) => dispatch(openModal(data)),
   }
 }
 

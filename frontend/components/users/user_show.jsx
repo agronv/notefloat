@@ -37,7 +37,7 @@ class UserShow extends React.Component {
     }
 
     const edit = currentUser && currentUser.id === user.id ? (
-      <button className="edit-button" onClick={() => this.props.openModal('edit')}>
+      <button className="edit-button" onClick={() => this.props.openModal({modal: "edit"})}>
         <i className="fas fa-pencil-alt"></i>
         <p>Edit</p>
       </button>
@@ -83,7 +83,7 @@ const mdp = (dispatch) => {
     fetchPlayingTrack: (id) => dispatch(fetchPlayingTrack(id)),
     toggleTrack: () => dispatch(toggleTrack()),
     fetchCompleteUser: (id) => dispatch(fetchCompleteUser(id)),
-    openModal: (modal) => dispatch(openModal(modal)),
+    openModal: (data) => dispatch(openModal(data)),
   }
 }
 

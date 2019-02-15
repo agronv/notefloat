@@ -14,15 +14,15 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { modal, closeModal, track } = this.props;
+    const { modal, closeModal, track, splash, demo } = this.props;
     if (!modal) return null;
   
     let component;
     if (modal === 'login') {
-      component = <LoginFormContainer />;
+      component = <LoginFormContainer splash={splash} demo={demo}/>;
     }
     else if (modal === 'signup') {
-      component = <SignupFormContainer />;
+      component = <SignupFormContainer splash={splash}/>;
     }
     else if (modal === 'edit') {
       component = <UserEdit />;
@@ -56,6 +56,8 @@ const msp = (state) => {
   return {
     modal: state.ui.modal.modal,
     track: state.ui.modal.track,
+    splash: state.ui.modal.splash,
+    demo: state.ui.modal.demo,
   };
 };
 

@@ -20,6 +20,7 @@ class ChildrenCommentShow extends React.Component {
   }
 
   createComment() {
+    e.preventDefault();
     const that = this;
     const comment = { body: this.state.body, parent_comment_id: this.props.comment.id};
     this.props.createComment(this.props.comment.track_id, comment).then(() => {
@@ -33,7 +34,7 @@ class ChildrenCommentShow extends React.Component {
 
   changeForm() {
     if (this.props.loggedIn) this.setState({ isShowing: !this.state.isShowing });
-    else this.props.openModal('login');
+    else this.props.openModal({modal: 'login'});
   }
 
   render() {
@@ -108,7 +109,7 @@ const mdp = (dispatch) => {
   return {
     createComment: (track_id, comment) => dispatch(createComment(track_id, comment)),
     destroyComment: (track_id, id) => dispatch(destroyComment(track_id, id)),
-    openModal: (modal) => dispatch(openModal(modal)),
+    openModal: (data) => dispatch(openModal(data)),
   }
 }
 

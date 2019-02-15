@@ -54,9 +54,17 @@
 
 .splash-buttons {
   display: flex;
-  width: 240px;
+  width: 300px;
   justify-content: space-between;
   align-items: center;
+}
+
+.login-splash {
+  transition: 0.2s;
+}
+
+.login-splash:hover {
+  background-color: rgba(0,0,0, 0.9);
 }
 
 .splash-title {

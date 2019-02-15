@@ -58,13 +58,13 @@ class UserTrackItem extends React.Component {
       )
     
     const deleteTrack = (currentUser && currentUser.id === track.user_id) ? (
-      <button className="delete-track-button" onClick={() => this.props.openModal('delete-track', track)}>
+      <button className="delete-track-button" onClick={() => this.props.openModal({modal: 'delete-track', track})}>
         <i className="fas fa-trash-alt"></i>
         <p>Delete</p>
       </button> ) : ( null );
 
     const editTrack = (currentUser && currentUser.id === track.user_id) ? (
-      <button className="edit-track-button" onClick={() => this.props.openModal('edit-track', track)}>
+      <button className="edit-track-button" onClick={() => this.props.openModal({modal: 'edit-track', track})}>
         <i className="fas fa-pencil-alt"></i>
         <p>Edit</p>
       </button> ) : ( null );
@@ -104,7 +104,7 @@ const mdp = (dispatch) => {
   return {
     fetchPlayingTrack: (id) => dispatch(fetchPlayingTrack(id)),
     toggleTrack: () => dispatch(toggleTrack()),
-    openModal: (modal, track) => dispatch(openModal(modal, track)),
+    openModal: (data) => dispatch(openModal(data)),
   }
 }
 

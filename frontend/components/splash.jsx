@@ -23,6 +23,14 @@ class Splash extends React.Component {
       });
     }
 
+    const buttons = this.props.currentUser ? ( null ) : (
+      <div className="splash-buttons">
+        <button className="nav-button login login-splash" onClick={() => this.props.openModal({modal: 'login', splash: true})}>Sign In</button>
+        <button className="nav-button signup" onClick={() => this.props.openModal({modal: 'signup', splash: true})}>Create account</button>
+        <button className="nav-button signup" onClick={() => this.props.openModal({ modal: 'login', splash: true, demo: true })}>demo</button>
+      </div>
+    )
+
     return (
       <div className="splash">
         <div className="small-splash">
@@ -32,10 +40,7 @@ class Splash extends React.Component {
                 <i className="fab fa-soundcloud notefloat-icon"></i>
                 <h3>NoteFloat</h3>
               </div>
-              <div className="splash-buttons">
-                <button className="nav-button login" onClick={() => this.props.openModal('login')}>Sign In</button>
-                <button className="nav-button signup" onClick={() => this.props.openModal('signup')}>Create account</button>
-              </div>
+              {buttons}
             </div>
             <div className="inspiring-words">
               <h4 className="splash-title">
@@ -67,12 +72,13 @@ class Splash extends React.Component {
 const msp = (state) => {
   return {
     tracks: Object.values(state.entities.tracks),
+    currentUser: state.entities.users[state.session.id]
   }
 }
 
 const mdp = (dispatch) => {
   return {
-    openModal: (modal) => dispatch(openModal(modal)),
+    openModal: (data) => dispatch(openModal(data)),
     fetchSplashtracks: () => dispatch(fetchSplashtracks()),
   }
 }

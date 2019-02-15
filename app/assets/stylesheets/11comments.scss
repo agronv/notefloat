@@ -112,7 +112,7 @@
   color: black;
 }
 
-.reply-button {
+.reply-button, .reply-button-delete {
   justify-self: flex-end;
   font-size: 12px;
   padding: 5px 10px; 
@@ -122,12 +122,16 @@
   visibility: hidden;
 }
 
-.reply-button:hover {
+.reply-button {
+  margin-left: 10px;
+}
+
+.reply-button:hover, .reply-button-delete:hover {
   border: 1px solid #777;
 }
 
 .comment-div:hover {
-  .reply-button {
+  .reply-button, .reply-button-delete {
     visibility: visible;
   }
   background-color: #dedede; 
@@ -149,5 +153,5 @@
 .edit-buttons {
   display: flex;
   width: 155px;
-  justify-content: space-between;
+  justify-content: flex-end;
 }

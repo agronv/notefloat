@@ -95,11 +95,21 @@ input[type=file] {
 }
 
 select {
-   -webkit-appearance: none; 
-   -moz-appearance: none;
-   appearance: none;       /* remove default arrow */
-   background-image: url(...);   /* add custom arrow */
+  //  -webkit-appearance: none; 
+  //  -moz-appearance: none;
+  //  appearance: none;       /* remove default arrow */
+  //  background-image: url(...);   /* add custom arrow */
    font-size: 16px;
+   cursor: pointer;
+   transition: .2s;
+}
+
+select:hover {
+  background-color: #999;
+}
+
+select:focus {
+  outline: none;
 }
 
 .edit-form-section {

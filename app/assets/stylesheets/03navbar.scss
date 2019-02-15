@@ -57,7 +57,7 @@ header {
   cursor: pointer;
 }
 
-.nav-buttons li:hover, .nav-buttons li:active {
+.nav-buttons li:hover, .nav-buttons li:active, .tracks-button:hover, .tracks-button:active {
   color: rgb(238, 238, 238)
 }
 
@@ -91,6 +91,10 @@ header {
   background-color: #F65502;
   padding: 5px 8px;
   border-radius: 5px;
+}
+
+.signup:hover {
+  background-color:  #FC3200;
 }
 
 .login {
