@@ -129,13 +129,12 @@ class AudioPlayer extends React.Component {
     let { length } = currentTrack;
 
     const togglePlay = isPlaying ? (
-    <i className="fas fa-pause toggle-play" onClick={this.props.toggleTrack}></i>) : (
-    <i className="fas fa-play toggle-play" onClick={this.props.toggleTrack}></i>);
+      <i className="fas fa-pause toggle-play" onClick={this.props.toggleTrack}></i>) : (
+      <i className="fas fa-play toggle-play" onClick={this.props.toggleTrack}></i>);
 
     const volumeButton = this.state.mute ? (
       <i className="fas fa-volume-mute volume-button" onClick={this.toggleMute}></i>) : (
-      <i className="fas fa-volume-up volume-button" onClick={this.toggleMute}></i>
-    )
+      <i className="fas fa-volume-up volume-button" onClick={this.toggleMute}></i>);
     
     const loopClass = this.state.loop ? "button-active" : ""
     const shuffleClass = this.state.shuffle ? "button-active" : ""
