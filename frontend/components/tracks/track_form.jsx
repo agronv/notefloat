@@ -107,7 +107,7 @@ class TrackForm extends React.Component {
     })
 
     return (
-      <section className="track-form-section edit-form-section" onClick={(e) => e.stopPropagation()}>
+      <section className="track-form-section" onClick={(e) => e.stopPropagation()}>
         <h2>{this.props.formType}</h2>
         <form className='track-form' onSubmit={this.handleSubmit}>
           <div className="photo-form">
