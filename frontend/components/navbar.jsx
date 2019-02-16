@@ -51,13 +51,17 @@ class NavBar extends React.Component {
       <>
         <header>
           <nav className='nav-row'> 
-            <Link className='navbar-index' to='/'>
-              <div className="notefloat"> 
-                <i className="fab fa-soundcloud"></i>
-                <h3>NoteFloat</h3>
-              </div>
-              <button className="tracks-button">Collection</button>
-            </Link>
+            <div className='navbar-index'>
+              <Link to='/'>
+                <div className="notefloat"> 
+                  <i className="fab fa-soundcloud"></i>
+                  <h3>NoteFloat</h3>
+                </div>
+              </Link>
+              <Link to='/tracks'>
+                <button className="tracks-button">Collection</button>
+              </Link>
+            </div>
             {buttons}
           </nav>
         </header>
