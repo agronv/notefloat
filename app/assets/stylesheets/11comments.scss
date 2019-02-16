@@ -122,8 +122,8 @@
   visibility: hidden;
 }
 
-.reply-button {
-  margin-left: 10px;
+.reply-button-delete {
+  margin-right: 10px;
 }
 
 .reply-button:hover, .reply-button-delete:hover {
@@ -152,6 +152,6 @@
 
 .edit-buttons {
   display: flex;
-  width: 155px;
+  width: 160px;
   justify-content: flex-end;
 }

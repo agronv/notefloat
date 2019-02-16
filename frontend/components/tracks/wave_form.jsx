@@ -52,8 +52,8 @@ class WaveForm extends React.Component {
   }
 
   componentWillUnmount() {
-    this.waveSurfer.un('ready');
-    this.waveSurfer.destroy();
+    // this.waveSurfer.un('ready');
+    // this.waveSurfer.destroy();
   }
   
   componentDidUpdate(prevProps) {

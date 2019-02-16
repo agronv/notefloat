@@ -1,9 +1,10 @@
-import { connect } from 'react-redux';
-import { openModal } from '../actions/modal_actions';
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { openModal } from '../actions/modal_actions';
+import { logOut } from "../actions/session_actions";
 import { fetchSplashtracks } from '../actions/track_actions';
 import TrackIndexItem from './tracks/track_index_item';
-import { Link } from 'react-router-dom';
 
 class Splash extends React.Component {
   constructor(props) {
@@ -23,7 +24,11 @@ class Splash extends React.Component {
       });
     }
 
-    const buttons = this.props.currentUser ? ( null ) : (
+    const buttons = this.props.currentUser ? (
+      <div className="splash-buttons logout-splash">
+        <button className="nav-button login login-splash" onClick={this.props.logOut}>Log Out</button>
+      </div>
+     ) : (
       <div className="splash-buttons">
         <button className="nav-button login login-splash" onClick={() => this.props.openModal({modal: 'login', splash: true})}>Sign In</button>
         <button className="nav-button signup" onClick={() => this.props.openModal({modal: 'signup', splash: true})}>Create account</button>
@@ -78,6 +83,7 @@ const msp = (state) => {
 
 const mdp = (dispatch) => {
   return {
+    logOut: () => dispatch(logOut()),
     openModal: (data) => dispatch(openModal(data)),
     fetchSplashtracks: () => dispatch(fetchSplashtracks()),
   }
