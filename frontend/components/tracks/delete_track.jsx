@@ -66,7 +66,7 @@ class DeleteTrack extends React.Component {
       )
 
     return (
-      <section className="track-delete-section">
+      <section className="track-delete-section" onClick={(e) => e.stopPropagation()}>
         <h4>Delete Track</h4>
         <div className="main-delete">
         <div className="delete-left">

@@ -12,11 +12,7 @@
   height: 470px;
   padding: 25px;
   background-color: white;
-  z-index: 11;
-  position: absolute;
-  top: 100px;
-  left: 50%;
-  margin-left: -220px;
+  margin: 0 auto;
 }
 
 .log-in-form {
@@ -68,4 +64,11 @@
 .genre {
   display: flex;
   flex-direction: column;
+}
+
+.modal-child {
+  position: relative;
+  margin: 100px auto 0 auto;
+  text-align: center;
+  align-content: center;
 }

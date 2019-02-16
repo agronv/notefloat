@@ -18,7 +18,7 @@
   height: 340px;
   width: 650px;
   margin: 0 auto;
-  margin-top: 40px;
+  // margin-top: 40px;
 }
 
 .image-preview{
@@ -114,16 +114,16 @@ select:focus {
 
 .edit-form-section {
   z-index: 11;
-  position: absolute;
-  top: 50px;
-  left: 17.5%;
+  // position: absolute;
+  // top: 50px;
+  // left: 17.5%;
 }
 
 .track-delete-section {
-  z-index: 11;
-  position: absolute;
-  top: 250px;
-  left: 37.5%;
+  z-index: 21;
+  // position: absolute;
+  // top: 250px;
+  // left: 37.5%;
   width: 475px;
   height: 275px;
   padding: 25px;

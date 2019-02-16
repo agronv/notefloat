@@ -51,7 +51,6 @@ class SessionForm extends React.Component {
   }
 
   componentDidMount() {
-    // debugger
     if (this.props.demo) {
       this.demoLogin();
     }
@@ -71,7 +70,7 @@ class SessionForm extends React.Component {
     const errors = this.props.errors.session.length > 0 ? <p className="session-errors">{this.props.errors.session[0]}</p> : null;
     const klass = this.props.errors.session.length > 0 ? "session-error-active" : "";
     return (
-      <section className="log-in-section">
+      <section className="log-in-section" onClick={(e) => e.stopPropagation()}>
         <h2>{this.props.formType}</h2>
         <i className="fab fa-soundcloud soundcloud-big"></i>
 
