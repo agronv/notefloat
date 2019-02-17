@@ -79,7 +79,7 @@ class TrackForm extends React.Component {
   }
 
   render() {
-    const loading = this.state.loading ? <img src={window.loadingGif} className="track-loading" /> : (null);
+    const loading = this.state.loading ? (<div className="loader"></div>) : (null);
     
     const mp3 = this.props.formType === "edit" ? null : (
       <label htmlFor="track">

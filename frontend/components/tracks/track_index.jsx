@@ -19,7 +19,7 @@ class TrackIndex extends React.Component {
     if (this.state.loading){
       return (<div className="bigger-index-div">
         <section className="tracks-section">
-          <img src={window.loadingGif} className="index-loader" />
+          <div className="loader"></div>
         </section>
       </div>)
     }
