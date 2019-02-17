@@ -12,7 +12,7 @@ class Api::UsersController < ApplicationController
 
   def update 
     @user = User.find_by(id: params[:id])
-    if @user
+    if @user && @user.id == current_user.id
       if @user.update(update_params)
         render :complete_show
       else  

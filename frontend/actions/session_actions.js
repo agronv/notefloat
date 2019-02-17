@@ -86,8 +86,8 @@ export const signUp = user => {
 export const updateUser = (id, user) => {
   return dispatch => {
     return APIUtil.updateUser(id, user).then(
-      user => {
-        return dispatch(receiveCurrentUser(user));
+      data => {
+        return dispatch(receiveCompleteUser(data));
       },
       errors => dispatch(receiveSessionErrors(errors.responseJSON))
     );

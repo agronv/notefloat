@@ -6,6 +6,7 @@ class TrackForm extends React.Component {
     super(props);
     this.state = this.props.track;
     this.state.loading = false;
+    this.state.changedPhoto = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
@@ -30,7 +31,7 @@ class TrackForm extends React.Component {
     if (this.state.mp3) {
       formData.append('track[mp3_file]', this.state.mp3);
     }
-    if (this.state.photoUrl){
+    if (this.state.changedPhoto){
       formData.append('track[photo]', this.state.photoUrl);
     }
     if (this.props.formType === 'edit') {
@@ -52,7 +53,7 @@ class TrackForm extends React.Component {
       if (feild === "photoUrl") {
         const fileReader = new FileReader();
         fileReader.onloadend = () => {
-          this.setState({ [feild]: file, photo: fileReader.result });
+          this.setState({ [feild]: file, photo: fileReader.result, changedPhoto: true });
         };
         if (file) {
           fileReader.readAsDataURL(file);

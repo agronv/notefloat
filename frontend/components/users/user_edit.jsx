@@ -9,6 +9,7 @@ class UserEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.currentUser;
+    this.state.changedPhoto = false;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handlePhoto = this.handlePhoto.bind(this);
@@ -18,7 +19,7 @@ class UserEdit extends React.Component {
     const file = e.target.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
-      this.setState({ photoUrl: file, photo: fileReader.result });
+      this.setState({ photoUrl: file, photo: fileReader.result, changedPhoto: true });
     };
     if (file) {
       fileReader.readAsDataURL(file);
@@ -32,13 +33,11 @@ class UserEdit extends React.Component {
       this.state.description = "";
     }
     formData.append('user[description]', this.state.description);
-    if (this.state.photoUrl) {
+    if (this.state.changedPhoto) {
       formData.append('user[photo]', this.state.photoUrl);
     }
-    debugger
     this.props.updateUser(this.state.id, formData).then( () => { 
       this.props.closeModal();
-      this.props.fetchCompleteUser(this.props.params.userId);
     });
   }
 
