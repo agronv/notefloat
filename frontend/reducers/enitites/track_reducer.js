@@ -20,8 +20,10 @@ export default (state = {}, action) => {
       return newState;
 
     case RECEIVE_TRACKS:
-    case RECEIVE_COMPLETE_USER:
       return action.tracks;
+    case RECEIVE_COMPLETE_USER:
+      if (action.tracks) return action.tracks;
+      else return {};
 
     default:
       return state;

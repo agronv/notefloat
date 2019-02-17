@@ -28,13 +28,18 @@ class UserEdit extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData();
+    if (!this.state.description) {
+      this.state.description = "";
+    }
     formData.append('user[description]', this.state.description);
     if (this.state.photoUrl) {
       formData.append('user[photo]', this.state.photoUrl);
     }
-    const that = this;
-    this.props.updateUser(this.state.id, formData).then(that.props.closeModal)
-    .then(() => {this.props.fetchCompleteUser(this.props.params.userId)});
+    debugger
+    this.props.updateUser(this.state.id, formData).then( () => { 
+      this.props.closeModal();
+      this.props.fetchCompleteUser(this.props.params.userId);
+    });
   }
 
   handleInput(field) {
