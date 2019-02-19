@@ -1,4 +1,4 @@
-.track-form-section, .user-form-section {
+.track-form-section, .user-form-section, .upload-form-section {
   width: 1240px;
   height: 600px;
   background-color: white;
@@ -6,19 +6,76 @@
   margin-top: 100px; 
 }
 
-.track-form-section h2, .edit-title {
+.upload-form-section {
+  margin-top: 0;
+}
+
+.track-form-section h2, .edit-title, .upload-form-section h2 {
   text-align: center;
   padding-top: 20px;
 }
 
-.track-form, .user-form {
+.track-form, .user-form, .bottom-form {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   height: 340px;
   width: 650px;
   margin: 0 auto;
-  // margin-top: 40px;
+}
+
+.upload-form {
+  width: 650px;
+  margin: 0 auto;
+}
+
+#bottom-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 350px;
+  width: 100%;
+  margin-bottom: 30px;
+  visibility: hidden;
+  transform: translateY(600px);
+  transition: 2s;
+}
+
+#bottom-form.visible {
+  height: 350px;
+  visibility: visible;
+  transform: translateY(0);
+  transition: 2s;
+}
+
+.track-form {
+  margin-top: 50px;
+}
+
+.upload-form {
+  margin-top: 10px;
+}
+
+.track-upload {
+  height: 350px;
+  width: 100%;
+  cursor: pointer;
+  margin-bottom: 60px;
+  border: 1px dashed #bbb;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.track-upload.smaller {
+  height: 200px;
+  transition: 2s;
+}
+
+.track-upload h4 {
+  margin-bottom: 10px;
 }
 
 .image-preview{
@@ -57,8 +114,7 @@ input[type=file] {
 }
 
 .track-input {
-  width: 100%;
-  padding: 10px 0;
+  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;

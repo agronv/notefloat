@@ -36,7 +36,7 @@ class SessionForm extends React.Component {
         } else {
           this.props.submitAction({ username: "demo", password: "demo"}).then(() => this.props.closeModal());
         }
-      }, 2000);
+      }, 1200);
     }, 1000);
   }
 

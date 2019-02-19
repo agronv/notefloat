@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import Dropzone from 'react-dropzone' 
 
 class TrackForm extends React.Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class TrackForm extends React.Component {
     this.state = this.props.track;
     this.state.loading = false;
     this.state.changedPhoto = false;
+    this.formRef = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.updateTitle = this.updateTitle.bind(this);
@@ -49,8 +51,8 @@ class TrackForm extends React.Component {
 
   handleFile(feild) {
     return (e) => {
-      const file = e.target.files[0];
       if (feild === "photoUrl") {
+        const file = e.target.files[0];
         const fileReader = new FileReader();
         fileReader.onloadend = () => {
           this.setState({ [feild]: file, photo: fileReader.result, changedPhoto: true });
@@ -60,6 +62,13 @@ class TrackForm extends React.Component {
         }
       }
       else {
+        let file;
+        if (e.target) {
+          e.stopPropagation();
+          file = e.target.files[0];
+        } else {
+          file = e[0];
+        }
         const objectURL = URL.createObjectURL(file);
         const audio = new Audio([objectURL]); 
         const that = this;
@@ -70,6 +79,9 @@ class TrackForm extends React.Component {
           }
         }, 500);
         this.setState({ [feild]: file });
+        this.formRef.current.classList.add("visible");
+        let trackUpload = document.getElementsByClassName("track-upload")[0];
+        trackUpload.classList.add("smaller");
       }
     };
   } 
@@ -80,13 +92,6 @@ class TrackForm extends React.Component {
 
   render() {
     const loading = this.state.loading ? (<div className="loader"></div>) : (null);
-    
-    const mp3 = this.props.formType === "edit" ? null : (
-      <label htmlFor="track">
-        <p className="track-input">choose file to upload*</p>
-        <input type="file" onChange={this.handleFile('mp3')} id="track" accept="audio/*"/>
-      </label> 
-    ) 
 
     const submit = this.state.title.length > 0 && (this.state.mp3 || this.props.formType === 'edit') ? (
       <button className="track-submit">{this.props.formType}</button>
@@ -107,37 +112,88 @@ class TrackForm extends React.Component {
       return <option value={genre} key={i}>{this.titleize(genre)}</option>;
     })
 
-    return (
-      <section className="track-form-section" onClick={(e) => e.stopPropagation()}>
-        <h2>{this.props.formType}</h2>
-        <form className='track-form' onSubmit={this.handleSubmit}>
-          <div className="photo-form">
-            {previewPhoto}
-            { loading }
-            <label htmlFor="photo">
-                <p className="photo-input"><i className="fas fa-camera"></i>Artwork (optional)</p>
-              <input type="file" onChange={this.handleFile("photoUrl")} id="photo" accept="image/*"/>
-            </label> 
-          </div>
-          <div className="right-side-form">
-            <label htmlFor="title"> 
-              <p>Title*</p>
-              <input type="text" className="title-input" onChange={this.updateTitle} id="title" value={this.state.title}/>
-            </label> 
-            <label htmlFor="genre"> 
-              <select
-              value={this.state.genre}
-              onChange={this.updateGenre}
-              className="genre-input">
-                {genres}
-              </select>
-            </label> 
-            {mp3}
-            {submit}
-          </div>
-        </form>
-      </section>
-    )
+    if (this.props.formType === "edit") {
+      return (
+        <section className="track-form-section" onClick={(e) => e.stopPropagation()}>
+          <h2>Edit Track</h2>
+          <form className='track-form' onSubmit={this.handleSubmit}>
+            <div className="photo-form">
+              {previewPhoto}
+              { loading }
+              <label htmlFor="photo">
+                  <p className="photo-input"><i className="fas fa-camera"></i>Artwork (optional)</p>
+                <input type="file" onChange={this.handleFile("photoUrl")} id="photo" accept="image/*"/>
+              </label> 
+            </div>
+            <div className="right-side-form">
+              <label htmlFor="title"> 
+                <p>Title*</p>
+                <input type="text" className="title-input" onChange={this.updateTitle} id="title" value={this.state.title}/>
+              </label> 
+              <label htmlFor="genre"> 
+                <select
+                value={this.state.genre}
+                onChange={this.updateGenre}
+                className="genre-input">
+                  {genres}
+                </select>
+              </label> 
+              {submit}
+            </div>
+          </form>
+        </section>
+      )
+    } else {
+        return (
+          <section className="upload-form-section" onClick={(e) => e.stopPropagation()} 
+          style={{height: `${window.innerHeight-45}px`}}
+          >
+            <h2>Upload Track</h2>
+            <form className='upload-form' onSubmit={this.handleSubmit}>
+              <Dropzone onDrop={this.handleFile("mp3")}>
+                {({ getRootProps, getInputProps }) => {
+                  return (
+                    <div {...getRootProps()}>
+                      <input {...getInputProps()} />
+                      <div className="track-upload">
+                        <h4>Drag and drop your tracks here</h4>
+                        <label htmlFor="track">
+                          <p className="track-input">choose file to upload*</p>
+                        </label> 
+                      </div>
+                    </div>
+                  )
+                }}
+              </Dropzone>
+              <div id="bottom-form" ref={this.formRef} >
+                <div className="photo-form">
+                  {previewPhoto}
+                  {loading}
+                  <label htmlFor="photo">
+                    <p className="photo-input"><i className="fas fa-camera"></i>Artwork (optional)</p>
+                    <input type="file" onChange={this.handleFile("photoUrl")} id="photo" accept="image/*" />
+                  </label>
+                </div>
+                <div className="right-side-form">
+                  <label htmlFor="title">
+                    <p>Title*</p>
+                    <input type="text" className="title-input" onChange={this.updateTitle} id="title" value={this.state.title} />
+                  </label> 
+                  <label htmlFor="genre">
+                    <select
+                      value={this.state.genre}
+                      onChange={this.updateGenre}
+                      className="genre-input">
+                      {genres}
+                    </select>
+                  </label>
+                  {submit}
+                </div>
+              </div>
+            </form>
+          </section>
+      )
+    }
   }
 }
 
