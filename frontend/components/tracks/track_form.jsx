@@ -146,8 +146,7 @@ class TrackForm extends React.Component {
     } else {
         return (
           <section className="upload-form-section" onClick={(e) => e.stopPropagation()} 
-          style={{height: `${window.innerHeight-45}px`}}
-          >
+          style={{height: `${window.innerHeight-45}px`}}>
             <h2>Upload Track</h2>
             <form className='upload-form' onSubmit={this.handleSubmit}>
               <Dropzone onDrop={this.handleFile("mp3")}>
