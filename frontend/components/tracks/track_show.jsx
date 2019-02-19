@@ -149,6 +149,11 @@ class TrackShow extends React.Component {
             </div>
           </div>
         </section>
+        <div className="comment-bottom">
+          <div className="horizonal-line"></div>
+            <i className="fab fa-soundcloud comment-cloud"></i>
+          <div className="horizonal-line"></div>
+        </div>
       </div>
     );
   }

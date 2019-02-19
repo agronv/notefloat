@@ -60,6 +60,10 @@ class ChildrenCommentShow extends React.Component {
               onChange={this.handleCommentChange} />
           </label>
         </form>
+        <button onClick={this.changeForm} className="cancel-button">
+          <i className="fas fa-times"></i>
+          <p>Cancel</p>
+        </button>
       </div>) : (null)
 
     const deleter = (loggedIn && loggedIn === comment.user_id) ? (
@@ -72,7 +76,9 @@ class ChildrenCommentShow extends React.Component {
       <>
         <div className="comment-div">
           <div className="comment-info">
-            {commentImage}
+            <Link to={`/users/${comment.user_id}`}>
+              {commentImage}
+            </Link>  
             <div className="comment-text">
               <Link className="comment-user-info" to={`/users/${comment.user_id}`}>{comment.username}</Link>
               <p>

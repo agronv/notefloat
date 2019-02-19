@@ -77,3 +77,29 @@
   height: 3px;
   width: 300px;
 }
+
+.commenting-section {
+  width: 100%;
+}
+
+.comment-bottom {
+  padding-bottom: 50px;
+  background-color: white;
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.horizonal-line {
+  width: 48.2%;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.comment-cloud {
+  color: #ccc;
+  font-size: 20px;
+  margin: 0 5px;
+}

@@ -19,7 +19,6 @@ class MusicBar extends React.Component {
 
     return (
       <footer>
-        <div className="footer-space"></div>
         <div className="music-bar">
           <div className="music-bar-content">
             < AudioPlayer currentTrack={currentTrack} />

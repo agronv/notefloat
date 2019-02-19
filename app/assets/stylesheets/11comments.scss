@@ -1,3 +1,7 @@
+.comments-section {
+  width: 85%;
+}
+
 .second-part {
   width: 95%;
   margin-top: 20px;
@@ -21,6 +25,7 @@
 .small-comment-form-section {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 976px;
   background-color: rgb(229, 229, 229);
   height: 44px;
@@ -29,7 +34,7 @@
 .small-comment-input {
   margin-left: 5px;
   font-size: 14px;
-  width: 817px;
+  width: 760px;
 }
 
 .big-comment-form {
@@ -43,6 +48,10 @@
   border-radius: 4px;
   cursor: pointer;
   transition: border .2s;
+}
+
+.parent-comment-li {
+  width: 100%;
 }
 
 .actual-input {
@@ -59,7 +68,7 @@
 }
 
 .comment-form {
-  width: 1133px;
+  width: 96%;
   height: 54px;
   background-color: rgb(229, 229, 229);
 }
@@ -74,7 +83,6 @@
 
 .comment-count {
   color: #999;
-  width: 1000px;
   margin: 20px 0;
 }
 
@@ -112,7 +120,7 @@
   color: black;
 }
 
-.reply-button, .reply-button-delete {
+.reply-button, .reply-button-delete, .cancel-button {
   justify-self: flex-end;
   font-size: 12px;
   padding: 5px 10px; 
@@ -122,11 +130,21 @@
   visibility: hidden;
 }
 
+.cancel-button {
+  visibility: visible;
+  background-color: inherit;
+  margin-right: 10px;
+}
+
+.cancel-button i {
+  margin-right: 5px;
+}
+
 .reply-button-delete {
   margin-right: 10px;
 }
 
-.reply-button:hover, .reply-button-delete:hover {
+.reply-button:hover, .reply-button-delete:hover, .cancel-button:hover {
   border: 1px solid #777;
 }
 
