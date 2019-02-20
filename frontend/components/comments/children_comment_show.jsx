@@ -12,6 +12,7 @@ class Comment extends React.Component {
       body: "",
       isShowing: false,
     };
+    this.formRef = React.createRef();
     this.changeForm = this.changeForm.bind(this);
     this.createComment = this.createComment.bind(this);
     this.handleCommentChange = this.handleCommentChange.bind(this);
@@ -20,7 +21,7 @@ class Comment extends React.Component {
   createComment(e) {
     e.preventDefault();
     const comment = { body: this.state.body, parent_comment_id: this.props.comment.id};
-    this.props.createComment(this.props.comment.track_id, comment)
+    this.props.createComment(this.props.comment.track_id, comment);
     this.setState({ body: "", isShowing: false });
   }
 
@@ -29,7 +30,10 @@ class Comment extends React.Component {
   }
 
   changeForm() {
-    if (this.props.loggedIn) this.setState({ isShowing: !this.state.isShowing });
+    if (this.props.loggedIn) {
+      this.setState({ isShowing: !this.state.isShowing });
+      this.formRef.current.focus();
+    }
     else this.props.openModal({modal: 'login'});
   }
 
@@ -45,23 +49,7 @@ class Comment extends React.Component {
       </li>
     })) : (null);
 
-    const form = this.state.isShowing ? (
-      <div className="small-comment-form-section">
-        <form onSubmit={this.createComment} className="small-comment-form">
-          <label className="actual-input">
-            <Link className="comment-parent-user-info" to={`/users/${comment.user_id}`}>@{comment.username}: </Link>
-            <input type="text"
-              className="small-comment-input"
-              value={this.state.body}
-              placeholder="Write a comment"
-              onChange={this.handleCommentChange} />
-          </label>
-        </form>
-        <button onClick={this.changeForm} className="cancel-button">
-          <i className="fas fa-times"></i>
-          <p>Cancel</p>
-        </button>
-      </div>) : (null)
+    const formClass = this.state.isShowing ? "small-comment-form-section" : "invisible"
 
     const deleter = (loggedIn && loggedIn === comment.user_id) ? (
       <button onClick={() => this.props.deleteComment(comment.track_id, comment.id)} className="reply-button-delete">
@@ -99,7 +87,23 @@ class Comment extends React.Component {
         <ul className="comment-list">
           {childrenCommentz}
         </ul>
-        {form}
+        <div className={formClass}>
+          <form onSubmit={this.createComment} className="small-comment-form">
+            <label className="actual-input">
+              <Link className="comment-parent-user-info" to={`/users/${comment.user_id}`}>@{comment.username}: </Link>
+              <input type="text"
+                className="small-comment-input"
+                value={this.state.body}
+                ref={this.formRef}
+                placeholder="Write a comment"
+                onChange={this.handleCommentChange} />
+            </label>
+          </form>
+          <button onClick={this.changeForm} className="cancel-button">
+            <i className="fas fa-times"></i>
+            <p>Cancel</p>
+          </button>
+        </div>
       </>
     )
   }

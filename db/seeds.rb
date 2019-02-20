@@ -13,7 +13,7 @@ Comment.destroy_all
 
 # Users
 
-u1 = User.new({username: 'demo', password: 'demo'})
+u1 = User.new({username: 'demo', password: 'password'})
 file = EzDownload.open('https://s3.amazonaws.com/notefloat-dev/birdy.jpg')
 u1.photo.attach(io: file, filename: 'birdy.jpg')
 u1.save!

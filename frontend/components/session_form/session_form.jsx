@@ -18,7 +18,7 @@ class SessionForm extends React.Component {
       typeSpeed: 50,
     };
     const password = {
-      strings: ["demo"],
+      strings: ["password"],
       typeSpeed: 50,
     };
     this.setState({
@@ -29,14 +29,14 @@ class SessionForm extends React.Component {
       new Typed("#username", username);
       setTimeout(() => {
         new Typed("#password", password);
-      }, 1000);
+      }, 500);
       setTimeout(() => {
         if (this.props.splash) {
-          this.props.submitAction({username: "demo", password: "demo"}).then(() => this.props.history.push("/tracks")).then(() => this.props.closeModal());
+          this.props.submitAction({username: "demo", password: "password"}).then(() => this.props.history.push("/tracks")).then(() => this.props.closeModal());
         } else {
-          this.props.submitAction({ username: "demo", password: "demo"}).then(() => this.props.closeModal());
+          this.props.submitAction({ username: "demo", password: "password"}).then(() => this.props.closeModal());
         }
-      }, 1200);
+      }, 1000);
     }, 1000);
   }
 
