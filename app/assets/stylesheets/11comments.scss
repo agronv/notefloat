@@ -50,8 +50,19 @@
   transition: border .2s;
 }
 
+.comment-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 .parent-comment-li {
   width: 100%;
+}
+
+.child-comment-li {
+  width: 98%;
 }
 
 .actual-input {

@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createComment, destroyComment } from '../../actions/comment_actions';
 import { childrenComments } from '../../reducers/selectors/selectors';
-import CommentChildrenChild from './children_comment_show';
+import CommentChildren from './children_comment_show';
 import { Link } from 'react-router-dom';
 import { openModal } from "../../actions/modal_actions";
 
-
-class ChildrenCommentShow extends React.Component {
+class Comment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,11 +19,9 @@ class ChildrenCommentShow extends React.Component {
 
   createComment(e) {
     e.preventDefault();
-    const that = this;
     const comment = { body: this.state.body, parent_comment_id: this.props.comment.id};
-    this.props.createComment(this.props.comment.track_id, comment).then(() => {
-      that.setState({ body: "", isShowing: false });
-    });
+    this.props.createComment(this.props.comment.track_id, comment)
+    this.setState({ body: "", isShowing: false });
   }
 
   handleCommentChange(e) {
@@ -39,14 +35,15 @@ class ChildrenCommentShow extends React.Component {
 
   render() {
     const { comment, childrenComments, loggedIn } = this.props;
+
     const commentImage = comment.photoUrl ? (
       <img src={comment.photoUrl} className="comment-image"></img>) : (
         <img src={window.defaultUserPhoto} className="comment-image"></img>)
     const childrenCommentz = childrenComments ? (childrenComments.map(childComment => {
       return <li className="child-comment-li" key={childComment.id}>
-        <CommentChildrenChild comment={childComment} />
+        <CommentChildren comment={childComment} deleteComment={this.props.deleteComment} createComment={this.props.createComment}/>
       </li>
-    })) : (null );
+    })) : (null);
 
     const form = this.state.isShowing ? (
       <div className="small-comment-form-section">
@@ -67,10 +64,14 @@ class ChildrenCommentShow extends React.Component {
       </div>) : (null)
 
     const deleter = (loggedIn && loggedIn === comment.user_id) ? (
-      <button onClick={() => this.props.destroyComment(comment.track_id, comment.id)} className="reply-button-delete">
+      <button onClick={() => this.props.deleteComment(comment.track_id, comment.id)} className="reply-button-delete">
         <i className="fas fa-trash-alt"></i>
         <p>Delete</p>
       </button>) : ( null )
+
+    const replying = comment.parentUserId ? (
+      <Link className="comment-parent-user-info" to={`/users/${comment.parentUserId}`}>@{comment.parentUserName}: </Link>
+    ) : ( null )
 
     return (
       <>
@@ -82,7 +83,7 @@ class ChildrenCommentShow extends React.Component {
             <div className="comment-text">
               <Link className="comment-user-info" to={`/users/${comment.user_id}`}>{comment.username}</Link>
               <p>
-                <Link className="comment-parent-user-info" to={`/users/${comment.parentUserId}`}>@{comment.parentUserName}: </Link>
+                {replying}
                 {comment.body}
               </p>
             </div>
@@ -95,7 +96,7 @@ class ChildrenCommentShow extends React.Component {
             </button>
           </div>
         </div>
-        <ul>
+        <ul className="comment-list">
           {childrenCommentz}
         </ul>
         {form}
@@ -113,10 +114,8 @@ const msp = (state, ownProps) => {
 
 const mdp = (dispatch) => {
   return {
-    createComment: (track_id, comment) => dispatch(createComment(track_id, comment)),
-    destroyComment: (track_id, id) => dispatch(destroyComment(track_id, id)),
     openModal: (data) => dispatch(openModal(data)),
   }
 }
 
-export default connect(msp, mdp)(ChildrenCommentShow);
+export default connect(msp, mdp)(Comment);

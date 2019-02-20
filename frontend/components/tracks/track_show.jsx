@@ -6,7 +6,7 @@ import { createComment, destroyComment} from '../../actions/comment_actions';
 import { trackComments } from '../../reducers/selectors/selectors';
 import { fetchUser } from '../../actions/session_actions';
 import { Link } from 'react-router-dom';
-import ParentCommentShow from '../comments/parent_comment_show';
+import Comment from '../comments/children_comment_show';
 import WaveForm from './wave_form';
 import { openModal } from "../../actions/modal_actions";
 import { randomBackgroundColor } from '../../utils/random_color';
@@ -15,12 +15,16 @@ class TrackShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = { body: "", commentCount: 0};
+
     this.handleChange = this.handleChange.bind(this);
     this.destroyTrack = this.destroyTrack.bind(this);
     this.playing = this.playing.bind(this);
     this.handleCommentChange = this.handleCommentChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.createComment = this.createComment.bind(this);
     this.checkLoggedIn = this.checkLoggedIn.bind(this);
+    this.deleteComment = this.deleteComment.bind(this);
+
     this.background1 = randomBackgroundColor();
     this.background2 = randomBackgroundColor();
   }
@@ -37,6 +41,14 @@ class TrackShow extends React.Component {
   destroyTrack() {
     this.props.destroyTrack(this.props.track.id).then(() => {
       this.props.history.push("/tracks");
+    });
+  }
+
+  deleteComment(trackId, commentId) {
+    const that = this;
+    this.props.destroyComment(trackId, commentId).then(() => {
+      const newCount = that.state.commentCount - 1;
+      that.setState({ body: "", commentCount: newCount });
     });
   }
 
@@ -65,12 +77,16 @@ class TrackShow extends React.Component {
     this.setState({ body: e.target.value });
   }
 
-  createComment(e) {
+  handleSubmit(e) {
     e.preventDefault();
+    this.createComment(this.props.track.id, {body: this.state.body} )
+  }
+
+  createComment(trackId, comment) {
     const that = this;
-    this.props.createComment(this.props.track.id, {body: this.state.body} ).then( () => {
-      const newCount = that.state.commentCount+1;
-      that.setState({ body: "", commentCount: newCount});
+    this.props.createComment(trackId, comment).then(() => {
+      const newCount = that.state.commentCount + 1;
+      that.setState({ body: "", commentCount: newCount });
     });
   }
 
@@ -98,7 +114,7 @@ class TrackShow extends React.Component {
 
     const commentz = comments.map( (comment) => {
       return <li className="parent-comment-li" key={comment.id}>
-        <ParentCommentShow comment={comment} />
+        <Comment comment={comment} deleteComment={this.deleteComment} createComment={this.createComment}/>
       </li>
     });
 
@@ -126,7 +142,7 @@ class TrackShow extends React.Component {
         <section className="second-part">
           <div className="comment-form-section">
             {userImage}
-            <form onSubmit={this.createComment} onClick={this.checkLoggedIn}className="comment-form">
+            <form onSubmit={this.handleSubmit} onClick={this.checkLoggedIn}className="comment-form">
               <input type="text" 
               className="big-comment-form"
               value={this.state.body} 
@@ -143,7 +159,7 @@ class TrackShow extends React.Component {
               <p className="comment-count">
                 <i className="fas fa-comment"></i> {this.state.commentCount} comments
               </p>
-              <ul>
+              <ul className="comment-list">
                 {commentz}
               </ul>
             </div>
