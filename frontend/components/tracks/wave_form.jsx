@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux'; 
 import waveSurfer from 'wavesurfer.js';
 import { receiveNextTrack, setWaveTime } from '../../actions/current_track_actions';
-import { randomColor } from '../../utils/random_color'; 
 
 class WaveForm extends React.Component {
   constructor(props) {
@@ -14,7 +13,6 @@ class WaveForm extends React.Component {
     width: 800, 
     loaderPosition: 0,
     loadingDirection: -1,
-    color: 'F65502'
     };
   }
 
@@ -39,7 +37,7 @@ class WaveForm extends React.Component {
     
     this.interval = setInterval(() => {
       if (this.state.loaderPosition <= 0 || this.state.loaderPosition >= 500) {
-        this.setState({ loadingDirection: this.state.loadingDirection*-1, color: randomColor()});
+        this.setState({ loadingDirection: this.state.loadingDirection * -1 });
       }
       const loaderPosition = (this.state.loaderPosition + 5*(this.state.loadingDirection));
       this.setState({ loaderPosition});
@@ -52,8 +50,8 @@ class WaveForm extends React.Component {
   }
 
   componentWillUnmount() {
-    // this.waveSurfer.un('ready');
-    // this.waveSurfer.destroy();
+    this.waveSurfer.un('ready');
+    this.waveSurfer.destroy();
   }
   
   componentDidUpdate(prevProps) {
@@ -86,7 +84,7 @@ class WaveForm extends React.Component {
     const loading = this.state.loading ? (
       <div style={width} className="outer-loader">
         <div className="inner-loader"
-          style={{ left: `${this.state.loaderPosition}px`, backgroundColor: `#${this.state.color}` }}>
+          style={{ left: `${this.state.loaderPosition}px`}}>
         </div>
       </div> 
       ): (

@@ -76,6 +76,7 @@
   z-index: 3;
   height: 3px;
   width: 300px;
+  background-color: #f65502;
 }
 
 .commenting-section {
@@ -83,6 +84,7 @@
 }
 
 .comment-bottom {
+  margin-top: 30px;
   padding-bottom: 50px;
   background-color: white;
   width: 95%;
@@ -93,13 +95,14 @@
 }
 
 .horizonal-line {
-  width: 48.2%;
+  width: 48.1%;
   height: 1px;
-  background-color: #ccc;
+  background-color: #aaa;
 }
 
 .comment-cloud {
-  color: #ccc;
-  font-size: 20px;
+  color: #aaa;
+  font-size: 25px;
   margin: 0 5px;
+  cursor: auto;
 }
