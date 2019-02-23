@@ -8,7 +8,8 @@
 
 .upload-form-section {
   margin-top: 0;
-  overflow: hidden;
+  min-height: 775px;
+  overflow-y: hidden;
 }
 
 .track-form-section h2, .edit-title, .upload-form-section h2 {
@@ -28,6 +29,7 @@
 .upload-form {
   width: 650px;
   margin: 0 auto;
+  height: 100%;
 }
 
 #bottom-form {
