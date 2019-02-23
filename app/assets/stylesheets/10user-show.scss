@@ -8,7 +8,7 @@
   width: 1240px;
   margin: 0 auto;
   background-color: white; 
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 .user-section {
@@ -66,11 +66,6 @@
 
 .user-form-section {
   z-index: 21;
-  // position: absolute;
-  // top: 50px;
-  // left: 17.5%;
-  // margin: 0;
-  // margin-left: 17.5%;
 }
 
 .edit-button {
@@ -149,4 +144,5 @@
 .user-tracks-section {
   width: 1200px;
   margin: 0 auto;
+  padding-bottom: 40px;
 }
