@@ -62,8 +62,7 @@ class TrackForm extends React.Component {
         }
       }
       else {
-        e.stopPropagation();
-        const file = e.target.files[0];
+        const file = e[0];
         const objectURL = URL.createObjectURL(file);
         const audio = new Audio([objectURL]); 
         const that = this;
