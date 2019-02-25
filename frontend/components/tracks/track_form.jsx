@@ -62,13 +62,8 @@ class TrackForm extends React.Component {
         }
       }
       else {
-        let file;
-        if (e.target) {
-          e.stopPropagation();
-          file = e.target.files[0];
-        } else {
-          file = e[0];
-        }
+        e.stopPropagation();
+        const file = e.target.files[0];
         const objectURL = URL.createObjectURL(file);
         const audio = new Audio([objectURL]); 
         const that = this;
@@ -132,9 +127,9 @@ class TrackForm extends React.Component {
               </label> 
               <label htmlFor="genre"> 
                 <select
-                value={this.state.genre}
-                onChange={this.updateGenre}
-                className="genre-input">
+                  value={this.state.genre}
+                  onChange={this.updateGenre}
+                  className="genre-input">
                   {genres}
                 </select>
               </label> 
