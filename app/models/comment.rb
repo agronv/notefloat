@@ -20,6 +20,10 @@ class Comment < ApplicationRecord
   class_name: :Comment,
   optional: true
 
+  has_many :parent_comment_user,
+  through: :parent_comment,
+  source: :user
+
   has_many :children,
   foreign_key: :parent_comment_id,
   class_name: :Comment

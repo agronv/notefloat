@@ -58,6 +58,9 @@ class Api::TracksController < ApplicationController
     .includes(:comments)
     .includes(:comment_user)
     .includes(:parent_comments)
+    .includes(:parent_comments_user)
+    .includes(comment_user_photos: :blob)
+    .includes(parent_comments_user_photo: :blob)
     .with_attached_photo
     .with_attached_mp3_file
     .find(params[:id])

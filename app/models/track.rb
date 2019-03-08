@@ -32,6 +32,18 @@ class Track < ApplicationRecord
   through: :comments,
   source: :parent_comment
 
+  has_many :parent_comments_user,
+  through: :comments,
+  source: :parent_comment_user
+
+  has_many :parent_comments_user_photo,
+  through: :parent_comments_user,
+  source: :photo_attachment
+
+  has_many :comment_user_photos,
+  through: :comment_user,
+  source: :photo_attachment
+
 
 
   def ensure_mp3 
