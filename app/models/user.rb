@@ -24,6 +24,10 @@ class User < ApplicationRecord
   has_many :comments
   has_one_attached :photo
 
+  has_many :track_photos,
+  through: :tracks,
+  source: :photo_attachment
+
   def ensure_no_space 
     if self.username.split(" ").length != 1
       errors[:username] << "Username cannot contain a space"

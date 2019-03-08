@@ -24,7 +24,9 @@ class Api::UsersController < ApplicationController
   end
 
   def show 
-    @user = User.find_by(id: params[:id])
+    @user = User
+    .with_attached_photo
+    .find(params[:id])
     if @user
       render :show
     else
@@ -33,7 +35,11 @@ class Api::UsersController < ApplicationController
   end
 
   def complete_show 
-    @user = User.find_by(id: params[:id])
+    @user = User
+    .includes(:tracks)
+    .includes(track_photos: :blob)
+    .with_attached_photo
+    .find(params[:id])
     if @user
       render :complete_show
     else

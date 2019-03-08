@@ -1,5 +1,5 @@
 json.user do 
-  json.extract! @user, :id, :username, :description, :track_ids
+  json.extract! @user, :id, :username, :track_ids
   if @user.description 
     json.description @user.description
   end
