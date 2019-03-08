@@ -1,19 +1,29 @@
 class Api::TracksController < ApplicationController 
 
   def random
-    @track = Track.where("genre = '#{params[:genre]}'").order("RANDOM()").first 
+    @track = Track
+    .includes(:user)
+    .with_attached_photo
+    .with_attached_mp3_file
+    .where("genre = '#{params[:genre]}'")
+    .order("RANDOM()").first 
     render :complete_show 
   end
 
   def complete_random
-    @track = Track.order("RANDOM()").first 
+    @track = Track
+    .includes(:user)
+    .with_attached_photo
+    .with_attached_mp3_file
+    .order("RANDOM()")
+    .first 
     render :complete_show 
   end
 
   def splash_tracks
-    @tracks = Track.select("tracks.id, tracks.title, tracks.length, tracks.user_id, tracks.genre, users.username as username")
-    .joins(:user)
-    .joins(:active_storage_blobs)
+    @tracks = Track
+    .includes(:user)
+    .with_attached_photo
     .order("RANDOM()")
     .limit(12) 
     render :splash_tracks 
@@ -43,7 +53,14 @@ class Api::TracksController < ApplicationController
   end
 
   def show 
-    @track = Track.find_by(id: params[:id])
+    @track = Track
+    .includes(:user)
+    .includes(:comments)
+    .includes(:comment_user)
+    .includes(:parent_comments)
+    .with_attached_photo
+    .with_attached_mp3_file
+    .find(params[:id])
     if @track
       render :show
     else
@@ -52,7 +69,11 @@ class Api::TracksController < ApplicationController
   end
 
   def complete_show 
-    @track = Track.find_by(id: params[:id])
+    @track = Track
+    .includes(:user)
+    .with_attached_photo
+    .with_attached_mp3_file
+    .find(params[:id])
     if @track
       render :complete_show
     else
@@ -61,7 +82,9 @@ class Api::TracksController < ApplicationController
   end
 
   def index 
-    @tracks = Track.all
+    @tracks = Track
+    .includes(:user)
+    .with_attached_photo
     render :index 
   end
 

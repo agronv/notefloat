@@ -24,6 +24,14 @@ class Track < ApplicationRecord
   belongs_to :user
   has_many :comments
 
+  has_many :comment_user,
+  through: :comments,
+  source: :user
+
+  has_many :parent_comments,
+  through: :comments,
+  source: :parent_comment
+
 
 
   def ensure_mp3 
