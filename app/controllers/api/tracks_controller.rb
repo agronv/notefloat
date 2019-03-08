@@ -11,13 +11,17 @@ class Api::TracksController < ApplicationController
   end
 
   def splash_tracks
-    @tracks = Track.order("RANDOM()").limit(12) 
+    @tracks = Track.select("tracks.id, tracks.title, tracks.length, tracks.user_id, tracks.genre, users.username as username")
+    .joins(:user)
+    .joins(:active_storage_blobs)
+    .order("RANDOM()")
+    .limit(12) 
     render :splash_tracks 
   end
 
   def create 
     @track = Track.new(track_params)
-    @track.user_id = current_user.id
+    @track.user_id = current_user.id 
     if @track.save 
       render :show 
     else

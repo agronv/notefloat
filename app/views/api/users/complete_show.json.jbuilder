@@ -1,4 +1,3 @@
-
 json.user do 
   json.extract! @user, :id, :username, :description, :track_ids
   if @user.description 
