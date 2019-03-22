@@ -1,6 +1,8 @@
 class Api::UsersController < ApplicationController 
 
   def create 
+    debugger
+    puts "HEAWKJFSKjhfAKSJfAKLshfKJHSKDJKHKDHJKjhKJHSDKFJHASKDJFHASKJHFAKSJDHFSAKDHFASKHFSKH"
     @user = User.new(user_params)
     if @user.save 
       log_in(@user)
