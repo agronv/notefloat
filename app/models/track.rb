@@ -44,8 +44,6 @@ class Track < ApplicationRecord
   through: :comment_user,
   source: :photo_attachment
 
-
-
   def ensure_mp3 
     unless self.mp3_file.attached?
       errors[:mp3_file] << "mp3 file must exist"
