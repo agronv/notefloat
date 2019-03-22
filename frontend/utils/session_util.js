@@ -1,12 +1,8 @@
 export const signUp = (user) => {
-  return fetch("./api/users/", {
+  return $.ajax({
     method: "POST",
-    body: JSON.stringify( {user} ),
-    headers: {
-      'Content-Type': 'application/json',
-      'X-CSRF-Token': Rails.csrfToken()
-    },
-    credentials: 'same-origin'
+    url: "/api/users/",
+    data: { user }
   });
 };
 
