@@ -8,7 +8,7 @@
     "babel-loader": "^8.0.5",
     "fast-average-color": "^4.3.0",
     "get-average-color": "0.0.6",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-dropzone": "^8.1.0",
